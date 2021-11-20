@@ -15,6 +15,16 @@ public class KhachHang {
     private String SDT;
     private String Email;
 
+    public KhachHang() {
+    }
+
+    public KhachHang(int MaKH, String TenKH, String SDT, String Email) {
+        this.MaKH = MaKH;
+        this.TenKH = TenKH;
+        this.SDT = SDT;
+        this.Email = Email;
+    }
+
     public int getMaKH() {
         return MaKH;
     }
@@ -47,12 +57,6 @@ public class KhachHang {
         this.Email = Email;
     }
 
-    public KhachHang(int MaKH, String TenKH, String SDT, String Email) {
-        this.MaKH = MaKH;
-        this.TenKH = TenKH;
-        this.SDT = SDT;
-        this.Email = Email;
-    }
     
     
 }

@@ -12,26 +12,56 @@ import java.util.Date;
  * @author Đức Toàn
  */
 public class NhanVien {
-    private String MaNV;
-    private String TenNV;
+
+    private String maNV;
+    private String hoTen;
+    private String matKhau;
+    private String ngaySinh;
     private String SDT;
-    private Date NgaySinh;
-    private boolean VaiTro;
+    private boolean vaiTro;
+
+    public NhanVien() {
+    }
+
+    public NhanVien(String maNV, String hoTen, String matKhau, String ngaySinh, String SDT, boolean vaiTro) {
+        this.maNV = maNV;
+        this.hoTen = hoTen;
+        this.matKhau = matKhau;
+        this.ngaySinh = ngaySinh;
+        this.SDT = SDT;
+        this.vaiTro = vaiTro;
+    }
 
     public String getMaNV() {
-        return MaNV;
+        return maNV;
     }
 
-    public void setMaNV(String MaNV) {
-        this.MaNV = MaNV;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
-    public String getTenNV() {
-        return TenNV;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setTenNV(String TenNV) {
-        this.TenNV = TenNV;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
     public String getSDT() {
@@ -42,32 +72,12 @@ public class NhanVien {
         this.SDT = SDT;
     }
 
-    public Date getNgaySinh() {
-        return NgaySinh;
-    }
-
-    public void setNgaySinh(Date NgaySinh) {
-        this.NgaySinh = NgaySinh;
-    }
-
     public boolean isVaiTro() {
-        return VaiTro;
+        return vaiTro;
     }
 
-    public void setVaiTro(boolean VaiTro) {
-        this.VaiTro = VaiTro;
+    public void setVaiTro(boolean vaiTro) {
+        this.vaiTro = vaiTro;
     }
 
-    public NhanVien() {
-    }
-
-    public NhanVien(String MaNV, String TenNV, String SDT, Date NgaySinh, boolean VaiTro) {
-        this.MaNV = MaNV;
-        this.TenNV = TenNV;
-        this.SDT = SDT;
-        this.NgaySinh = NgaySinh;
-        this.VaiTro = VaiTro;
-    }
-
-    
 }

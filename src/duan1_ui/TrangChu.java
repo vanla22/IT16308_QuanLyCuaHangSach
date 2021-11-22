@@ -341,6 +341,11 @@ public class TrangChu extends javax.swing.JFrame {
         mnuHeThong.setText("Hệ thống");
 
         mniDoiMatKhau.setText("Đổi Mật Khẩu");
+        mniDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDoiMatKhauActionPerformed(evt);
+            }
+        });
         mnuHeThong.add(mniDoiMatKhau);
 
         mniDangXuat.setText("Đăng Xuất");
@@ -421,6 +426,10 @@ public class TrangChu extends javax.swing.JFrame {
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mniHoaDonActionPerformed
+
+    private void mniDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoiMatKhauActionPerformed
+        this.openDoiMatKhau();
+    }//GEN-LAST:event_mniDoiMatKhauActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,5 +529,9 @@ public class TrangChu extends javax.swing.JFrame {
     this.setIconImage(XImage.getAppIcon());
     new chaoJDialog(this,true ).setVisible(true);
     new DangNhapJDialog(this,true ).setVisible(true);
+    }
+
+    private void openDoiMatKhau() {
+    new DoiMatKhauJDialog(this,true).setVisible(true);
     }
 }

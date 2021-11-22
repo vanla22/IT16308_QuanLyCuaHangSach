@@ -21,6 +21,9 @@ public class Sach {
     private String MaDauSach;
     private String GhiChu;
 
+    public Sach() {
+    }
+
     public String getMaSach() {
         return MaSach;
     }

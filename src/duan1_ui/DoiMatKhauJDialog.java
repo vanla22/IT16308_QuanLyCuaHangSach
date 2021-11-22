@@ -5,6 +5,11 @@
  */
 package duan1_ui;
 
+import java.awt.Color;
+import qlchs.dao.nhanvienDAO;
+import qlchs.utils.Auth;
+import qlchs.utils.MsgBox;
+
 /**
  *
  * @author user
@@ -17,6 +22,7 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     public DoiMatKhauJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.start();
     }
 
     /**
@@ -189,11 +195,11 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTenTaiKhoanActionPerformed
 
     private void btnDongYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongYActionPerformed
-        // TODO add your handling code here:
+        this.doiMatKhau();
     }//GEN-LAST:event_btnDongYActionPerformed
 
     private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
-        // TODO add your handling code here:
+        this.huyBo();
     }//GEN-LAST:event_btnHuyBoActionPerformed
 
     /**
@@ -252,4 +258,58 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtTenTaiKhoan;
     private javax.swing.JPasswordField txtXacNhanPass;
     // End of variables declaration//GEN-END:variables
+
+    private void start() {
+        this.setLocationRelativeTo(null);
+        this.txtTenTaiKhoan.setText(Auth.user.getMaNV());
+        this.txtTenTaiKhoan.setEnabled(false);
+    }
+    nhanvienDAO dao = new nhanvienDAO();
+
+    private void doiMatKhau() {
+        String maNV = txtTenTaiKhoan.getText();
+        String matKhau = new String(txtPassCu.getPassword());
+        String matKhauMoi = new String(txtPassMoi.getPassword());
+        String matKhauMoi2 = new String(txtXacNhanPass.getPassword());
+        if (matKhau.length() == 0) {
+            MsgBox.alert(this, "Mật khẩu cũ không được bỏ trống!");
+            txtPassCu.setBackground(Color.yellow);
+            txtPassCu.requestFocus();
+            return;
+        } else {
+            txtPassCu.setBackground(Color.white);
+        }
+        if (matKhauMoi.length() == 0) {
+            MsgBox.alert(this, "Mật khẩu mới không được bỏ trống!");
+            txtPassMoi.setBackground(Color.yellow);
+            txtPassMoi.requestFocus();
+            return;
+        } else {
+            txtPassMoi.setBackground(Color.white);
+        }
+        if (matKhauMoi2.length() == 0) {
+            MsgBox.alert(this, "Xác nhận mật khẩu không được bỏ trống!");
+            txtXacNhanPass.setBackground(Color.yellow);
+            txtXacNhanPass.requestFocus();
+            return;
+        } else {
+            txtXacNhanPass.setBackground(Color.white);
+        }
+
+         if (!matKhau.equals(Auth.user.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu");
+        } else if (!matKhauMoi.equals(matKhauMoi2)) {
+            MsgBox.alert(this, "Xác nhân mật khẩu không đúng!");
+        } else {
+            Auth.user.setMatKhau(matKhauMoi);
+            dao.update(Auth.user);
+            MsgBox.alert(this, "Đổi mật khẩu thành công");
+            this.dispose();
+        }
+    }
+
+    private void huyBo() {
+
+        this.dispose();
+    }
 }

@@ -16,12 +16,17 @@ public class DauSach {
     private String TenDauSach;
     private String MaTG;
     private String MaTL;
+    private String MaNXB;
 
-    public DauSach(String MaDauSach, String TenDauSach, String MaTG, String MaTL) {
+    public DauSach(String MaDauSach, String TenDauSach, String MaTG, String MaTL, String MaNXB) {
         this.MaDauSach = MaDauSach;
         this.TenDauSach = TenDauSach;
         this.MaTG = MaTG;
         this.MaTL = MaTL;
+        this.MaNXB = MaNXB;
+    }
+
+    public DauSach() {
     }
 
     public String getMaDauSach() {
@@ -55,5 +60,15 @@ public class DauSach {
     public void setMaTL(String MaTL) {
         this.MaTL = MaTL;
     }
+
+    public String getMaNXB() {
+        return MaNXB;
+    }
+
+    public void setMaNXB(String MaNXB) {
+        this.MaNXB = MaNXB;
+    }
+
+    
     
 }

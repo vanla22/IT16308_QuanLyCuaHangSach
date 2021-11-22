@@ -25,12 +25,12 @@ public class KeSachDAO extends QLNSDAO<KeSach, String> {
 
     @Override
     public void insert(KeSach e) {
-        JDBCHelper.update(insertSql, e.getMaKS(), e.getMaTL(), e.getTenSach());
+        JDBCHelper.update(insertSql, e.getMaKS(), e.getMaTL(), e.getTensach());
     }
 
     @Override
     public void update(KeSach e) {
-        JDBCHelper.update(updateSql, e.getMaTL(), e.getTenSach(), e.getMaKS());
+        JDBCHelper.update(updateSql, e.getMaTL(), e.getTensach(), e.getMaKS());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class KeSachDAO extends QLNSDAO<KeSach, String> {
                 KeSach ks = new KeSach();
                 ks.setMaKS(rs.getString("MaKs"));
                 ks.setMaTL(rs.getString("MaTL"));
-                ks.setTenSach(rs.getString("TenSach"));                
+                ks.setTensach(rs.getString("TenSach"));                
                 list.add(ks);
             }
             rs.getStatement().getConnection().close();

@@ -12,6 +12,24 @@ package EduSys.entity;
 public class TheLoai {
     private String MaTL;
     private String TenTL;
+    private boolean TrangThai;
+
+    public TheLoai() {
+    }
+
+    public boolean isTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
+    public TheLoai(String MaTL, String TenTL, boolean TrangThai) {
+        this.MaTL = MaTL;
+        this.TenTL = TenTL;
+        this.TrangThai = TrangThai;
+    }
 
     public String getMaTL() {
         return MaTL;
@@ -29,8 +47,5 @@ public class TheLoai {
         this.TenTL = TenTL;
     }
 
-    public TheLoai(String MaTL, String TenTL) {
-        this.MaTL = MaTL;
-        this.TenTL = TenTL;
-    }
+    
 }

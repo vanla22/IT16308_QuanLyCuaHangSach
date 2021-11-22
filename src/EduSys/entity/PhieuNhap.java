@@ -18,6 +18,18 @@ public class PhieuNhap {
     private Date NgayNhap;
     private double TongTien;
 
+    public PhieuNhap() {
+    }
+
+    
+    public PhieuNhap(String MaPN, String MaNV, String MaNCC, Date NgayNhap, double TongTien) {
+        this.MaPN = MaPN;
+        this.MaNV = MaNV;
+        this.MaNCC = MaNCC;
+        this.NgayNhap = NgayNhap;
+        this.TongTien = TongTien;
+    }
+   
     public String getMaPN() {
         return MaPN;
     }
@@ -58,11 +70,4 @@ public class PhieuNhap {
         this.TongTien = TongTien;
     }
 
-    public PhieuNhap(String MaPN, String MaNV, String MaNCC, Date NgayNhap, double TongTien) {
-        this.MaPN = MaPN;
-        this.MaNV = MaNV;
-        this.MaNCC = MaNCC;
-        this.NgayNhap = NgayNhap;
-        this.TongTien = TongTien;
-    }
 }

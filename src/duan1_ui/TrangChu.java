@@ -5,6 +5,8 @@
  */
 package duan1_ui;
 
+import qlchs.utils.XImage;
+
 /**
  *
  * @author Admin
@@ -17,7 +19,8 @@ public class TrangChu extends javax.swing.JFrame {
     public TrangChu() {
         initComponents();
         setLocationRelativeTo(null);
-    }
+        this.start();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +73,7 @@ public class TrangChu extends javax.swing.JFrame {
         mniNhapHang = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HỆ THỐNG QUẢN LÝ CỬA HÀNG SÁCH");
 
         jPanel2.setBackground(new java.awt.Color(39, 56, 120));
 
@@ -127,7 +131,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addComponent(btnNhapHang)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addContainerGap())
         );
@@ -510,4 +514,11 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenu mnuThongKe;
     private javax.swing.JMenu mnuXuatNhap;
     // End of variables declaration//GEN-END:variables
+
+    private void start() {
+    this.setLocationRelativeTo(null);
+    this.setIconImage(XImage.getAppIcon());
+    new chaoJDialog(this,true ).setVisible(true);
+    new DangNhapJDialog(this,true ).setVisible(true);
+    }
 }

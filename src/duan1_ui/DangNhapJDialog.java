@@ -5,6 +5,12 @@
  */
 package duan1_ui;
 
+import EduSys.entity.NhanVien;
+import java.awt.Color;
+import qlchs.dao.nhanvienDAO;
+import qlchs.utils.Auth;
+import qlchs.utils.MsgBox;
+
 /**
  *
  * @author user
@@ -17,6 +23,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.star();
     }
 
     /**
@@ -32,7 +39,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtTenTaiKhoan = new javax.swing.JTextField();
         btnDangNhap = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtMatKhau = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -68,8 +75,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(240, 240, 240));
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(39, 56, 120)));
+        txtMatKhau.setBackground(new java.awt.Color(240, 240, 240));
+        txtMatKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(39, 56, 120)));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Tên Đăng Nhập");
@@ -90,7 +97,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtTenTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1))
+                        .addComponent(txtMatKhau))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabel1))
@@ -112,7 +119,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,7 +143,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
+       // this.check();
+        this.dangNhap();
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void txtTenTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenTaiKhoanActionPerformed
@@ -191,7 +199,103 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTenTaiKhoan;
     // End of variables declaration//GEN-END:variables
+
+    private void star() {
+        this.setLocationRelativeTo(null);
+
+    }
+    nhanvienDAO dao = new nhanvienDAO();
+
+    void dangNhap() {
+//        String maNV = txtTenTaiKhoan.getText();
+//        String matKhau = new String(txtMatKhau.getPassword());
+//        NhanVien nv = dao.selectById(maNV);
+//        if (nv == null) {
+//            MsgBox.alert(this, "Tên tài khoản không tồn tại!");
+//            this.txtTenTaiKhoan.setBackground(Color.yellow);
+//            this.txtTenTaiKhoan.requestFocus();
+//        }if (!matKhau.equals(nv.getMatKhau())) {
+//            MsgBox.alert(this, "Sai mật khầu!");
+//            this.txtMatKhau.setBackground(Color.yellow);
+//            this.txtMatKhau.requestFocus();
+//        } else {
+//            Auth.user = nv;
+//            this.txtMatKhau.setBackground(Color.white);
+//            this.txtTenTaiKhoan.setBackground(Color.white);
+//            this.dispose();
+//            
+//        }
+String tdn = this.txtTenTaiKhoan.getText();
+        String mk =new String(this.txtMatKhau.getPassword());
+        if(tdn.length()==0){
+            MsgBox.alert(this, "Tên đăng nhập không được để trống!");
+            this.txtTenTaiKhoan.setBackground(Color.yellow);
+            this.txtTenTaiKhoan.requestFocus();
+            return;
+        }else if(tdn.length()<4){
+            MsgBox.alert(this, "Tên đăng nhập không được quá 10 kí tự và lớn hơn 6 kí tự!");
+            this.txtTenTaiKhoan.setBackground(Color.yellow);
+            this.txtTenTaiKhoan.requestFocus();
+            return;
+        }else{
+            this.txtTenTaiKhoan.setBackground(Color.white);
+        }
+        
+        if(mk.equals("")){
+            MsgBox.alert(this, "Mật khẩu không được để trống!");
+            this.txtMatKhau.setBackground(Color.yellow);
+            this.txtMatKhau.requestFocus();
+            return;
+        }else{
+            this.txtMatKhau.setBackground(Color.white);
+        }
+           nhanvienDAO dao=new nhanvienDAO();
+           NhanVien nv=dao.selectById(tdn);
+        try {
+        
+            if (nv == null) {
+                MsgBox.alert(this, "Tên tài khoản không tồn tại!");
+                this.txtTenTaiKhoan.setBackground(Color.yellow);
+                this.txtTenTaiKhoan.requestFocus();
+                return;
+            }else{
+                this.txtTenTaiKhoan.setBackground(Color.white);
+            }
+            if(!mk.equals(nv.getMatKhau())){
+               MsgBox.alert(this, "Mật khẩu không chính xác!");
+                this.txtMatKhau.setBackground(Color.yellow);
+                this.txtMatKhau.requestFocus();
+                return;
+            }else{
+                this.txtMatKhau.setBackground(Color.white);
+            }
+           
+        } catch (Exception ex) {
+            MsgBox.alert(this, "Lỗi kết nối máy chủ !");
+            return;
+        }
+        MsgBox.alert(this, "Đăng nhập thành công!");
+        Auth.user=nv;
+        this.dispose();
+       
+        
+    }
+
+//    void check() {
+//        String maNV = txtTenTaiKhoan.getText();
+//        String matKhau = new String(txtMatKhau.getPassword());
+//        if (maNV.length() == 0) {
+//            MsgBox.alert(this, "Tên tài khoản không được để trống!");
+//            this.txtTenTaiKhoan.setBackground(Color.yellow);
+//            this.txtTenTaiKhoan.requestFocus();
+//        }
+//        if (matKhau.length() == 0) {
+//            MsgBox.alert(this, "Mật khẩu không được để trống!");
+//            this.txtMatKhau.setBackground(Color.yellow);
+//            this.txtMatKhau.requestFocus();
+//        }
+//    }
 }

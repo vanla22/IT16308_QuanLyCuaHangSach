@@ -61,16 +61,18 @@ public class nhanvienDAO extends QLNSDAO<NhanVien, String> {
                 NhanVien entity = new NhanVien();
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMatKhau(rs.getString("MatKhau"));
-                entity.setHoTen(rs.getString("HoTen"));
+                entity.setHoTen(rs.getString("HovaTen"));
                 entity.setNgaySinh(rs.getString("NgaySinh"));
                 entity.setSDT(rs.getString("SDT"));
                 entity.setVaiTro(rs.getBoolean("VaiTro"));
                 list.add(entity);
             }
+            rs.getStatement().getConnection().close();
+            return list;
         } catch (Exception e) {
             throw  new RuntimeException(e);
         }
-        return list;
+       
     }
 
 }

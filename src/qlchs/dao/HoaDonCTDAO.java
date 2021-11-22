@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package qlchs.dao;
+
+import EduSys.entity.HoaDonCT;
+import qlchs.utils.JDBCHelper;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Admin
+ */
+public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
+    final String INSERT_SQL = "INSERT INTO HoaDonCT(MaHDCT,MaHD,MaSach,SoLuong,GiaBan,ThanhTien) values(?,?,?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE HoaDonCT set MaHD=?,MaSach=?,SoLuong=?,GiaBan=?,ThanhTien=? WHERE MaHDCT=?";
+    final String DELETE_SQL = "DELETE FROM HoaDonCT WHERE MaHDCT=?";
+    final String SELECT_ALL_SQL = "SELECT * FROM HoaDonCT";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonCT WHERE MaHDCT= ?";
+    @Override
+    public void insert(HoaDonCT entity) {
+        JDBCHelper.update(INSERT_SQL, entity.getMaHDCT(),entity.getMaHD(),entity.getMaSach(),entity.getSoLuong(),entity.getGiaBan(),entity.getThanhTien());
+    }
+
+    @Override
+    public void update(HoaDonCT entity) {
+        JDBCHelper.update(UPDATE_SQL,entity.getMaHD(),entity.getMaSach(),entity.getSoLuong(),entity.getGiaBan(),entity.getThanhTien(), entity.getMaHDCT());
+    }
+
+    @Override
+    public void delete(Integer id) {
+        JDBCHelper.update(DELETE_SQL, id);
+    }
+
+    @Override
+    public List<HoaDonCT> selectAll() {
+        return selectBySql(SELECT_ALL_SQL);
+    }
+
+    @Override
+    public HoaDonCT selectById(Integer id) {
+        List<HoaDonCT> list = selectBySql(SELECT_BY_ID_SQL, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
+    public List<HoaDonCT> selectBySql(String sql, Object... args) {
+        List<HoaDonCT> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql, args);
+            while (rs.next()) {
+                HoaDonCT entity = new HoaDonCT();
+                entity.setMaHDCT(rs.getInt("MaHDCT"));
+                entity.setMaHD(rs.getInt("MaHD"));
+                entity.setMaSach(rs.getString("MaSach"));
+                entity.setSoLuong(rs.getInt("SoLuong"));
+                entity.setGiaBan(rs.getDouble("GiaBan"));
+                entity.setThanhTien(rs.getDouble("ThanhTien"));
+                list.add(entity);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    
+}

@@ -5,6 +5,8 @@
  */
 package EduSys.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Đức Toàn
@@ -14,7 +16,20 @@ public class NhaXuatBan {
     private String TenNXB;
     private String DiaChi;
     private String Email;
+    private Date NamXuatBan;
     private boolean TrangThai;
+
+    public NhaXuatBan(String MaNXB, String TenNXB, String DiaChi, String Email, Date NamXuatBan, boolean TrangThai) {
+        this.MaNXB = MaNXB;
+        this.TenNXB = TenNXB;
+        this.DiaChi = DiaChi;
+        this.Email = Email;
+        this.NamXuatBan = NamXuatBan;
+        this.TrangThai = TrangThai;
+    }
+
+    public NhaXuatBan() {
+    }
 
     public String getMaNXB() {
         return MaNXB;
@@ -48,6 +63,14 @@ public class NhaXuatBan {
         this.Email = Email;
     }
 
+    public Date getNamXuatBan() {
+        return NamXuatBan;
+    }
+
+    public void setNamXuatBan(Date NamXuatBan) {
+        this.NamXuatBan = NamXuatBan;
+    }
+
     public boolean isTrangThai() {
         return TrangThai;
     }
@@ -56,11 +79,5 @@ public class NhaXuatBan {
         this.TrangThai = TrangThai;
     }
 
-    public NhaXuatBan(String MaNXB, String TenNXB, String DiaChi, String Email, boolean TrangThai) {
-        this.MaNXB = MaNXB;
-        this.TenNXB = TenNXB;
-        this.DiaChi = DiaChi;
-        this.Email = Email;
-        this.TrangThai = TrangThai;
-    }
+    
 }

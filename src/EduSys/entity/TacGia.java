@@ -12,7 +12,10 @@ package EduSys.entity;
 public class TacGia {
     private String MaTG;
     private String TenTG;
-    private String GhiChu;
+    
+
+    public TacGia() {
+    }
 
     public String getMaTG() {
         return MaTG;
@@ -30,17 +33,11 @@ public class TacGia {
         this.TenTG = TenTG;
     }
 
-    public String getGhiChu() {
-        return GhiChu;
-    }
+    
 
-    public void setGhiChu(String GhiChu) {
-        this.GhiChu = GhiChu;
-    }
-
-    public TacGia(String MaTG, String TenTG, String GhiChu) {
+    public TacGia(String MaTG, String TenTG ) {
         this.MaTG = MaTG;
         this.TenTG = TenTG;
-        this.GhiChu = GhiChu;
+        
     }
 }

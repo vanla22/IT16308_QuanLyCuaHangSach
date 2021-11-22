@@ -19,6 +19,9 @@ public class HoaDonCT {
     private double GiaBan;
     private double ThanhTien;
 
+    public HoaDonCT() {
+    }
+
     public int getMaHDCT() {
         return MaHDCT;
     }

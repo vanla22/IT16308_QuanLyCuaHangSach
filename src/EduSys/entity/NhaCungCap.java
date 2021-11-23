@@ -16,6 +16,16 @@ public class NhaCungCap {
     private String Email;
     private String SDT;
 
+    public NhaCungCap() {
+    }
+
+    public NhaCungCap(String MaNCC, String TenNCC, String DiaChi, String Email, String SDT) {
+        this.MaNCC = MaNCC;
+        this.TenNCC = TenNCC;
+        this.DiaChi = DiaChi;
+        this.Email = Email;
+        this.SDT = SDT;
+    }
     public String getMaNCC() {
         return MaNCC;
     }
@@ -56,11 +66,5 @@ public class NhaCungCap {
         this.SDT = SDT;
     }
 
-    public NhaCungCap(String MaNCC, String TenNCC, String DiaChi, String Email, String SDT) {
-        this.MaNCC = MaNCC;
-        this.TenNCC = TenNCC;
-        this.DiaChi = DiaChi;
-        this.Email = Email;
-        this.SDT = SDT;
-    }
+    
 }

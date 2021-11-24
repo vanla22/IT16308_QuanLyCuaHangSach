@@ -47,5 +47,10 @@ public class TheLoai {
         this.TenTL = TenTL;
     }
 
+    @Override
+    public String toString() {
+       return  "("+MaTL+")";
+    }
+
     
 }

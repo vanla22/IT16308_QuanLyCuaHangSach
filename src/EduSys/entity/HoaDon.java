@@ -14,15 +14,11 @@ import java.util.Date;
  */
 public class HoaDon {
     private int MaHD;
-
     private String MaNV;
     private int MaKH;
     private Date NgayXuat;
     private double TongTien;
 
-    public HoaDon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public int getMaHD() {
         return MaHD;
@@ -51,7 +47,10 @@ public class HoaDon {
     public Date getNgayXuat() {
         return NgayXuat;
     }
-
+    public int getNamXuat(){
+        return  Integer.valueOf(String.valueOf(NgayXuat).substring(0, String.valueOf(NgayXuat).indexOf("-")));
+                
+    }
     public void setNgayXuat(Date NgayXuat) {
         this.NgayXuat = NgayXuat;
     }
@@ -71,4 +70,13 @@ public class HoaDon {
         this.NgayXuat = NgayXuat;
         this.TongTien = TongTien;
     }
+
+    public HoaDon() {
+    }
+
+    @Override
+    public String toString() {
+        return "("+NgayXuat+")";
+    }
+    
 }

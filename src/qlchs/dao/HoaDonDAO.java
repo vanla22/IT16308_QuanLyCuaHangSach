@@ -21,6 +21,23 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
     final String DELETE_SQL = "DELETE FROM HoaDon WHERE MaHD=?";
     final String SELECT_ALL_SQL = "SELECT * FROM HoaDon";
     final String SELECT_BY_ID_SQL = "SELECT * FROM HD WHERE MaHD= ?";
+
+    public List<Integer> selectYear(){
+    String sql ="Select distinct year(ngayxuat) nam from HOADON order by nam desc ";
+    List<Integer> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql);
+            while(rs.next()){
+            list.add(rs.getInt(1));            
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    
+    
+    }
     @Override
     public void insert(HoaDon entity) {
         JDBCHelper.update(INSERT_SQL, entity.getMaHD(),entity.getMaNV(),entity.getMaKH(),entity.getNgayXuat(),entity.getTongTien());
@@ -65,6 +82,7 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
                 list.add(entity);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
         return list;

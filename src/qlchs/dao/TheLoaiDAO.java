@@ -22,6 +22,22 @@ public class TheLoaiDAO extends QLNSDAO<TheLoai, String>{
     String deleteSql="DELETE FROM THELOAI WHERE MaTL=?";
     String selectAll="SELECT*FROM THELOAI";
     String selectById="SELECT*FROM THELOAI WHERE MaTL=?";
+      public List<Integer> selectTheLoai(){
+    String sql ="Select MaTL from THELOAI  ";
+    List<Integer> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql);
+            while(rs.next()){
+            list.add(rs.getInt(1));            
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    
+    
+    }
    
     @Override
     public void insert(TheLoai entity) {

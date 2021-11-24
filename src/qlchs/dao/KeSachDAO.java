@@ -21,7 +21,7 @@ public class KeSachDAO extends QLNSDAO<KeSach, String> {
     String updateSql = "update kesach set  matl=?, tensach=? where maks=?";
     String deleteSql = "delete from kesach where maks=?";
     String select_All_Sql = " select * from KESACH";
-    String select_sql_byID = "Select * from kesach where tensach=?";
+    String select_sql_byID = "Select * from kesach where maks=?";
 
     @Override
     public void insert(KeSach e) {

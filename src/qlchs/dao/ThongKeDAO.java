@@ -35,15 +35,15 @@ public class ThongKeDAO {
     } 
     
       public List<Object[]> getThongKeDoanhThu(int nam) {
-        String sql = "{call  sp_TKDT_TungThangTheoNam}";
+        String sql = "{call  sp_TKDT_TungThangTheoNam(?)}";
         String[] cols = {"Thang", "SoLuongKhachHang", "SoLuongSanPhamBanRa","DoanhThu"};
-        return this.getListofArray(sql, cols);
+        return this.getListofArray(sql, cols,nam);
 
     }
       public List<Object[]> getThongKeSPBanChay(int year) {
-        String sql = "{call  sp_thongkespbanchay}";
+        String sql = "{call  sp_thongkespbanchay(?)}";
         String[] cols = {"MaSach", "TenSach", "SoLuongBan","DoanhThu"};
-        return this.getListofArray(sql, cols);
+        return this.getListofArray(sql, cols,year);
 
     }
 }

@@ -16,7 +16,7 @@ public class JDBCHelper {
     public static String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String url="jdbc:sqlserver://localhost:1433;databaseName=QLNS";
     public static String username="sa";
-    public static String password="123456789";
+    public static String password="songlong";
     //nạp driver
     static{
         try {

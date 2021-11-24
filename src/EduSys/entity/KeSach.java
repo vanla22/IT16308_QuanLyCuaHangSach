@@ -10,9 +10,10 @@ package EduSys.entity;
  * @author Đức Toàn
  */
 public class KeSach {
+
     private String MaKS;
     private String MaTL;
-private String TenSach;
+    private String TenSach;
 
     public KeSach(String MaKS, String MaTL, String TenSach) {
         this.MaKS = MaKS;
@@ -27,6 +28,7 @@ private String TenSach;
     public void setTensach(String tensach) {
         this.TenSach = tensach;
     }
+
     public KeSach() {
     }
 
@@ -46,5 +48,12 @@ private String TenSach;
         this.MaTL = MaTL;
     }
 
-    
+    public String getTenSach() {
+        return TenSach;
+    }
+
+    public void setTenSach(String TenSach) {
+        this.TenSach = TenSach;
+    }
+
 }

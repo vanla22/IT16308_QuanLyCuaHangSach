@@ -19,6 +19,7 @@ public class NhanVien {
     private String ngaySinh;
     private String SDT;
     private boolean vaiTro;
+    private boolean TinhTrang=true;
 
     public NhanVien() {
     }
@@ -79,5 +80,15 @@ public class NhanVien {
     public void setVaiTro(boolean vaiTro) {
         this.vaiTro = vaiTro;
     }
+
+    public boolean isTinhTrang() {
+        return TinhTrang;
+    }
+
+    public void setTinhTrang(boolean TinhTrang) {
+        this.TinhTrang = TinhTrang;
+    }
+
+   
 
 }

@@ -17,12 +17,21 @@ import qlchs.utils.JDBCHelper;
  */
 public class nhanvienDAO extends QLNSDAO<NhanVien, String> {
 
-    final String INSERT_SQL = "INSERT INTO NHANVIEN(MaNV,MatKhau,HovaTen,NgaySinh,SDT,VaiTro) values (?,?,?,?,?,?)";
+    final String INSERT_SQL = "INSERT INTO NHANVIEN(MaNV,MatKhau,HovaTen,NgaySinh,SDT,VaiTro,TinhTrang) values (?,?,?,?,?,?,1)";
     final String UPDATE_SQL = " UPDATE NHANVIEN set MatKhau=?, HovaTen=?, NgaySinh=?,SDT=?,VaiTro=? WHERE MaNV=?";
     final String DELETE_SQL = "DELETE FROM NHANVIEN WHERE MaNV=?";
     final String SELECT_ALL_SQL = "SELECT * FROM NHANVIEN";
     final String SELECT_BY_ID_SQL = "SELECT * FROM NHANVIEN WHERE MaNV= ?";
+    String xoaTamThoi = "update NHANVIEN set TinhTrang=? where MaNV=?";
+    String selectTinhTrang = "SELECT*FROM NHANVIEN where TinhTrang=?";
 
+    public void xoaTamThoi(String idlist, String manv) {
+        JDBCHelper.update(xoaTamThoi, idlist, manv);
+    }
+
+    public List<NhanVien> selectIdList(String id) {
+        return this.selectBySql(selectTinhTrang, id);
+    }
     @Override
     public void insert(NhanVien entity) {
         JDBCHelper.update(INSERT_SQL, entity.getMaNV(), entity.getMatKhau(), entity.getHoTen(), entity.getNgaySinh(), entity.getSDT(), entity.isVaiTro());
@@ -61,18 +70,19 @@ public class nhanvienDAO extends QLNSDAO<NhanVien, String> {
                 NhanVien entity = new NhanVien();
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMatKhau(rs.getString("MatKhau"));
-                entity.setHoTen(rs.getString("HovaTen"));
+                entity.setHoTen(rs.getString("HoVaTen"));
                 entity.setNgaySinh(rs.getString("NgaySinh"));
                 entity.setSDT(rs.getString("SDT"));
                 entity.setVaiTro(rs.getBoolean("VaiTro"));
+                entity.setTinhTrang(rs.getBoolean("TinhTrang"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
-            return list;
+            
         } catch (Exception e) {
-            throw  new RuntimeException(e);
+           e.printStackTrace();
         }
-       
+       return list;
     }
 
 }

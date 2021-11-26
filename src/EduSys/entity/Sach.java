@@ -14,7 +14,7 @@ import java.util.Date;
 public class Sach {
     private String MaSach;
     private String TenSach;
-    private Date NamXuatBan;
+    
     private double GiaBan;
     private int SoLuong;
     private boolean TrangThai;
@@ -40,13 +40,7 @@ public class Sach {
         this.TenSach = TenSach;
     }
 
-    public Date getNamXuatBan() {
-        return NamXuatBan;
-    }
-
-    public void setNamXuatBan(Date NamXuatBan) {
-        this.NamXuatBan = NamXuatBan;
-    }
+  
 
     public double getGiaBan() {
         return GiaBan;
@@ -88,10 +82,10 @@ public class Sach {
         this.GhiChu = GhiChu;
     }
 
-    public Sach(String MaSach, String TenSach, Date NamXuatBan, double GiaBan, int SoLuong, boolean TrangThai, String MaDauSach, String GhiChu) {
+    public Sach(String MaSach, String TenSach, double GiaBan, int SoLuong, boolean TrangThai, String MaDauSach, String GhiChu) {
         this.MaSach = MaSach;
         this.TenSach = TenSach;
-        this.NamXuatBan = NamXuatBan;
+        
         this.GiaBan = GiaBan;
         this.SoLuong = SoLuong;
         this.TrangThai = TrangThai;

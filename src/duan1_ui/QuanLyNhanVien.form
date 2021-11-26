@@ -402,12 +402,12 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="6" rowCount="0">
-                        <Column editable="true" title="M&#xe3; NV" type="java.lang.Object"/>
-                        <Column editable="true" title="H&#x1ecd; T&#xea;n" type="java.lang.Object"/>
-                        <Column editable="true" title="M&#x1ead;t Kh&#x1ea9;u" type="java.lang.Object"/>
-                        <Column editable="true" title="Ng&#xe0;y Sinh" type="java.lang.Object"/>
-                        <Column editable="true" title="SDT" type="java.lang.Object"/>
-                        <Column editable="true" title="Vai Tr&#xf2;" type="java.lang.Object"/>
+                        <Column editable="false" title="M&#xe3; NV" type="java.lang.Object"/>
+                        <Column editable="false" title="H&#x1ecd; T&#xea;n" type="java.lang.Object"/>
+                        <Column editable="false" title="M&#x1ead;t Kh&#x1ea9;u" type="java.lang.Object"/>
+                        <Column editable="false" title="Ng&#xe0;y Sinh" type="java.lang.Object"/>
+                        <Column editable="false" title="SDT" type="java.lang.Object"/>
+                        <Column editable="false" title="Vai Tr&#xf2;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

@@ -36,6 +36,8 @@ public class quanLySachJFrame extends javax.swing.JFrame {
     public quanLySachJFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        loadCbb();
+        fillTable();
 //        new chaoJDialog(this, true).setVisible(true);
     }
     public void loadCbb() {
@@ -81,6 +83,7 @@ public class quanLySachJFrame extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi truy vấn");
+            e.printStackTrace();
         }
         if (listSach == null) {
             JOptionPane.showMessageDialog(this, "Không có người học có tên: " + txtTenSach.getText());
@@ -412,7 +415,15 @@ public class quanLySachJFrame extends javax.swing.JFrame {
             new String [] {
                 "MÃ SÁCH", "TÊN SÁCH", "MÃ ĐẦU SÁCH", "SỐ LƯỢNG", "GIÁ BÁN", "TRẠNG THÁI"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblSach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblSachMouseClicked(evt);
@@ -587,10 +598,10 @@ public class quanLySachJFrame extends javax.swing.JFrame {
         
         txtMaSach.setText(tblSach.getValueAt(i, 0).toString());
         txtTen.setText(tblSach.getValueAt(i, 1).toString());
-        txtSoLuong.setText(tblSach.getValueAt(i, 3).toString());
+        txtSoLuong.setText(tblSach.getValueAt(i, 2).toString());
+        txtGia.setText(tblSach.getValueAt(i, 3).toString());
         txtGia.setText(tblSach.getValueAt(i, 4).toString());
-        txtGia.setText(tblSach.getValueAt(i, 5).toString());
-        if (tblSach.getValueAt(i, 6).toString().equals("Con Hang")) {
+        if (tblSach.getValueAt(i, 5).toString().equals("Con Hang")) {
             rdoCon.setSelected(true);
         } else {
             rdoHet.setSelected(true);

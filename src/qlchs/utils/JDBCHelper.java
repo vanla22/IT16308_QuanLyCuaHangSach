@@ -14,7 +14,7 @@ public class JDBCHelper {
 
     
   public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String dburl ="jdbc:sqlserver://34.87.102.197:1433;databaseName=QLNS";
+    public static String dburl ="jdbc:sqlserver://34.87.102.197:1433;databaseName=QLNS1";
     public static String username = "duan1";
     public static String password = "duan1";
     //nạp driver

@@ -13,10 +13,10 @@ import java.sql.*;
 public class JDBCHelper {
 
     
-    public static String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String url="jdbc:sqlserver://localhost:1433;databaseName=QLNS";
-    public static String username="sa";
-    public static String password="songlong";
+  public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    public static String dburl ="jdbc:sqlserver://34.87.102.197:1433;databaseName=QLNS";
+    public static String username = "duan1";
+    public static String password = "duan1";
     //nạp driver
     static{
         try {
@@ -27,7 +27,7 @@ public class JDBCHelper {
     
     }
     public static PreparedStatement getStm(String sql,Object...args ) throws SQLException{
-        Connection con=DriverManager.getConnection(url,username,password);
+        Connection con=DriverManager.getConnection(dburl,username,password);
          PreparedStatement pstm;
          if (sql.trim().startsWith("{")) {
             pstm=con.prepareCall(sql);

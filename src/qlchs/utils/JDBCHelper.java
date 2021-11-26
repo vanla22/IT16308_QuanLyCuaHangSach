@@ -41,10 +41,15 @@ public class JDBCHelper {
              
     }
     
-    public static ResultSet query(String sql,Object...args) throws SQLException {
+    public static ResultSet query(String sql,Object...args)  {
+        try {
+            
+      
         PreparedStatement pstm=JDBCHelper.getStm(sql,args);
         return pstm.executeQuery();
-        
+          } catch (Exception e) {
+              throw new RuntimeException(e);
+        }
     }
     
     public static Object value(String sql,Object...args) {

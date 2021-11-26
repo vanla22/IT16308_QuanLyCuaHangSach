@@ -70,5 +70,8 @@ public class khachhangDAO extends QLNSDAO<KhachHang, Integer> {
         }
         return list;
     }
-
+public List<KhachHang> selectByKeyword(String keyword){
+        String sql="SELECT * FROM KHACHHANG WHERE MaKH LIKE ?";
+        return this.selectBySql(sql, "%"+keyword+"%");
+    }
 }

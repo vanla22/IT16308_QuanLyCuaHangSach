@@ -21,12 +21,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private nhanvienDAO dao = new nhanvienDAO();
     private int row = -1;
     private List<NhanVien> listNhanVien;
+
     /**
      * Creates new form QuanLyNhanVien
      */
     public QuanLyNhanVien() {
         initComponents();
-         fillTable("1");
+
+        fillTable("1");
+
         btnKhoiPhuc.setVisible(false);
         btnNhanVienHT.setVisible(false);
         clearForm();
@@ -56,12 +59,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         txtMatKhau.setText(nv.getMatKhau());
         txtNgaySinh.setText(nv.getNgaySinh());
         txtSDT.setText(nv.getSDT());
-        if(nv.isVaiTro()== true){
+        if (nv.isVaiTro() == true) {
             rdoChuCuaHang.setSelected(true);
-        } else{
+        } else {
             rdoNhanVien.setSelected(true);
         }
-        
+
     }
 
     public NhanVien getForm() {
@@ -88,7 +91,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         String manv = (String) tblNhaVien.getValueAt(row, 0);
         NhanVien nv = dao.selectById(manv);
         this.setForm(nv);
-        tblNhaVien.setRowSelectionInterval(row,row);
+        tblNhaVien.setRowSelectionInterval(row, row);
     }
 
     public void insert() {
@@ -169,6 +172,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         this.row = tblNhaVien.getRowCount() - 1;
         this.edit();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -372,7 +376,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             new String [] {
                 "Mã NV", "Họ Tên", "Mật Khẩu", "Ngày Sinh", "SDT", "Vai Trò"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblNhaVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblNhaVienMouseClicked(evt);
@@ -538,13 +550,14 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         if (txtNgaySinh.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
             return;
-        }else {
+        } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
                 MsgBox.alert(this, "Định dạng là dd/MM/yyyy");
                 return;
-            }}
+            }
+        }
         if (txtSDT.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
             return;
@@ -556,7 +569,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-           if (txtMaNv.getText().length() == 0) {
+        if (txtMaNv.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
             return;
         }
@@ -571,13 +584,14 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         if (txtNgaySinh.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
             return;
-        }else {
+        } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
                 MsgBox.alert(this, "Định dạng là dd/MM/yyyy");
                 return;
-            }}
+            }
+        }
         if (txtSDT.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
             return;
@@ -589,7 +603,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-                if (txtMaNv.getText().length() == 0) {
+        if (txtMaNv.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
             return;
         }
@@ -613,12 +627,12 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-       last();
+        last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnKhoiPhucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucActionPerformed
         int dong = tblNhaVien.getSelectedRow();
-         if (dong<0) {
+        if (dong < 0) {
             MsgBox.alert(this, "Chọn nhân viên cần khôi phục");
             return;
         }
@@ -631,19 +645,19 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnNhanVienHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienHTActionPerformed
         fillTable("1");
-       btnKhoiPhuc.setVisible(false);
+        btnKhoiPhuc.setVisible(false);
         btnNhanVienHT.setVisible(false);
-        
+
     }//GEN-LAST:event_btnNhanVienHTActionPerformed
 
     private void btnNhanVienDaXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienDaXoaActionPerformed
-           fillTable("0");
-         btnNhanVienHT.setVisible(true);
+        fillTable("0");
+        btnNhanVienHT.setVisible(true);
         btnKhoiPhuc.setVisible(true);
     }//GEN-LAST:event_btnNhanVienDaXoaActionPerformed
 
     private void tblNhaVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhaVienMouseClicked
-          row = tblNhaVien.getSelectedRow();
+        row = tblNhaVien.getSelectedRow();
         NhanVien nv = listNhanVien.get(row);
         if (evt.getClickCount() == 2) {
             setForm(nv);

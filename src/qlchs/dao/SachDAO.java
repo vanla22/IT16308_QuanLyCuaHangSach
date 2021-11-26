@@ -17,15 +17,15 @@ import java.util.List;
  * @author Admin
  */
 public class SachDAO extends QLNSDAO<Sach, String>{
- final String INSERT_SQL = "INSERT INTO Sach(MaSach,TenSach,NamXuatBan,GiaBan,SoLuong,TrangThai,MaDauSach,GhiChu) values(?,?,?,?,?,?,?.?)";
-    final String UPDATE_SQL = "UPDATE Sach set TenSach=?,NamXuatBan=?,GiaBan=?,SoLuong=?,TrangThai=?,MaDauSach=?,GhiChu=? where MaSach=?";
+ final String INSERT_SQL = "INSERT INTO Sach(MaSach,TenSach,GiaBan,SoLuong,TrangThai,MaDauSach,GhiChu) values(?,?,?,?,?,?.?)";
+    final String UPDATE_SQL = "UPDATE Sach set TenSach=?,GiaBan=?,SoLuong=?,TrangThai=?,MaDauSach=?,GhiChu=? where MaSach=?";
     final String DELETE_SQL = "DELETE FROM Sach WHERE MaSach=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Sach";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Sach WHERE MaSach= ?";
 
     @Override
     public void insert(Sach entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaSach(),entity.getTenSach(), entity.getNamXuatBan(),
+        JDBCHelper.update(INSERT_SQL, entity.getMaSach(),entity.getTenSach(),
                 entity.getGiaBan(),entity.getSoLuong(),entity.isTrangThai(),entity.getMaDauSach(),entity.getGhiChu()
         
         );
@@ -33,7 +33,7 @@ public class SachDAO extends QLNSDAO<Sach, String>{
 
     @Override
     public void update(Sach entity) {
-JDBCHelper.update(UPDATE_SQL, entity.getTenSach(), entity.getNamXuatBan(),
+JDBCHelper.update(UPDATE_SQL, entity.getTenSach(),
                 entity.getGiaBan(),entity.getSoLuong(),entity.isTrangThai(),entity.getMaDauSach(),entity.getGhiChu(),entity.getMaSach()
 );
         }
@@ -67,7 +67,7 @@ JDBCHelper.update(UPDATE_SQL, entity.getTenSach(), entity.getNamXuatBan(),
                 Sach entity = new Sach();
                 entity.setMaSach(rs.getString("MaSach"));
                 entity.setTenSach(rs.getString("TenSach"));
-                entity.setNamXuatBan(rs.getDate("NamXuatBan"));
+                
                 entity.setGiaBan(rs.getDouble("GiaBan"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
                 entity.setTrangThai(rs.getBoolean("TrangThai"));

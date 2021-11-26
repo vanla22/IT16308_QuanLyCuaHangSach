@@ -62,6 +62,7 @@ public class TrangChu extends javax.swing.JFrame {
         mnuQuanLy = new javax.swing.JMenu();
         mniQLyTuSach = new javax.swing.JMenuItem();
         mniHoaDon = new javax.swing.JMenuItem();
+        mniKeSach = new javax.swing.JMenuItem();
         mniKhachHang = new javax.swing.JMenuItem();
         mniSach = new javax.swing.JMenuItem();
         mniQlyNhanVien = new javax.swing.JMenuItem();
@@ -370,13 +371,36 @@ public class TrangChu extends javax.swing.JFrame {
         });
         mnuQuanLy.add(mniHoaDon);
 
+        mniKeSach.setText("Quản Lý Kệ Sách");
+        mniKeSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKeSachActionPerformed(evt);
+            }
+        });
+        mnuQuanLy.add(mniKeSach);
+
         mniKhachHang.setText("Quản Lý Khách Hàng");
+        mniKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKhachHangActionPerformed(evt);
+            }
+        });
         mnuQuanLy.add(mniKhachHang);
 
         mniSach.setText("Quản Lý Sách");
+        mniSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSachActionPerformed(evt);
+            }
+        });
         mnuQuanLy.add(mniSach);
 
         mniQlyNhanVien.setText("Quản Lý Nhân viên");
+        mniQlyNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQlyNhanVienActionPerformed(evt);
+            }
+        });
         mnuQuanLy.add(mniQlyNhanVien);
 
         jMenuBar4.add(mnuQuanLy);
@@ -430,6 +454,25 @@ public class TrangChu extends javax.swing.JFrame {
     private void mniDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoiMatKhauActionPerformed
         this.openDoiMatKhau();
     }//GEN-LAST:event_mniDoiMatKhauActionPerformed
+
+    private void mniQlyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQlyNhanVienActionPerformed
+      QuanLyNhanVien qlnv=new QuanLyNhanVien();
+      qlnv.setVisible(true);
+    }//GEN-LAST:event_mniQlyNhanVienActionPerformed
+
+    private void mniSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSachActionPerformed
+        quanLySachJFrame qls=new quanLySachJFrame();
+        qls.setVisible(true);
+    }//GEN-LAST:event_mniSachActionPerformed
+
+    private void mniKeSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeSachActionPerformed
+        new KeSachJDialog(this,true).setVisible(true);
+    }//GEN-LAST:event_mniKeSachActionPerformed
+
+    private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
+        QuanLyKhachHangJFrame qlkh=new QuanLyKhachHangJFrame();
+        qlkh.setVisible(true);
+    }//GEN-LAST:event_mniKhachHangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,6 +554,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniDoanhTthu;
     private javax.swing.JMenuItem mniDoiMatKhau;
     private javax.swing.JMenuItem mniHoaDon;
+    private javax.swing.JMenuItem mniKeSach;
     private javax.swing.JMenuItem mniKetThuc;
     private javax.swing.JMenuItem mniKhachHang;
     private javax.swing.JMenuItem mniNhapHang;

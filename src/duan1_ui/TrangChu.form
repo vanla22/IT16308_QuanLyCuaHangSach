@@ -56,20 +56,37 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniHoaDonActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mniKeSach">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; K&#x1ec7; S&#xe1;ch"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniKeSachActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniKhachHang">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Kh&#xe1;ch H&#xe0;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniKhachHangActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniSach">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; S&#xe1;ch"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniSachActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniQlyNhanVien">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Nh&#xe2;n vi&#xea;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniQlyNhanVienActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

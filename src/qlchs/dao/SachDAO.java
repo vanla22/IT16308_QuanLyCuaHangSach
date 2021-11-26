@@ -80,5 +80,9 @@ JDBCHelper.update(UPDATE_SQL, entity.getTenSach(), entity.getNamXuatBan(),
         }
         return list;
     }
+    public List<Sach> selectByKeyword(String keyword){
+        String sql="SELECT * FROM SACH WHERE TenSach LIKE ?";
+        return this.selectBySql(sql, "%"+keyword+"%");
+    }
     
 }

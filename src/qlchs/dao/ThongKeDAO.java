@@ -42,7 +42,7 @@ public class ThongKeDAO {
     }
       public List<Object[]> getThongKeSPBanChay(int year) {
         String sql = "{call  sp_thongkespbanchay(?)}";
-        String[] cols = {"MaSach", "TenSach", "SoLuongBan","DoanhThu"};
+        String[] cols = {"maSach", "tenSach", "soLuongBan","thanhTien"};
         return this.getListofArray(sql, cols,year);
 
     }

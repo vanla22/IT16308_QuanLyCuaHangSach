@@ -90,7 +90,7 @@ void edit(){
             if (model != null) {
                 this.setModel(model);   
                 this.setStatus();  
-               
+               tblKhachHang.setRowSelectionInterval(index, index);
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");

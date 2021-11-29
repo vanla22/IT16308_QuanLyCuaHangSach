@@ -16,11 +16,11 @@ import java.util.List;
  * @author Admin
  */
 public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
-    final String INSERT_SQL = "INSERT INTO HoaDonCT(MaHDCT,MaHD,MaSach,SoLuong,GiaBan,ThanhTien) values(?,?,?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE HoaDonCT set MaHD=?,MaSach=?,SoLuong=?,GiaBan=?,ThanhTien=? WHERE MaHDCT=?";
-    final String DELETE_SQL = "DELETE FROM HoaDonCT WHERE MaHDCT=?";
-    final String SELECT_ALL_SQL = "SELECT * FROM HoaDonCT";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM HoaDonCT WHERE MaHDCT= ?";
+    final String INSERT_SQL = "INSERT INTO  HOADONCHITIET(MaHD,MaSach,SoLuong,GiaBan,ThanhTien) values(?,?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE HOADONCHITIET set MaHD=?,MaSach=?,SoLuong=?,GiaBan=?,ThanhTien=? WHERE MaHDCT=?";
+    final String DELETE_SQL = "DELETE FROM HOADONCHITIET WHERE MaHDCT=?";
+    final String SELECT_ALL_SQL = "SELECT * FROM HOADONCHITIET";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM HOADONCHITIET WHERE MaHDCT= ?";
     @Override
     public void insert(HoaDonCT entity) {
         JDBCHelper.update(INSERT_SQL, entity.getMaHDCT(),entity.getMaHD(),entity.getMaSach(),entity.getSoLuong(),entity.getGiaBan(),entity.getThanhTien());

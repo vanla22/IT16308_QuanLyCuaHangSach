@@ -18,8 +18,19 @@ public class HoaDonCT {
     private int SoLuong;
     private double GiaBan;
     private double ThanhTien;
+    private String tenSach;
 
     public HoaDonCT() {
+    }
+
+    public HoaDonCT(int MaHDCT, int MaHD, String MaSach, int SoLuong, double GiaBan, double ThanhTien, String tenSach) {
+        this.MaHDCT = MaHDCT;
+        this.MaHD = MaHD;
+        this.MaSach = MaSach;
+        this.SoLuong = SoLuong;
+        this.GiaBan = GiaBan;
+        this.ThanhTien = ThanhTien;
+        this.tenSach = tenSach;
     }
 
     public int getMaHDCT() {
@@ -70,12 +81,12 @@ public class HoaDonCT {
         this.ThanhTien = ThanhTien;
     }
 
-    public HoaDonCT(int MaHDCT, int MaHD, String MaSach, int SoLuong, double GiaBan, double ThanhTien) {
-        this.MaHDCT = MaHDCT;
-        this.MaHD = MaHD;
-        this.MaSach = MaSach;
-        this.SoLuong = SoLuong;
-        this.GiaBan = GiaBan;
-        this.ThanhTien = ThanhTien;
+    public String getTenSach() {
+        return tenSach;
     }
+
+    public void setTenSach(String tenSach) {
+        this.tenSach = tenSach;
+    }
+   
 }

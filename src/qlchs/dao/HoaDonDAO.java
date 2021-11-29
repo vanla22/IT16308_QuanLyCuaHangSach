@@ -16,12 +16,12 @@ import java.util.List;
  * @author Admin
  */
 public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
-    final String INSERT_SQL = "INSERT INTO HoaDon(MaHD,MaNV,MaKH,NgayXuat,TongTien) values(?,?,?,?,?)";
+    final String INSERT_SQL = "INSERT INTO HoaDon(MaNV,MaKH,NgayXuat,TongTien) values(?,?,?,?)";
     final String UPDATE_SQL = "UPDATE HoaDon set MaNV=?,MaKH=?,NgayXuat=?,TongTien=? where MaHD=?";
     final String DELETE_SQL = "DELETE FROM HoaDon WHERE MaHD=?";
     final String SELECT_ALL_SQL = "SELECT * FROM HoaDon";
     final String SELECT_BY_ID_SQL = "SELECT * FROM HD WHERE MaHD= ?";
-
+    
     public List<Integer> selectYear(){
     String sql ="Select distinct year(ngayxuat) nam from HOADON order by nam desc ";
     List<Integer> list = new ArrayList<>();
@@ -40,7 +40,7 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
     }
     @Override
     public void insert(HoaDon entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaHD(),entity.getMaNV(),entity.getMaKH(),entity.getNgayXuat(),entity.getTongTien());
+        JDBCHelper.update(INSERT_SQL,entity.getMaNV(),entity.getMaKH(),entity.getNgayXuat(),entity.getTongTien());
     }
 
     @Override
@@ -87,5 +87,8 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
         }
         return list;
     }
-    
+     public List<HoaDon> selectByKeyword(String keyword){
+        String sql="SELECT * FROM HOADON WHERE MaHD LIKE ?";
+        return this.selectBySql(sql, "%"+keyword+"%");
+    }
 }

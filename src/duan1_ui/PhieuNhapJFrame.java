@@ -5,17 +5,109 @@
  */
 package duan1_ui;
 
+import EduSys.entity.CTPhieuNhap;
+import EduSys.entity.PhieuNhap;
+import EduSys.entity.Sach;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import qlchs.dao.SachDAO;
+import qlchs.dao.phieuNhapDao;
+
 /**
  *
  * @author Admin
  */
 public class PhieuNhapJFrame extends javax.swing.JFrame {
+CTPNDAO daoCTPN = new CTPNDAO();
+    SachDAO daoS = new SachDAO();
 
+    phieuNhapDao daoPN = new phieuNhapDao();
+    List<CTPhieuNhap> listCTPN = new ArrayList<CTPhieuNhap>();
+    List<PhieuNhap> listPN = new ArrayList<PhieuNhap>();
+
+    int i;
     /**
      * Creates new form PhieuNhapJFrame
      */
     public PhieuNhapJFrame() {
         initComponents();
+        txtNgayNhap.setText(java.time.LocalDate.now() + "");
+
+        fillTableCTPN();
+        fillTablePN();
+    }
+    public void fillTablePN() {
+        DefaultTableModel table = (DefaultTableModel) tblView.getModel();
+        table.setRowCount(0);
+        String key = txtPNTK.getText();
+        listPN = daoPN.selectByKeyword(key);
+
+        for (PhieuNhap x : listPN) {
+
+            Object row[] = {
+                x.getMaPN(), x.getMaNV(), x.getMaNCC(), x.getNgayNhap(), x.getTongTien()
+            };
+            table.addRow(row);
+        }
+
+    }
+
+    public CTPhieuNhap getFormCT() {
+        CTPhieuNhap ct = new CTPhieuNhap();
+        ct.setMaPN(txtMapn.getText());
+        ct.setMaSach(txtMaSach.getText());
+        ct.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
+        ct.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        ct.setThanhTien(Float.parseFloat(txtTien.getText()));
+
+        return ct;
+
+    }
+
+    public void fillTableCTPN() {
+        DefaultTableModel table = (DefaultTableModel) tblCTPN.getModel();
+        table.setRowCount(0);
+        String key = txtPNCTTK.getText();
+        listCTPN = daoCTPN.selectByKeyword(key);
+        for (CTPhieuNhap x : listCTPN) {
+
+            Object row[] = {
+                x.getMaCTPN(), x.getMaSach(), x.getMaPN(), x.getSoLuong(), x.getGiaNhap(), x.getThanhTien()
+            };
+            table.addRow(row);
+        }
+
+    }
+
+    public void clearCTPN() {
+        txtMapn.setText("");
+        txtGiaNhap.setText("");
+        txtMaSach.setText("");
+        txtTien.setText("");
+        txtSoLuong.setText("");
+    }
+
+    public PhieuNhap getFormPN() {
+        PhieuNhap pn = new PhieuNhap();
+        pn.setMaPN(txtMAPN.getText());
+        pn.setMaNV(txtMaNV.getText());
+        pn.setMaNCC(txtMaNCC.getText());
+        try {
+            SimpleDateFormat sp = new SimpleDateFormat();
+            sp.applyPattern("yyyy-MM-dd");
+            Date date = sp.parse(txtNgayNhap.getText());
+            pn.setNgayNhap(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        txtPNCTTK.setText(txtMAPN.getText());
+        tblCTPN.getColumnName(1);
+        pn.setTongTien(Float.parseFloat(txtTongTien.getText()));
+        return pn;
+
     }
 
     /**
@@ -35,19 +127,18 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtMa = new javax.swing.JTextField();
+        txtMAPN = new javax.swing.JTextField();
         txtMaNV = new javax.swing.JTextField();
         txtMaNCC = new javax.swing.JTextField();
-        txtNgayXuat = new javax.swing.JTextField();
+        txtNgayNhap = new javax.swing.JTextField();
         txtTongTien = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
         btnXuat = new javax.swing.JButton();
         btnNew = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        txtMaPN = new javax.swing.JTextField();
+        txtPNTK = new javax.swing.JTextField();
         btnTim = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblView = new javax.swing.JTable();
@@ -66,7 +157,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         txtMaSach = new javax.swing.JTextField();
         txtMapn = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
-        txtGia = new javax.swing.JTextField();
+        txtGiaNhap = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
@@ -76,7 +167,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        txtCTPN = new javax.swing.JTextField();
+        txtPNCTTK = new javax.swing.JTextField();
         btnSeach = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCTPN = new javax.swing.JTable();
@@ -100,11 +191,16 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
 
         jLabel6.setText("TỔNG TIỀN :");
 
-        txtMa.addActionListener(new java.awt.event.ActionListener() {
+        txtMAPN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaActionPerformed(evt);
+                txtMAPNActionPerformed(evt);
             }
         });
+
+        txtNgayNhap.setEditable(false);
+
+        txtTongTien.setEditable(false);
+        txtTongTien.setText("0");
 
         btnThem.setBackground(new java.awt.Color(39, 56, 120));
         btnThem.setForeground(new java.awt.Color(240, 240, 240));
@@ -116,20 +212,25 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnSua.setBackground(new java.awt.Color(39, 56, 120));
-        btnSua.setForeground(new java.awt.Color(240, 240, 240));
-        btnSua.setText("SỬA");
-        btnSua.setBorder(null);
-
         btnXuat.setBackground(new java.awt.Color(39, 56, 120));
         btnXuat.setForeground(new java.awt.Color(240, 240, 240));
         btnXuat.setText("XÓA");
         btnXuat.setBorder(null);
+        btnXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatActionPerformed(evt);
+            }
+        });
 
         btnNew.setBackground(new java.awt.Color(39, 56, 120));
         btnNew.setForeground(new java.awt.Color(240, 240, 240));
         btnNew.setText("LÀM MỚI");
         btnNew.setBorder(null);
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -146,7 +247,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNgayNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,26 +259,27 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(64, 64, 64)
-                                .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtMAPN, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(52, 52, 52)
                         .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(txtMAPN, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -189,15 +291,14 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(txtNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgayNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42))
@@ -207,6 +308,12 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh Sách"));
 
         jLabel7.setText("MÃ PHIẾU NHẬP :");
+
+        txtPNTK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPNTKKeyReleased(evt);
+            }
+        });
 
         btnTim.setBackground(new java.awt.Color(39, 56, 120));
         btnTim.setForeground(new java.awt.Color(240, 240, 240));
@@ -226,7 +333,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPNTK, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -237,7 +344,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPNTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -250,6 +357,11 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 "MÃ PHIẾU NHẬP", "MÃ NHÂN VIÊN", "MÃ  NHÀ CUNG CẤP", "NGÀY NHẬP", "TỔNG TIỀN"
             }
         ));
+        tblView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblViewMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblView);
 
         btnFirst.setBackground(new java.awt.Color(39, 56, 120));
@@ -371,16 +483,31 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         btnUpdate.setForeground(new java.awt.Color(240, 240, 240));
         btnUpdate.setText("SỬA");
         btnUpdate.setBorder(null);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnRemove.setBackground(new java.awt.Color(39, 56, 120));
         btnRemove.setForeground(new java.awt.Color(240, 240, 240));
         btnRemove.setText("XÓA");
         btnRemove.setBorder(null);
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnLamMoi.setBackground(new java.awt.Color(39, 56, 120));
         btnLamMoi.setForeground(new java.awt.Color(240, 240, 240));
         btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.setBorder(null);
+        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamMoiActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("THÀNH TIỀN:");
 
@@ -403,7 +530,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -449,7 +576,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -467,6 +594,12 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh Sách"));
 
         jLabel13.setText("MÃ CT PHIẾU NHẬP :");
+
+        txtPNCTTK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPNCTTKKeyReleased(evt);
+            }
+        });
 
         btnSeach.setBackground(new java.awt.Color(39, 56, 120));
         btnSeach.setForeground(new java.awt.Color(240, 240, 240));
@@ -486,7 +619,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addGap(18, 18, 18)
-                .addComponent(txtCTPN, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPNCTTK, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSeach, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -497,7 +630,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(txtCTPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPNCTTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSeach, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -510,6 +643,11 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
                 "MÃ CT PHIẾU NHẬP", "MÃ SÁCH", "MÃ PHIẾU NHẬP", "SỐ LƯỢNG", "GIÁ BÁN ", "THÀNH TIỀN"
             }
         ));
+        tblCTPN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCTPNMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblCTPN);
 
         btnF.setBackground(new java.awt.Color(39, 56, 120));
@@ -613,12 +751,15 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaActionPerformed
+    private void txtMAPNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMAPNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaActionPerformed
+    }//GEN-LAST:event_txtMAPNActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        PhieuNhap pn = getFormPN();
+        daoPN.insert(pn);
+        fillTablePN();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
@@ -635,6 +776,29 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+        CTPhieuNhap a = getFormCT();
+        daoCTPN.insert(a);
+
+        //update số lượng sách
+        Sach sach = daoS.selectById(txtMaSach.getText());
+        int cc = sach.getSoLuong() + Integer.parseInt(txtSoLuong.getText());
+        daoS.updateSL(cc, txtMaSach.getText());
+        // tính tổng tiền
+        txtPNCTTK.setText(txtMapn.getText());
+        fillTableCTPN();
+        float c = 0;
+        for (int i = 0; i < tblCTPN.getRowCount(); i++) {
+
+            float k = Float.parseFloat(tblCTPN.getValueAt(i, 5).toString());
+            c += k;
+        }
+
+        daoPN.updateTTien(c, txtMapn.getText());
+
+        fillTablePN();
+        clearCTPN();
+        txtPNCTTK.setText("");
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachActionPerformed
@@ -644,6 +808,95 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
     private void btnPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPActionPerformed
+
+    private void btnXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatActionPerformed
+        // TODO add your handling code here:
+        daoPN.delete(txtMAPN.getText());
+        fillTablePN();
+        txtMAPN.setText("");
+        txtMaNCC.setText("");
+    }//GEN-LAST:event_btnXuatActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+         CTPhieuNhap ct = new CTPhieuNhap();
+        ct.setMaPN(txtMapn.getText());
+        ct.setMaSach(txtMaSach.getText());
+        ct.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
+        ct.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        ct.setThanhTien(Float.parseFloat(txtTien.getText()));
+        int a = tblCTPN.getSelectedRow();
+        ct.setMaCTPN(Integer.parseInt(tblCTPN.getValueAt(a, 0).toString()));
+        daoCTPN.update(ct);
+
+        txtPNCTTK.setText(txtMapn.getText());
+        fillTableCTPN();
+        float c = 0;
+        for (int i = 0; i < tblCTPN.getRowCount(); i++) {
+
+            float k = Float.parseFloat(tblCTPN.getValueAt(i, 5).toString());
+            c += k;
+        }
+
+        daoPN.updateTTien(c, txtMapn.getText());
+
+        fillTablePN();
+        clearCTPN();
+        txtPNCTTK.setText("");
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        txtMAPN.setText("");
+        txtMaNCC.setText("");
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void txtPNTKKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPNTKKeyReleased
+        // TODO add your handling code here:
+        fillTablePN();
+    }//GEN-LAST:event_txtPNTKKeyReleased
+
+    private void tblViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewMouseClicked
+        // TODO add your handling code here:
+        int i = tblView.getSelectedRow();
+        txtMAPN.setText(tblView.getValueAt(i, 0).toString());
+        txtMaNV.setText(tblView.getValueAt(i, 1).toString());
+        txtMaNCC.setText(tblView.getValueAt(i, 2).toString());
+        txtNgayNhap.setText(tblView.getValueAt(i, 3).toString());
+        txtTongTien.setText(tblView.getValueAt(i, 4).toString());
+    }//GEN-LAST:event_tblViewMouseClicked
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+                int i = tblCTPN.getSelectedRow();
+        String ma = tblCTPN.getValueAt(i, 0).toString();
+        daoCTPN.delete(ma);
+        fillTableCTPN();
+        clearCTPN();
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
+        // TODO add your handling code here:
+        clearCTPN();
+        txtPNCTTK.setText("");
+        fillTableCTPN();
+    }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void txtPNCTTKKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPNCTTKKeyReleased
+        // TODO add your handling code here:
+        fillTableCTPN();
+    }//GEN-LAST:event_txtPNCTTKKeyReleased
+
+    private void tblCTPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTPNMouseClicked
+        // TODO add your handling code here:
+        int i = tblCTPN.getSelectedRow();
+        txtMaSach.setText(tblCTPN.getValueAt(i, 1).toString());
+        txtMapn.setText(tblCTPN.getValueAt(i, 2).toString());
+        txtSoLuong.setText(tblCTPN.getValueAt(i, 3).toString());
+        txtGiaNhap.setText(tblCTPN.getValueAt(i, 4).toString());
+        txtTien.setEditable(true);
+        txtTien.setText(tblCTPN.getValueAt(i, 5).toString());
+    }//GEN-LAST:event_tblCTPNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -695,7 +948,6 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnPev;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSeach;
-    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btnUpdate;
@@ -726,16 +978,16 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblCTPN;
     private javax.swing.JTable tblView;
-    private javax.swing.JTextField txtCTPN;
     private javax.swing.JTextField txtCt;
-    private javax.swing.JTextField txtGia;
-    private javax.swing.JTextField txtMa;
+    private javax.swing.JTextField txtGiaNhap;
+    private javax.swing.JTextField txtMAPN;
     private javax.swing.JTextField txtMaNCC;
     private javax.swing.JTextField txtMaNV;
-    private javax.swing.JTextField txtMaPN;
     private javax.swing.JTextField txtMaSach;
     private javax.swing.JTextField txtMapn;
-    private javax.swing.JTextField txtNgayXuat;
+    private javax.swing.JTextField txtNgayNhap;
+    private javax.swing.JTextField txtPNCTTK;
+    private javax.swing.JTextField txtPNTK;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTien;
     private javax.swing.JTextField txtTongTien;

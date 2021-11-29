@@ -71,5 +71,12 @@ public class phieuNhapDao extends QLNSDAO<PhieuNhap, String> {
         }
         return list;
     }
-
+public List<PhieuNhap> selectByKeyword(String keyword){
+        String sql="SELECT * FROM PHIEUNHAP WHERE MaPN LIKE ?";
+        return this.selectBySql(sql, "%"+keyword+"%");
+    }
+ public void updateTTien(float tt,String pn) {
+        String sql ="UPDATE PHIEUNHAP set  TongTien=? WHERE MaPN=?";
+        JDBCHelper.update(sql,  tt, pn);
+    }
 }

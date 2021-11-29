@@ -102,7 +102,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtNgayXuat" min="-2" pref="248" max="-2" attributes="0"/>
+                                          <Component id="txtNgayNhap" min="-2" pref="248" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                          <Component id="txtMa" min="-2" pref="248" max="-2" attributes="0"/>
+                                          <Component id="txtMAPN" min="-2" pref="248" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -125,11 +125,9 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnThem" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Component id="btnSua" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnXuat" min="-2" pref="81" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                   <Component id="btnNew" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -140,10 +138,15 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtMa" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="txtMAPN" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -158,17 +161,16 @@
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtNgayXuat" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNgayNhap" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtTongTien" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="66" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnThem" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="btnSua" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="btnXuat" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="btnNew" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
@@ -203,18 +205,25 @@
                     <Property name="text" type="java.lang.String" value="T&#x1ed4;NG TI&#x1ec0;N :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtMa">
+                <Component class="javax.swing.JTextField" name="txtMAPN">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMAPNActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMaNV">
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMaNCC">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtNgayXuat">
+                <Component class="javax.swing.JTextField" name="txtNgayNhap">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTongTien">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnThem">
                   <Properties>
@@ -233,20 +242,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnSua">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="78" green="38" red="27" type="rgb"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="f0" green="f0" red="f0" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="S&#x1eec;A"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="btnXuat">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -260,6 +255,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXuatActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnNew">
                   <Properties>
@@ -274,6 +272,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -344,7 +345,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtMaPN" min="-2" pref="269" max="-2" attributes="0"/>
+                              <Component id="txtPNTK" min="-2" pref="269" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnTim" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -357,7 +358,7 @@
                               <EmptySpace pref="20" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtMaPN" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPNTK" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnTim" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -371,7 +372,10 @@
                         <Property name="text" type="java.lang.String" value="M&#xc3; PHI&#x1ebe;U NH&#x1eac;P :"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtMaPN">
+                    <Component class="javax.swing.JTextField" name="txtPNTK">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPNTKKeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnTim">
                       <Properties>
@@ -443,6 +447,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblViewMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -574,7 +581,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtGia" min="-2" pref="248" max="-2" attributes="0"/>
+                                          <Component id="txtGiaNhap" min="-2" pref="248" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -635,7 +642,7 @@
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtGia" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtGiaNhap" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -691,7 +698,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtSoLuong">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtGia">
+                <Component class="javax.swing.JTextField" name="txtGiaNhap">
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAdd">
                   <Properties>
@@ -723,6 +730,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnRemove">
                   <Properties>
@@ -737,6 +747,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnLamMoi">
                   <Properties>
@@ -751,6 +764,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLamMoiActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
@@ -828,7 +844,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtCTPN" min="-2" pref="269" max="-2" attributes="0"/>
+                              <Component id="txtPNCTTK" min="-2" pref="269" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnSeach" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -841,7 +857,7 @@
                               <EmptySpace pref="20" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCTPN" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPNCTTK" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnSeach" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -855,7 +871,10 @@
                         <Property name="text" type="java.lang.String" value="M&#xc3; CT PHI&#x1ebe;U NH&#x1eac;P :"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtCTPN">
+                    <Component class="javax.swing.JTextField" name="txtPNCTTK">
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPNCTTKKeyReleased"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSeach">
                       <Properties>
@@ -933,6 +952,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblCTPNMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

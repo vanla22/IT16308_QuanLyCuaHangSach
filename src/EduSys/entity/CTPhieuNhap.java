@@ -13,61 +13,75 @@ import java.util.Date;
  */
 public class CTPhieuNhap {
 
-    private String MaCTPN;
+    private int MaCTPN;
     private String MaPN;
     private String MaSach;
     private int SoLuong;
-    private double GiaNhap;
+    private float GiaNhap;
+    private float ThanhTien;
 
-    public CTPhieuNhap() {
-    }
-
-    public CTPhieuNhap(String MaCTPN, String MaPN, String MaSach, int SoLuong, double GiaNhap) {
+    public CTPhieuNhap(int MaCTPN, String MaPN, String MaSach, int SoLuong, float GiaNhap, float ThanhTien) {
         this.MaCTPN = MaCTPN;
         this.MaPN = MaPN;
         this.MaSach = MaSach;
         this.SoLuong = SoLuong;
         this.GiaNhap = GiaNhap;
+        this.ThanhTien = ThanhTien;
     }
 
-    public String getMaCTPN() {
+    public float getThanhTien() {
+        return ThanhTien;
+    }
+
+    public void setThanhTien(float ThanhTien) {
+        this.ThanhTien = ThanhTien;
+    }
+
+    public int getMaCTPN() {
         return MaCTPN;
+    }
+
+    public void setMaCTPN(int MaCTPN) {
+        this.MaCTPN = MaCTPN;
     }
 
     public String getMaPN() {
         return MaPN;
     }
 
-    public String getMaSach() {
-        return MaSach;
-    }
-
-    public int getSoLuong() {
-        return SoLuong;
-    }
-
-    public double getGiaNhap() {
-        return GiaNhap;
-    }
-
-    public void setMaCTPN(String MaCTPN) {
-        this.MaCTPN = MaCTPN;
-    }
-
     public void setMaPN(String MaPN) {
         this.MaPN = MaPN;
+    }
+
+    public String getMaSach() {
+        return MaSach;
     }
 
     public void setMaSach(String MaSach) {
         this.MaSach = MaSach;
     }
 
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
     public void setSoLuong(int SoLuong) {
         this.SoLuong = SoLuong;
     }
 
-    public void setGiaNhap(double GiaNhap) {
+    public float getGiaNhap() {
+        return GiaNhap;
+    }
+
+    public void setGiaNhap(float GiaNhap) {
         this.GiaNhap = GiaNhap;
+    }
+
+  
+
+    
+
+    public CTPhieuNhap() {
     }
 
 }

@@ -84,5 +84,8 @@ JDBCHelper.update(UPDATE_SQL, entity.getTenSach(),
         String sql="SELECT * FROM SACH WHERE TenSach LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
-    
+    public void updateSL(int a,String b){
+        String sql="UPDATE Sach set SoLuong=? where MaSach=?";
+        JDBCHelper.update(sql,a,b);
+    }
 }

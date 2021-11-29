@@ -5,6 +5,9 @@
  */
 package duan1_ui;
 
+import EduSys.entity.KeSach;
+import qlchs.utils.Auth;
+import qlchs.utils.MsgBox;
 import qlchs.utils.XImage;
 
 /**
@@ -20,7 +23,7 @@ public class TrangChu extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.start();
-}
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -353,6 +356,11 @@ public class TrangChu extends javax.swing.JFrame {
         mnuHeThong.add(mniDangXuat);
 
         mniKetThuc.setText("Kết Thúc");
+        mniKetThuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKetThucActionPerformed(evt);
+            }
+        });
         mnuHeThong.add(mniKetThuc);
 
         jMenuBar4.add(mnuHeThong);
@@ -361,6 +369,11 @@ public class TrangChu extends javax.swing.JFrame {
         mnuQuanLy.setText("Quản Lý");
 
         mniQLyTuSach.setText("Quản Lý Tủ Sách");
+        mniQLyTuSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQLyTuSachActionPerformed(evt);
+            }
+        });
         mnuQuanLy.add(mniQLyTuSach);
 
         mniHoaDon.setText("Quản Lý Hóa Đơn");
@@ -409,9 +422,19 @@ public class TrangChu extends javax.swing.JFrame {
         mnuThongKe.setText("Thống Kê");
 
         mniDoanhTthu.setText("Doanh Thu");
+        mniDoanhTthu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDoanhTthuActionPerformed(evt);
+            }
+        });
         mnuThongKe.add(mniDoanhTthu);
 
         mniThongkeSach.setText("Sách Bán Chạy ,Tồn Kho");
+        mniThongkeSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniThongkeSachActionPerformed(evt);
+            }
+        });
         mnuThongKe.add(mniThongkeSach);
 
         jMenuBar4.add(mnuThongKe);
@@ -420,9 +443,19 @@ public class TrangChu extends javax.swing.JFrame {
         mnuXuatNhap.setText("Xuất-Nhập");
 
         mniBanHang.setText("Bán Hàng");
+        mniBanHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBanHangActionPerformed(evt);
+            }
+        });
         mnuXuatNhap.add(mniBanHang);
 
         mniNhapHang.setText("Nhập Hàng");
+        mniNhapHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNhapHangActionPerformed(evt);
+            }
+        });
         mnuXuatNhap.add(mniNhapHang);
 
         jMenuBar4.add(mnuXuatNhap);
@@ -448,7 +481,7 @@ public class TrangChu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
-        // TODO add your handling code here:
+        openBanHang();
     }//GEN-LAST:event_mniHoaDonActionPerformed
 
     private void mniDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoiMatKhauActionPerformed
@@ -456,23 +489,46 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_mniDoiMatKhauActionPerformed
 
     private void mniQlyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQlyNhanVienActionPerformed
-      QuanLyNhanVien qlnv=new QuanLyNhanVien();
-      qlnv.setVisible(true);
+        openNhanVien(0);
     }//GEN-LAST:event_mniQlyNhanVienActionPerformed
 
     private void mniSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSachActionPerformed
-        quanLySachJFrame qls=new quanLySachJFrame();
+        quanLySachJFrame qls = new quanLySachJFrame();
         qls.setVisible(true);
     }//GEN-LAST:event_mniSachActionPerformed
 
     private void mniKeSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeSachActionPerformed
-        new KeSachJDialog(this,true).setVisible(true);
+        new KeSachJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_mniKeSachActionPerformed
 
     private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
-        QuanLyKhachHangJFrame qlkh=new QuanLyKhachHangJFrame();
+        QuanLyKhachHangJFrame qlkh = new QuanLyKhachHangJFrame();
         qlkh.setVisible(true);
     }//GEN-LAST:event_mniKhachHangActionPerformed
+
+    private void mniKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKetThucActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mniKetThucActionPerformed
+
+    private void mniQLyTuSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLyTuSachActionPerformed
+        openKeSach();
+    }//GEN-LAST:event_mniQLyTuSachActionPerformed
+
+    private void mniDoanhTthuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhTthuActionPerformed
+        openThongKe(0);
+    }//GEN-LAST:event_mniDoanhTthuActionPerformed
+
+    private void mniThongkeSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThongkeSachActionPerformed
+        openThongKe(1);
+    }//GEN-LAST:event_mniThongkeSachActionPerformed
+
+    private void mniBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBanHangActionPerformed
+        openBanHang();
+    }//GEN-LAST:event_mniBanHangActionPerformed
+
+    private void mniNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhapHangActionPerformed
+        openPhieuNhap();
+    }//GEN-LAST:event_mniNhapHangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,13 +625,69 @@ public class TrangChu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void start() {
-    this.setLocationRelativeTo(null);
-    this.setIconImage(XImage.getAppIcon());
-    new chaoJDialog(this,true ).setVisible(true);
-    new DangNhapJDialog(this,true ).setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
+        new chaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+        lblTen1.setText(Auth.user.getHoTen());
+
     }
 
     private void openDoiMatKhau() {
-    new DoiMatKhauJDialog(this,true).setVisible(true);
+        new DoiMatKhauJDialog(this, true).setVisible(true);
+    }
+
+    private void openKeSach() {
+        if (Auth.isLogin()) {
+            new KeSachJDialog(this, true).setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui lòng đăng nhập");
+        }
+    }
+
+    void openThongKe(int index) {
+        if (Auth.isLogin()) {
+            if (index == -3 && !Auth.isManager()) {
+                MsgBox.alert(this, "Bạn không có quyền xem doanh thu !!!");
+                return;
+            }
+            ThongKeJFrame tkwin = new ThongKeJFrame();
+            tkwin.setVisible(true);
+            tkwin.selectTab(index);
+
+        } else {
+            MsgBox.alert(this, "vui lòng đăng nhập");
+        }
+    }
+
+    void openBanHang() {
+        if (Auth.isLogin()) {
+            new hoaDonJFrame().setVisible(true);
+
+        } else {
+            MsgBox.alert(this, "vui lòng đăng nhập");
+        }
+    }
+
+    private void openPhieuNhap() {
+        if (Auth.isLogin()) {
+            new PhieuNhapJFrame().setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui lòng đăng nhập");
+        }
+    }
+
+    void openNhanVien(int index) {
+        if (Auth.isLogin()) {
+            if (index == -3 && !Auth.isManager()) {
+                MsgBox.alert(this, "Bạn không có quyền xem quản lý nhân viên !!!");
+                return;
+            }
+            ThongKeJFrame tkwin = new ThongKeJFrame();
+            tkwin.setVisible(true);           
+
+        } else {
+            MsgBox.alert(this, "vui lòng đăng nhập");
+        }
     }
 }

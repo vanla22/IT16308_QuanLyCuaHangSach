@@ -671,7 +671,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void openPhieuNhap() {
         if (Auth.isLogin()) {
-            new PhieuNhapJFrame().setVisible(true);
+           // new PhieuNhapJFrame().setVisible(true);
         } else {
             MsgBox.alert(this, "Vui lòng đăng nhập");
         }

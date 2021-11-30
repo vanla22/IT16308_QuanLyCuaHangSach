@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import qlchs.dao.CTPNDAO;
 import qlchs.dao.SachDAO;
 import qlchs.dao.phieuNhapDao;
 
@@ -21,7 +22,7 @@ import qlchs.dao.phieuNhapDao;
  * @author Admin
  */
 public class PhieuNhapJFrame extends javax.swing.JFrame {
-CTPNDAO daoCTPN = new CTPNDAO();
+    CTPNDAO daoCTPN = new CTPNDAO();
     SachDAO daoS = new SachDAO();
 
     phieuNhapDao daoPN = new phieuNhapDao();

@@ -63,7 +63,7 @@ void setModel(KhachHang khachhang){
 }
 KhachHang getModel(){
     KhachHang mol = new KhachHang();
-    mol.setMaKH(txtMaKH.getText().length());
+    mol.setMaKH(Integer.valueOf(txtMaKH.getText()));
     mol.setTenKH(txtHoTen.getText());
     mol.setSDT(txtSDT.getText());
     mol.setEmail(txtEmail.getText());

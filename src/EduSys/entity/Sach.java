@@ -92,5 +92,10 @@ public class Sach {
         this.MaDauSach = MaDauSach;
         this.GhiChu = GhiChu;
     }
+
+    @Override
+    public String toString() {
+        return  MaSach ;
+    }
     
 }

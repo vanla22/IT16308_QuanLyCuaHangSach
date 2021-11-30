@@ -16,19 +16,22 @@ import java.util.List;
  * @author Admin
  */
 public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
-    final String INSERT_SQL = "INSERT INTO  HOADONCHITIET(MaHD,MaSach,SoLuong,GiaBan,ThanhTien) values(?,?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE HOADONCHITIET set MaHD=?,MaSach=?,SoLuong=?,GiaBan=?,ThanhTien=? WHERE MaHDCT=?";
+    final String INSERT_SQL = "INSERT INTO HOADONCHITIET(MaHD,MaSach,SoLuong,GiaBan,ThanhTien,TenSach) values(?,?,?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE HOADONCHITIET set MaHD=?,MaSach=?,SoLuong=?,GiaBan=?,ThanhTien=?,TenSach=? WHERE MaHDCT=?";
     final String DELETE_SQL = "DELETE FROM HOADONCHITIET WHERE MaHDCT=?";
     final String SELECT_ALL_SQL = "SELECT * FROM HOADONCHITIET";
     final String SELECT_BY_ID_SQL = "SELECT * FROM HOADONCHITIET WHERE MaHDCT= ?";
+   
     @Override
     public void insert(HoaDonCT entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaHDCT(),entity.getMaHD(),entity.getMaSach(),entity.getSoLuong(),entity.getGiaBan(),entity.getThanhTien());
+        JDBCHelper.update(INSERT_SQL, entity.getMaHD(),entity.getMaSach(),
+                entity.getSoLuong(),entity.getGiaBan(),entity.getThanhTien(),entity.getTenSach());
     }
 
     @Override
     public void update(HoaDonCT entity) {
-        JDBCHelper.update(UPDATE_SQL,entity.getMaHD(),entity.getMaSach(),entity.getSoLuong(),entity.getGiaBan(),entity.getThanhTien(), entity.getMaHDCT());
+        JDBCHelper.update(UPDATE_SQL,entity.getMaHD(),entity.getMaSach(),entity.getSoLuong(),
+                entity.getGiaBan(),entity.getThanhTien(), entity.getMaHDCT(),entity.getTenSach());
     }
 
     @Override
@@ -63,6 +66,7 @@ public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
                 entity.setSoLuong(rs.getInt("SoLuong"));
                 entity.setGiaBan(rs.getFloat("GiaBan"));
                 entity.setThanhTien(rs.getFloat("ThanhTien"));
+                entity.setTenSach(rs.getString("TenSach"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -70,8 +74,9 @@ public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
         }
         return list;
     }
-    public List<HoaDonCT> selectByKeyword(String keyword){
+     public List<HoaDonCT> selectByKeyword(String keyword){
         String sql="SELECT * FROM HOADONCHITIET WHERE MaHDCT LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
+       
 }

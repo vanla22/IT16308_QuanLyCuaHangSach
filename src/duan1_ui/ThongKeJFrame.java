@@ -63,7 +63,7 @@ public class ThongKeJFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
         bieudoThongKeDoanhThu();
-       
+
     }
 
     void bieudoThongKeDoanhThu() {
@@ -76,16 +76,15 @@ public class ThongKeJFrame extends javax.swing.JFrame {
             int SlKh = Integer.parseInt(tblBangThu.getValueAt(j, 1).toString());
             int SlBan = Integer.parseInt(tblBangThu.getValueAt(j, 2).toString());
             double DoanhThu = Double.parseDouble(tblBangThu.getValueAt(j, 3).toString());
-            
-            
-            
-            
+
             dataset.addValue(DoanhThu, series3, Thang);
         }
         JFreeChart chart = ChartFactory.createBarChart(
                 "Thống kê doanh thu" // chart title
-                , nam, "Doanh thu(VND)" // domain axis label
-                , dataset,// range axis label
+                ,
+                 nam, "Doanh thu(VND)" // domain axis label
+                ,
+                 dataset,// range axis label
                 PlotOrientation.VERTICAL,// data
                 true, // include legend
                 true, // tooltips?
@@ -333,6 +332,10 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         fillCbbDoanhSo();
         fillTableDoanhSo();
 
+    }
+
+    public void selectTab(int index) {
+        TABS.setSelectedIndex(index);
     }
 
     void fillCbbDoanhSo() {

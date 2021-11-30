@@ -32,6 +32,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="K&#x1ebf;t Th&#xfa;c"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniKetThucActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -47,6 +50,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; T&#x1ee7; S&#xe1;ch"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniQLyTuSachActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniHoaDon">
               <Properties>
@@ -102,11 +108,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Doanh Thu"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniDoanhTthuActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniThongkeSach">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#xe1;ch B&#xe1;n Ch&#x1ea1;y ,T&#x1ed3;n Kho"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniThongkeSachActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -122,11 +134,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="B&#xe1;n H&#xe0;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniBanHangActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mniNhapHang">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p H&#xe0;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mniNhapHangActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

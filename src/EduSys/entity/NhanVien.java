@@ -88,7 +88,11 @@ public class NhanVien {
     public void setTinhTrang(boolean TinhTrang) {
         this.TinhTrang = TinhTrang;
     }
-
+    @Override
+ public String toString(){
+        return maNV +"" ;
+    }
+    
    
 
 }

@@ -16,14 +16,14 @@ public class HoaDonCT {
     private int MaHD;
     private String MaSach;
     private int SoLuong;
-    private double GiaBan;
-    private double ThanhTien;
+    private float GiaBan;
+    private float ThanhTien;
     private String tenSach;
 
     public HoaDonCT() {
     }
 
-    public HoaDonCT(int MaHDCT, int MaHD, String MaSach, int SoLuong, double GiaBan, double ThanhTien, String tenSach) {
+    public HoaDonCT(int MaHDCT, int MaHD, String MaSach, int SoLuong, float GiaBan, float ThanhTien, String tenSach) {
         this.MaHDCT = MaHDCT;
         this.MaHD = MaHD;
         this.MaSach = MaSach;
@@ -69,7 +69,7 @@ public class HoaDonCT {
         return GiaBan;
     }
 
-    public void setGiaBan(double GiaBan) {
+    public void setGiaBan(Float GiaBan) {
         this.GiaBan = GiaBan;
     }
 
@@ -77,7 +77,7 @@ public class HoaDonCT {
         return ThanhTien;
     }
 
-    public void setThanhTien(double ThanhTien) {
+    public void setThanhTien(Float ThanhTien) {
         this.ThanhTien = ThanhTien;
     }
 
@@ -88,5 +88,9 @@ public class HoaDonCT {
     public void setTenSach(String tenSach) {
         this.tenSach = tenSach;
     }
-   
+    @Override
+    public String toString(){
+        return MaSach +"" ;
+    }
+    
 }

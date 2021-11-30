@@ -78,7 +78,7 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaKH(rs.getInt("MaKH"));
                 entity.setNgayXuat(rs.getDate("NgayXuat"));
-                entity.setTongTien(rs.getDouble("TongTien"));
+                entity.setTongTien(rs.getFloat("TongTien"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -90,5 +90,9 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
      public List<HoaDon> selectByKeyword(String keyword){
         String sql="SELECT * FROM HOADON WHERE MaHD LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
+    }
+      public void updateTTien(float tt,String hd) {
+        String sql ="UPDATE HOADON set  TongTien=? WHERE MaHD=?";
+        JDBCHelper.update(sql,  tt, hd);
     }
 }

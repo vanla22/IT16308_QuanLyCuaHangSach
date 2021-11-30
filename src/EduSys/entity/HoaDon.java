@@ -19,6 +19,8 @@ public class HoaDon {
     private Date NgayXuat;
     private float TongTien;
 
+ public HoaDon() {
+    }
 
     public int getMaHD() {
         return MaHD;
@@ -71,14 +73,14 @@ public class HoaDon {
         this.TongTien = TongTien;
     }
 
-    public HoaDon() {
-    }
+   
+//    @Override
+//    public String toString() {
+//        return "HoaDon{" + "MaHD=" + MaHD + ", NgayXuat=" + NgayXuat + '}';
+//    }
 
     @Override
     public String toString() {
-        return "HoaDon{" + "MaHD=" + MaHD + ", NgayXuat=" + NgayXuat + '}';
+        return  MaHD + "";
     }
-
-  
-    
 }

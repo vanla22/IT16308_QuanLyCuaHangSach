@@ -16,28 +16,12 @@ import java.util.List;
  * @author Admin
  */
 public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
-    final String INSERT_SQL = "INSERT INTO HoaDon(MaNV,MaKH,NgayXuat,TongTien) values(?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE HoaDon set MaNV=?,MaKH=?,NgayXuat=?,TongTien=? where MaHD=?";
-    final String DELETE_SQL = "DELETE FROM HoaDon WHERE MaHD=?";
-    final String SELECT_ALL_SQL = "SELECT * FROM HoaDon";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM HD WHERE MaHD= ?";
+    final String INSERT_SQL = "INSERT INTO HOADON(MaNV,MaKH,NgayXuat,TongTien) values(?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE HOADON SET MaNV=?,MaKH=?,NgayXuat=?,TongTien=? WHERE MaHD=?";
+    final String DELETE_SQL = "DELETE FROM HOADON WHERE MaHD=?";
+    final String SELECT_ALL_SQL = "SELECT * FROM HOADON";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM HOADON WHERE MaHD= ?";
     
-    public List<Integer> selectYear(){
-    String sql ="Select distinct year(ngayxuat) nam from HOADON order by nam desc ";
-    List<Integer> list = new ArrayList<>();
-        try {
-            ResultSet rs = JDBCHelper.query(sql);
-            while(rs.next()){
-            list.add(rs.getInt(1));            
-            }
-            rs.getStatement().getConnection().close();
-            return list;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    
-    
-    }
     @Override
     public void insert(HoaDon entity) {
         JDBCHelper.update(INSERT_SQL,entity.getMaNV(),entity.getMaKH(),entity.getNgayXuat(),entity.getTongTien());
@@ -82,7 +66,6 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
                 list.add(entity);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
         return list;
@@ -91,8 +74,24 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
         String sql="SELECT * FROM HOADON WHERE MaHD LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
-      public void updateTTien(float tt,String hd) {
-        String sql ="UPDATE HOADON set  TongTien=? WHERE MaHD=?";
+     public void updateTTien(float tt,String hd) {
+        String sql ="UPDATE HOADON SET  TongTien=? WHERE MaHD=?";
         JDBCHelper.update(sql,  tt, hd);
+    }
+         public List<Integer> selectYear(){
+    String sql ="Select distinct year(ngayxuat) nam from HOADON order by nam desc ";
+    List<Integer> list = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCHelper.query(sql);
+            while(rs.next()){
+            list.add(rs.getInt(1));            
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    
+    
     }
 }

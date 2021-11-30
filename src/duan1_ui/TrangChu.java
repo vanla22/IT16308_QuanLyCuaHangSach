@@ -121,6 +121,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnNhapHang.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnNhapHang.setForeground(new java.awt.Color(39, 56, 120));
         btnNhapHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/warehouse_30px.png"))); // NOI18N
+        btnNhapHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapHangActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(39, 56, 120));
@@ -152,6 +157,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnBanHang.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnBanHang.setForeground(new java.awt.Color(39, 56, 120));
         btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/Bán Hàng.png"))); // NOI18N
+        btnBanHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBanHangActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(39, 56, 120));
@@ -184,6 +194,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnThongKe.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnThongKe.setForeground(new java.awt.Color(39, 56, 120));
         btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/IconThongke.png"))); // NOI18N
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(39, 56, 120));
@@ -213,6 +228,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnSach.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnSach.setForeground(new java.awt.Color(39, 56, 120));
         btnSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/iconBook.png"))); // NOI18N
+        btnSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSachActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(39, 56, 120));
@@ -245,6 +265,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnKhachHang.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnKhachHang.setForeground(new java.awt.Color(39, 56, 120));
         btnKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/IconKhachHang.png"))); // NOI18N
+        btnKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhachHangActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(39, 56, 120));
@@ -277,6 +302,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnDangXuat.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnDangXuat.setForeground(new java.awt.Color(39, 56, 120));
         btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/iconlogout.png"))); // NOI18N
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(39, 56, 120));
@@ -530,6 +560,32 @@ public class TrangChu extends javax.swing.JFrame {
         openPhieuNhap();
     }//GEN-LAST:event_mniNhapHangActionPerformed
 
+    private void btnNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapHangActionPerformed
+        openPhieuNhap();
+    }//GEN-LAST:event_btnNhapHangActionPerformed
+
+    private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
+        openBanHang();
+    }//GEN-LAST:event_btnBanHangActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        openThongKe(0);
+    }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void btnSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSachActionPerformed
+        quanLySachJFrame qls = new quanLySachJFrame();
+        qls.setVisible(true);
+    }//GEN-LAST:event_btnSachActionPerformed
+
+    private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
+        QuanLyKhachHangJFrame qls = new QuanLyKhachHangJFrame();
+        qls.setVisible(true);
+    }//GEN-LAST:event_btnKhachHangActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+      opendangnhap();
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -645,6 +701,10 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }
 
+    private void opendangnhap() {
+        new DangNhapJDialog(this, true).setVisible(true);
+    }
+
     void openThongKe(int index) {
         if (Auth.isLogin()) {
             if (index == -3 && !Auth.isManager()) {
@@ -671,7 +731,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void openPhieuNhap() {
         if (Auth.isLogin()) {
-           // new PhieuNhapJFrame().setVisible(true);
+            // new PhieuNhapJFrame().setVisible(true);
         } else {
             MsgBox.alert(this, "Vui lòng đăng nhập");
         }
@@ -684,7 +744,7 @@ public class TrangChu extends javax.swing.JFrame {
                 return;
             }
             ThongKeJFrame tkwin = new ThongKeJFrame();
-            tkwin.setVisible(true);           
+            tkwin.setVisible(true);
 
         } else {
             MsgBox.alert(this, "vui lòng đăng nhập");

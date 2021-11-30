@@ -61,8 +61,8 @@ public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
                 entity.setMaHD(rs.getInt("MaHD"));
                 entity.setMaSach(rs.getString("MaSach"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
-                entity.setGiaBan(rs.getDouble("GiaBan"));
-                entity.setThanhTien(rs.getDouble("ThanhTien"));
+                entity.setGiaBan(rs.getFloat("GiaBan"));
+                entity.setThanhTien(rs.getFloat("ThanhTien"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -70,5 +70,8 @@ public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
         }
         return list;
     }
-    
+    public List<HoaDonCT> selectByKeyword(String keyword){
+        String sql="SELECT * FROM HOADONCHITIET WHERE MaHDCT LIKE ?";
+        return this.selectBySql(sql, "%"+keyword+"%");
+    }
 }

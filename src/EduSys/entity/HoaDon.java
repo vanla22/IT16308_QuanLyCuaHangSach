@@ -17,7 +17,7 @@ public class HoaDon {
     private String MaNV;
     private int MaKH;
     private Date NgayXuat;
-    private double TongTien;
+    private float TongTien;
 
 
     public int getMaHD() {
@@ -59,11 +59,11 @@ public class HoaDon {
         return TongTien;
     }
 
-    public void setTongTien(double TongTien) {
+    public void setTongTien(Float TongTien) {
         this.TongTien = TongTien;
     }
 
-    public HoaDon(int MaHD, String MaNV, int MaKH, Date NgayXuat, double TongTien) {
+    public HoaDon(int MaHD, String MaNV, int MaKH, Date NgayXuat, Float TongTien) {
         this.MaHD = MaHD;
         this.MaNV = MaNV;
         this.MaKH = MaKH;
@@ -76,7 +76,9 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "("+NgayXuat+")";
+        return "HoaDon{" + "MaHD=" + MaHD + ", NgayXuat=" + NgayXuat + '}';
     }
+
+  
     
 }

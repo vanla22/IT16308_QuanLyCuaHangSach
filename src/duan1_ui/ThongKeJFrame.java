@@ -34,10 +34,10 @@ public class ThongKeJFrame extends javax.swing.JFrame {
      */
     public ThongKeJFrame() {
         initComponents();
-        //fillcboDoanhThu();
-       this.init();
+        fillcboDoanhThu();
+        this.init();
+        this.setLocationRelativeTo(null);
     }
-
 
     void fillcboDoanhThu() {
 
@@ -46,21 +46,61 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         for (Integer kh : hddao.selectYear()) {
             model.addElement(kh);
         }
-        
+
     }
 
-    void fillTableDoanhThu() {
-        DefaultTableModel dtm = (DefaultTableModel) tblBangThu.getModel();
-        dtm.setRowCount(0);
-        int year = Integer.parseInt(cboNam.getSelectedItem().toString()); //
-        
-        List<Object[]> list = tkdao.getThongKeDoanhThu(year);
-        for (Object[] objects : list) {
-            dtm.addRow(objects);
+    private void fillTableDoanhThu() {
+        try {
+            DefaultTableModel dtm = (DefaultTableModel) tblBangThu.getModel();
+            dtm.setRowCount(0);
+            int year = Integer.parseInt(cboNam.getSelectedItem().toString()); //
+            List<Object[]> list = tkdao.getThongKeDoanhThu(year);
+            for (Object[] objects : list) {
+                dtm.addRow(objects);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        bieudoThongKeDoanhThu();
+       
     }
 
-    
+    void bieudoThongKeDoanhThu() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        String series3 = "Doanh Thu";
+        String nam = cboNam.getSelectedItem().toString();
+        for (int j = 0; j < tblBangThu.getRowCount(); j++) {
+            String Thang = tblBangThu.getValueAt(j, 0).toString();
+            int SlKh = Integer.parseInt(tblBangThu.getValueAt(j, 1).toString());
+            int SlBan = Integer.parseInt(tblBangThu.getValueAt(j, 2).toString());
+            double DoanhThu = Double.parseDouble(tblBangThu.getValueAt(j, 3).toString());
+            
+            
+            
+            
+            dataset.addValue(DoanhThu, series3, Thang);
+        }
+        JFreeChart chart = ChartFactory.createBarChart(
+                "Thống kê doanh thu" // chart title
+                , nam, "Doanh thu(VND)" // domain axis label
+                , dataset,// range axis label
+                PlotOrientation.VERTICAL,// data
+                true, // include legend
+                true, // tooltips?
+                false // URLs?
+        );
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        jPanelBD.removeAll();
+        jPanelBD.add(chartPanel, BorderLayout.CENTER);
+        CategoryPlot plot = chart.getCategoryPlot();
+        plot.getRenderer().setSeriesPaint(0, new Color(0x00, 0xFF, 0x00));
+        plot.getRenderer().setSeriesPaint(1, new Color(0x00, 0x00, 0x00));
+        jPanelBD.validate();
+
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -72,6 +112,7 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         tblBangThu = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         cboNam = new javax.swing.JComboBox<>();
+        jPanelBD = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -79,8 +120,6 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cboNam1 = new javax.swing.JComboBox<>();
         pnlBieuDoDoanhSo = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,17 +143,20 @@ public class ThongKeJFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanelBD.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel3)
                 .addGap(53, 53, 53)
                 .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,8 +166,10 @@ public class ThongKeJFrame extends javax.swing.JFrame {
                     .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         TABS.addTab("Doanh Thu", jPanel1);
@@ -145,16 +189,14 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel4.setText("Năm");
@@ -179,12 +221,12 @@ public class ThongKeJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(pnlBieuDoDoanhSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(pnlBieuDoDoanhSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,41 +236,13 @@ public class ThongKeJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cboNam1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlBieuDoDoanhSo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(pnlBieuDoDoanhSo, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         TABS.addTab("Doanh Số", jPanel5);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        TABS.addTab("Biều Đồ", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,8 +250,8 @@ public class ThongKeJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(TABS, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(TABS)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,13 +265,13 @@ public class ThongKeJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamActionPerformed
+        fillTableDoanhThu();
 
-     
     }//GEN-LAST:event_cboNamActionPerformed
 
     private void cboNam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNam1ActionPerformed
         int index = cboNam1.getSelectedIndex();
-        if (index>0) {
+        if (index > 0) {
             fillTableDoanhSo();
         }
     }//GEN-LAST:event_cboNam1ActionPerformed
@@ -305,10 +319,9 @@ public class ThongKeJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanelBD;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPanel pnlBieuDoDoanhSo;
@@ -316,25 +329,26 @@ public class ThongKeJFrame extends javax.swing.JFrame {
     private javax.swing.JTable tblDoanhSo;
     // End of variables declaration//GEN-END:variables
 
-    void init(){
+    void init() {
         fillCbbDoanhSo();
         fillTableDoanhSo();
-        
+
     }
-    void fillCbbDoanhSo(){
-        
+
+    void fillCbbDoanhSo() {
+
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboNam1.getModel();
         model.removeAllElements();
         for (Integer kh : hddao.selectYear()) {
             model.addElement(kh);
         }
     }
-    
-    void fillTableDoanhSo(){
-       DefaultTableModel dtm = (DefaultTableModel) tblDoanhSo.getModel();
+
+    void fillTableDoanhSo() {
+        DefaultTableModel dtm = (DefaultTableModel) tblDoanhSo.getModel();
         dtm.setRowCount(0);
         Integer year = (Integer) cboNam1.getSelectedItem();
-        
+
         List<Object[]> list = tkdao.getThongKeSPBanChay(year);
         for (Object[] objects : list) {
             dtm.addRow(objects);
@@ -344,10 +358,10 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         for (Object[] row : list) {
             String maSach = (String) row[0];
             String doanhThu = String.format("%.0f", row[3]);
-            barChartData.setValue(Double.parseDouble(doanhThu),"Doanh Thu",maSach);
+            barChartData.setValue(Double.parseDouble(doanhThu), "Doanh Thu", maSach);
         }
-        JFreeChart barChart = ChartFactory.createAreaChart("Doanh Thu", "Hàng năm", "VND", 
-                barChartData,PlotOrientation.VERTICAL,false,true,true);
+        JFreeChart barChart = ChartFactory.createAreaChart("Doanh Thu", "Hàng năm", "VND",
+                barChartData, PlotOrientation.VERTICAL, false, true, true);
         CategoryPlot barchrt = barChart.getCategoryPlot();
         barchrt.setRangeGridlinePaint(Color.GREEN);
         ChartPanel barPanel = new ChartPanel(barChart);

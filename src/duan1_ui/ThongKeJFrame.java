@@ -8,8 +8,15 @@ package duan1_ui;
 import EduSys.entity.HoaDon;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -19,6 +26,17 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import qlchs.dao.HoaDonDAO;
 import qlchs.dao.ThongKeDAO;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 /**
  *
@@ -28,6 +46,8 @@ public class ThongKeJFrame extends javax.swing.JFrame {
 
     HoaDonDAO hddao = new HoaDonDAO();
     ThongKeDAO tkdao = new ThongKeDAO();
+    DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
+    List<Integer> nam = hddao.selectYear();
 
     /**
      * Creates new form ThongKeJFrame
@@ -40,11 +60,10 @@ public class ThongKeJFrame extends javax.swing.JFrame {
     }
 
     void fillcboDoanhThu() {
-
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboNam.getModel();
-        model.removeAllElements();
+//        cboNam.setModel(cboModel);
+        cboNam.removeAllItems();
         for (Integer kh : hddao.selectYear()) {
-            model.addElement(kh);
+            cboNam.addItem(String.valueOf(kh));
         }
 
     }
@@ -101,6 +120,95 @@ public class ThongKeJFrame extends javax.swing.JFrame {
 
     }
 
+    private void xuatExcel() throws FileNotFoundException, IOException {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet();
+        HSSFCellStyle style = createStyleForTitle(workbook);
+
+        int rownum = 0;
+        Cell cell = null;
+        Row row;
+        row = sheet.createRow(rownum); // tạo dòng thứ nhất => rownum0;
+        cell = row.createCell(0);
+        cell = sheet.getRow(0).getCell(0);
+        cell.setCellValue("Thống Kê Doanh Thu Cửa Hàng Sách \n"+
+                "Năm :"+cboNam.getSelectedItem().toString());
+        cell.setCellStyle(createStyleForChuyenDe(workbook));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 5));
+  
+        // Tạo dòng title
+        rownum++;
+        row = sheet.createRow(rownum); // rownum1
+        // set title       
+        for (int i = 0; i < tblBangThu.getColumnCount(); i++) {
+            sheet.setColumnWidth(i, 9000);
+            cell = row.createCell(i, CellType.STRING);
+            cell.setCellValue(tblBangThu.getColumnName(i));
+            cell.setCellStyle(style);
+        }
+        // set data
+        ///////////////////////////////////////////
+        /////////////////////////////////////////
+        //////////////////////////////////////
+        ////////////////////////////////////
+        /////////////////////////////////
+        ///////////////////////////////
+        /////////////////////////////
+        ///////////////////////////
+
+        for (int i = 0; i < tblBangThu.getRowCount(); i++) {
+            rownum++;
+            row = sheet.createRow(rownum); // tạo ra dòng thứ 2 
+            // bắt đầu đóng dữ liệu vào 
+            for (int j = 0; j < tblBangThu.getColumnCount(); j++) {
+                System.out.println("Value ở for J : " + tblBangThu.getValueAt(i, j).toString());
+                cell = row.createCell(j, CellType.STRING); // ô thứ nhất
+                cell.setCellValue(tblBangThu.getValueAt(i, j).toString()); // set cho cái mã khóa học 1
+            }
+        }
+//        File file = new File("D:/demoExcel/employee.xls");
+//        file.getParentFile().mkdirs();
+//
+//        FileOutputStream outFile = new FileOutputStream(file);
+//        workbook.write(outFile);
+//        System.out.println("Created file: " + file.getAbsolutePath());
+        try {
+            JFileChooser fc = new JFileChooser();
+            if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                FileOutputStream outFile = new FileOutputStream(file.getAbsoluteFile() + ".xls");
+                workbook.write(outFile);
+                outFile.close();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private HSSFCellStyle createStyleForTitle(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setBold(true);
+        font.setColor(IndexedColors.WHITE.getIndex());
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setFont(font);
+        style.setFillBackgroundColor(IndexedColors.GREEN.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        return style;
+    }
+
+    private HSSFCellStyle createStyleForChuyenDe(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setBold(true);
+        font.setFontHeight(new Short("270"));
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setFont(font);
+
+        return style;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -112,6 +220,7 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cboNam = new javax.swing.JComboBox<>();
         jPanelBD = new javax.swing.JPanel();
+        btnExcel = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -144,18 +253,29 @@ public class ThongKeJFrame extends javax.swing.JFrame {
 
         jPanelBD.setLayout(new java.awt.BorderLayout());
 
+        btnExcel.setText("In ra");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jLabel3)
                 .addGap(53, 53, 53)
-                .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboNam, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanelBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnExcel)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,8 +287,9 @@ public class ThongKeJFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanelBD, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btnExcel))
         );
 
         TABS.addTab("Doanh Thu", jPanel1);
@@ -219,13 +340,13 @@ public class ThongKeJFrame extends javax.swing.JFrame {
                 .addComponent(cboNam1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(pnlBieuDoDoanhSo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlBieuDoDoanhSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,6 +396,14 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cboNam1ActionPerformed
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        try {
+            xuatExcel();
+        } catch (IOException ex) {
+            Logger.getLogger(ThongKeJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -302,6 +431,12 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -313,6 +448,7 @@ public class ThongKeJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TABS;
+    private javax.swing.JButton btnExcel;
     private javax.swing.JComboBox<String> cboNam;
     private javax.swing.JComboBox<String> cboNam1;
     private javax.swing.JLabel jLabel3;
@@ -360,10 +496,10 @@ public class ThongKeJFrame extends javax.swing.JFrame {
         DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
         for (Object[] row : list) {
             String maSach = (String) row[0];
-            int doanhSo = (Integer) row[2];
-            barChartData.setValue(doanhSo, "Doanh Số", maSach);
+            String doanhThu = String.format("%.0f", row[3]);
+            barChartData.setValue(Double.parseDouble(doanhThu), "Doanh Thu", maSach);
         }
-        JFreeChart barChart = ChartFactory.createAreaChart("Doanh Số",cboNam1.getSelectedItem().toString(), "Số lượng",
+        JFreeChart barChart = ChartFactory.createAreaChart("Doanh Thu", "Hàng năm", "VND",
                 barChartData, PlotOrientation.VERTICAL, false, true, true);
         CategoryPlot barchrt = barChart.getCategoryPlot();
         barchrt.setRangeGridlinePaint(Color.GREEN);

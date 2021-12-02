@@ -63,7 +63,7 @@ void setModel(KhachHang khachhang){
 }
 KhachHang getModel(){
     KhachHang mol = new KhachHang();
-    mol.setMaKH(txtMaKH.getText().length());
+    mol.setMaKH(Integer.valueOf(txtMaKH.getText()));
     mol.setTenKH(txtHoTen.getText());
     mol.setSDT(txtSDT.getText());
     mol.setEmail(txtEmail.getText());
@@ -138,18 +138,7 @@ public void setTrang(){
                 MsgBox.alert(this, "Cập nhập thất bại!");
             }
  }
-    public static boolean checkSDT(JTextField txt) {
-        txt.setBackground(white);
-        String id = txt.getText();
-        String rgx = "(086|096|097|098|032|033|034|035|036|037|038|039|089|090|093|070|079|077|078|076|088|091|094|083|084|085|081|082|092|056|058|099|059)[0-9]{7}";
-        if (id.matches(rgx)) {
-            return true;
-        } else {
-            txt.setBackground(pink);
-            MsgBox.alert(txt.getRootPane(), txt.getName() + " phải gồm 10 số\nđúng các đầu số của nhà mạng.");
-            return false;
-        }
-    }
+   
 
     public static boolean checkEmail(JTextField txt) {
         txt.setBackground(white);
@@ -163,16 +152,7 @@ public void setTrang(){
             return false;
         }
     }
-     public static boolean checkNullText(JTextField txt) {
-        txt.setBackground(white);
-        if (txt.getText().trim().length() > 0) {
-            return true;
-        } else {
-            txt.setBackground(pink);
-            MsgBox.alert(txt.getRootPane(), "Không được để trống " + txt.getName());
-            return false;
-        }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,6 +209,7 @@ public void setTrang(){
         lblEmail.setText("Email");
 
         txtMaKH.setEditable(false);
+        txtMaKH.setText("0");
 
         btnThem.setBackground(new java.awt.Color(39, 56, 120));
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
@@ -517,25 +498,58 @@ public void setTrang(){
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        if ( checkSDT(txtSDT)&&
-        checkEmail(txtEmail) && checkNullText(txtHoTen) ){
+        
+       
+       if (txtHoTen.getText().length() == 0) {
+           txtHoTen.setBackground(pink);
+            MsgBox.alert(this, "Không để trống họ tên khách hàng");
+            return;
+        }
+        if (txtSDT.getText().length() == 0) {
+            txtSDT.setBackground(pink);
+            MsgBox.alert(this, "Không để trống SDT ");
+            return;
+        }
+         if (!txtSDT.getText().matches("0[0-9]{9}")) {
+             txtSDT.setBackground(pink);
+            MsgBox.alert(this, "Số điện thoại 10 số");
+            return;
+        } 
+         
+        if (checkEmail(txtEmail) ) {
+            txtHoTen.getText().replaceAll(" ", "");
             insert();
         }
-        
+    
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-     
-        if ( checkSDT(txtSDT)&&
-        checkEmail(txtEmail) && checkNullText(txtHoTen)) {
+       if (txtHoTen.getText().length() == 0) {
+            MsgBox.alert(this, "Không để trống họ tên khách hàng");
+            txtHoTen.setBackground(pink);
+            return;
+        }
+        if (txtSDT.getText().length() == 0) {
+            MsgBox.alert(this, "Không để trống SDT ");
+            txtSDT.setBackground(pink);
+            return;
+        } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
+              txtSDT.setBackground(pink);
+            MsgBox.alert(this, "Số điện thoại 10 số");
+            return;
+        }
+        if (checkEmail(txtEmail)) {
             update();
         }
+      
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
-       
+        if (txtTimKiem.getText().length() ==0) {
+            MsgBox.alert(this, "dữ liệu tìm trống");
+        }
         load();
         clear();
         find();

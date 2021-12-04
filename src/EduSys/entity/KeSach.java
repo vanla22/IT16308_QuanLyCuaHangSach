@@ -11,49 +11,32 @@ package EduSys.entity;
  */
 public class KeSach {
 
-    private String MaKS;
-    private String MaTL;
-    private String TenSach;
-
-    public KeSach(String MaKS, String MaTL, String TenSach) {
-        this.MaKS = MaKS;
-        this.MaTL = MaTL;
-        this.TenSach = TenSach;
-    }
-
-    public String getTensach() {
-        return TenSach;
-    }
-
-    public void setTensach(String tensach) {
-        this.TenSach = tensach;
-    }
+    private String MaKeSach;
+    private String ViTriKeSach;
 
     public KeSach() {
     }
 
-    public String getMaKS() {
-        return MaKS;
+    public KeSach(String MaKeSach, String ViTriKeSach) {
+        this.MaKeSach = MaKeSach;
+        this.ViTriKeSach = ViTriKeSach;
     }
 
-    public void setMaKS(String MaKS) {
-        this.MaKS = MaKS;
+    public String getMaKeSach() {
+        return MaKeSach;
     }
 
-    public String getMaTL() {
-        return MaTL;
+    public void setMaKeSach(String MaKeSach) {
+        this.MaKeSach = MaKeSach;
     }
 
-    public void setMaTL(String MaTL) {
-        this.MaTL = MaTL;
+    public String getViTriKeSach() {
+        return ViTriKeSach;
     }
 
-    public String getTenSach() {
-        return TenSach;
+    public void setViTriKeSach(String ViTriKeSach) {
+        this.ViTriKeSach = ViTriKeSach;
     }
-
-    public void setTenSach(String TenSach) {
-        this.TenSach = TenSach;
-    }
-
+   
+   
 }

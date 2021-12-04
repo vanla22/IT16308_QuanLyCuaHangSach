@@ -17,20 +17,20 @@ import java.sql.*;
  */
 public class KeSachDAO extends QLNSDAO<KeSach, String> {
 
-    String insertSql = "insert into kesach(maks,matl,tensach) values (?,?,?)";
-    String updateSql = "update kesach set  matl=?, tensach=? where maks=?";
-    String deleteSql = "delete from kesach where maks=?";
-    String select_All_Sql = " select * from KESACH";
-    String select_sql_byID = "Select * from kesach where maks=?";
+    String insertSql = "insert into KeSach1(makesach,vitrikesach) values (?,?)";
+    String updateSql = "update kesach1 set  vitrikesach=? where makesach=?";
+    String deleteSql = "delete from KeSach1 where makesach=?";
+    String select_All_Sql = " select * from kesach1";
+    String select_sql_byID = "Select * from kesach1 where makesach=?";
 
     @Override
     public void insert(KeSach e) {
-        JDBCHelper.update(insertSql, e.getMaKS(), e.getMaTL(), e.getTensach());
+        JDBCHelper.update(insertSql, e.getMaKeSach(), e.getViTriKeSach());
     }
 
     @Override
     public void update(KeSach e) {
-        JDBCHelper.update(updateSql, e.getMaTL(), e.getTensach(), e.getMaKS());
+        JDBCHelper.update(updateSql, e.getViTriKeSach(), e.getMaKeSach());
     }
 
     @Override
@@ -59,9 +59,8 @@ public class KeSachDAO extends QLNSDAO<KeSach, String> {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {
                 KeSach ks = new KeSach();
-                ks.setMaKS(rs.getString("MaKs"));
-                ks.setMaTL(rs.getString("MaTL"));
-                ks.setTensach(rs.getString("TenSach"));                
+                ks.setMaKeSach(rs.getString("makesach"));
+                ks.setViTriKeSach(rs.getString("vitrikesach"));        
                 list.add(ks);
             }
             rs.getStatement().getConnection().close();

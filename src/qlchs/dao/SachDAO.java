@@ -88,4 +88,12 @@ JDBCHelper.update(UPDATE_SQL, entity.getTenSach(),
         String sql="UPDATE Sach set SoLuong=? where MaSach=?";
         JDBCHelper.update(sql,a,b);
     }
+    public List<Sach> selectByKeyword1(String keyword){
+        String sql="SELECT * FROM SACH WHERE TenSach = ?";
+        return this.selectBySql(sql, keyword);
+    }
+    public void updateTT(String ma , boolean tt) {
+        String sql ="UPDATE Sach set TrangThai=? where MaSach=?";
+JDBCHelper.update(sql, tt,ma);
+        }
 }

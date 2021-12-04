@@ -79,6 +79,30 @@ public class CTPNDAO extends QLNSDAO<CTPhieuNhap, String> {
         String sql="SELECT * FROM CTPHIEUNHAP WHERE MaPN LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
-    
+    public CTPhieuNhap selectGNById(String id) {
+        String sql = "SELECT * FROM CTPHIEUNHAP WHERE MaSach=?";
+        List<CTPhieuNhap> list = selectBySql(sql, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+    public List<Float> selectGNMAX( String ma){
+        String sql="select MAX(GiaNhap)   from CTPHIEUNHAP where MaSach=?";
+        List<Float> listGN= new ArrayList<>();
+        
+        try {
+            ResultSet rs = JDBCHelper.query(sql,ma);
+            while (rs.next()) {                
+                listGN.add(rs.getFloat(1));
+            }
+            
+        } catch (Exception e) {
+        }
+        
+        return listGN;
+
+  
+    }
 
 }

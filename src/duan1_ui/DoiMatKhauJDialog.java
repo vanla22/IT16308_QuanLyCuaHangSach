@@ -267,44 +267,45 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     nhanvienDAO dao = new nhanvienDAO();
 
     private void doiMatKhau() {
-        String maNV = txtTenTaiKhoan.getText();
-        String matKhau = new String(txtPassCu.getPassword());
-        String matKhauMoi = new String(txtPassMoi.getPassword());
-        String matKhauMoi2 = new String(txtXacNhanPass.getPassword());
-        if (matKhau.length() == 0) {
-            MsgBox.alert(this, "Mật khẩu cũ không được bỏ trống!");
-            txtPassCu.setBackground(Color.yellow);
-            txtPassCu.requestFocus();
-            return;
-        } else {
-            txtPassCu.setBackground(Color.white);
-        }
-        if (matKhauMoi.length() == 0) {
-            MsgBox.alert(this, "Mật khẩu mới không được bỏ trống!");
-            txtPassMoi.setBackground(Color.yellow);
-            txtPassMoi.requestFocus();
-            return;
-        } else {
-            txtPassMoi.setBackground(Color.white);
-        }
-        if (matKhauMoi2.length() == 0) {
-            MsgBox.alert(this, "Xác nhận mật khẩu không được bỏ trống!");
-            txtXacNhanPass.setBackground(Color.yellow);
-            txtXacNhanPass.requestFocus();
-            return;
-        } else {
-            txtXacNhanPass.setBackground(Color.white);
-        }
+        try {
+            String maNV = txtTenTaiKhoan.getText();
+            String matKhau = new String(txtPassCu.getPassword());
+            String matKhauMoi = new String(txtPassMoi.getPassword());
+            String matKhauMoi2 = new String(txtXacNhanPass.getPassword());
+            if (matKhau.length() == 0) {
+                MsgBox.alert(this, "Mật khẩu cũ không được bỏ trống!");
+                txtPassCu.setBackground(Color.yellow);
+                txtPassCu.requestFocus();
 
-         if (!matKhau.equals(Auth.user.getMatKhau())) {
-            MsgBox.alert(this, "Sai mật khẩu");
-        } else if (!matKhauMoi.equals(matKhauMoi2)) {
-            MsgBox.alert(this, "Xác nhân mật khẩu không đúng!");
-        } else {
-            Auth.user.setMatKhau(matKhauMoi);
-            dao.update(Auth.user);
-            MsgBox.alert(this, "Đổi mật khẩu thành công");
-            this.dispose();
+            } else if (!matKhau.equals(Auth.user.getMatKhau())) {
+                MsgBox.alert(this, "Sai mật khẩu");
+
+            } else if (matKhauMoi.length() == 0) {
+                MsgBox.alert(this, "Mật khẩu mới không được bỏ trống!");
+                txtPassMoi.setBackground(Color.yellow);
+                txtPassMoi.requestFocus();
+                return;
+            } else if (!matKhauMoi.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+                MsgBox.alert(this, "Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường và một số:");
+                txtPassMoi.setBackground(Color.yellow);
+                txtPassMoi.requestFocus();
+            } else if (!matKhauMoi.equals(matKhauMoi2)) {
+                MsgBox.alert(this, "Xác nhân mật khẩu không đúng!");
+                txtXacNhanPass.setBackground(Color.yellow);
+                txtXacNhanPass.requestFocus();
+            } else {
+                txtXacNhanPass.setBackground(Color.white);
+                txtPassMoi.setBackground(Color.white);
+                txtPassCu.setBackground(Color.white);
+                Auth.user.setMatKhau(matKhauMoi);
+                dao.update(Auth.user);
+                MsgBox.alert(this, "Đổi mật khẩu thành công");
+                this.dispose();
+            }
+
+        } catch (Exception e) {
+            MsgBox.alert(this, "Đổi mật khẩu thất bại");
+
         }
     }
 

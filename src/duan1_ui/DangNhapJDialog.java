@@ -82,7 +82,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         jLabel2.setText("Tên Đăng Nhập");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Mật Khẩu Cũ");
+        jLabel3.setText("Mật Khẩu ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,11 +232,6 @@ String tdn = this.txtTenTaiKhoan.getText();
         String mk =new String(this.txtMatKhau.getPassword());
         if(tdn.length()==0){
             MsgBox.alert(this, "Tên đăng nhập không được để trống!");
-            this.txtTenTaiKhoan.setBackground(Color.yellow);
-            this.txtTenTaiKhoan.requestFocus();
-            return;
-        }else if(tdn.length()<4){
-            MsgBox.alert(this, "Tên đăng nhập không được quá 10 kí tự và lớn hơn 6 kí tự!");
             this.txtTenTaiKhoan.setBackground(Color.yellow);
             this.txtTenTaiKhoan.requestFocus();
             return;

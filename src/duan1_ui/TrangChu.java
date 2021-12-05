@@ -527,7 +527,7 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_mniSachActionPerformed
 
     private void mniKeSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeSachActionPerformed
-        new KeSachJDialog(this, true).setVisible(true);
+       
     }//GEN-LAST:event_mniKeSachActionPerformed
 
     private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
@@ -693,11 +693,11 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     private void openKeSach() {
-        if (Auth.isLogin()) {
-            new KeSachJDialog(this, true).setVisible(true);
-        } else {
-            MsgBox.alert(this, "Vui lòng đăng nhập");
-        }
+//        if (Auth.isLogin()) {
+//            new KeSachJDialog(this, true).setVisible(true);
+//        } else {
+//            MsgBox.alert(this, "Vui lòng đăng nhập");
+//        }
     }
 
     private void opendangnhap() {

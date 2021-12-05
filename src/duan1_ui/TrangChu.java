@@ -62,13 +62,13 @@ public class TrangChu extends javax.swing.JFrame {
         mniDoiMatKhau = new javax.swing.JMenuItem();
         mniDangXuat = new javax.swing.JMenuItem();
         mnuQuanLy = new javax.swing.JMenu();
-        mniQLyTuSach = new javax.swing.JMenuItem();
+        mniQlytusach = new javax.swing.JMenuItem();
         mniHoaDon = new javax.swing.JMenuItem();
         mniKeSach = new javax.swing.JMenuItem();
         mniKhachHang = new javax.swing.JMenuItem();
         mniSach = new javax.swing.JMenuItem();
         mniQlyNhanVien = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuLichSuKh = new javax.swing.JMenuItem();
         mnuThongKe = new javax.swing.JMenu();
         mniDoanhTthu = new javax.swing.JMenuItem();
         mniThongkeSach = new javax.swing.JMenuItem();
@@ -394,13 +394,13 @@ public class TrangChu extends javax.swing.JFrame {
         mnuQuanLy.setBackground(new java.awt.Color(39, 56, 120));
         mnuQuanLy.setText("Quản Lý");
 
-        mniQLyTuSach.setText("Quản Lý Đầu Sách");
-        mniQLyTuSach.addActionListener(new java.awt.event.ActionListener() {
+        mniQlytusach.setText("Quản Lý Đầu Sách");
+        mniQlytusach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniQLyTuSachActionPerformed(evt);
+                mniQlytusachActionPerformed(evt);
             }
         });
-        mnuQuanLy.add(mniQLyTuSach);
+        mnuQuanLy.add(mniQlytusach);
 
         mniHoaDon.setText("Quản Lý Hóa Đơn");
         mniHoaDon.addActionListener(new java.awt.event.ActionListener() {
@@ -442,8 +442,13 @@ public class TrangChu extends javax.swing.JFrame {
         });
         mnuQuanLy.add(mniQlyNhanVien);
 
-        jMenuItem1.setText("Lịch Sử Khách Hàng");
-        mnuQuanLy.add(jMenuItem1);
+        mnuLichSuKh.setText("Lịch Sử Khách Hàng");
+        mnuLichSuKh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuLichSuKhActionPerformed(evt);
+            }
+        });
+        mnuQuanLy.add(mnuLichSuKh);
 
         jMenuBar4.add(mnuQuanLy);
 
@@ -522,29 +527,27 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_mniQlyNhanVienActionPerformed
 
     private void mniSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSachActionPerformed
-        quanLySachJFrame qls = new quanLySachJFrame();
-        qls.setVisible(true);
+       openQLsach();
     }//GEN-LAST:event_mniSachActionPerformed
 
     private void mniKeSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKeSachActionPerformed
-        new KeSachJDialog(this, true).setVisible(true);
+      openKeSach();
     }//GEN-LAST:event_mniKeSachActionPerformed
 
     private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
-        QuanLyKhachHangJFrame qlkh = new QuanLyKhachHangJFrame();
-        qlkh.setVisible(true);
+        openKhachHang();
     }//GEN-LAST:event_mniKhachHangActionPerformed
 
-    private void mniQLyTuSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQLyTuSachActionPerformed
-        openKeSach();
-    }//GEN-LAST:event_mniQLyTuSachActionPerformed
+    private void mniQlytusachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQlytusachActionPerformed
+       opendausach();
+    }//GEN-LAST:event_mniQlytusachActionPerformed
 
     private void mniDoanhTthuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhTthuActionPerformed
-        openThongKe(0);
+        this.openThongKe(0);
     }//GEN-LAST:event_mniDoanhTthuActionPerformed
 
     private void mniThongkeSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniThongkeSachActionPerformed
-        openThongKe(1);
+        this.openThongKe(1);
     }//GEN-LAST:event_mniThongkeSachActionPerformed
 
     private void mniBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBanHangActionPerformed
@@ -568,13 +571,11 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSachActionPerformed
-        quanLySachJFrame qls = new quanLySachJFrame();
-        qls.setVisible(true);
+       openQLsach();
     }//GEN-LAST:event_btnSachActionPerformed
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
-        QuanLyKhachHangJFrame qls = new QuanLyKhachHangJFrame();
-        qls.setVisible(true);
+     openKhachHang();
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -584,6 +585,10 @@ public class TrangChu extends javax.swing.JFrame {
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
       opendangnhap();
     }//GEN-LAST:event_mniDangXuatActionPerformed
+
+    private void mnuLichSuKhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLichSuKhActionPerformed
+       openLSkh();
+    }//GEN-LAST:event_mnuLichSuKhActionPerformed
 
     /**
      * @param args the command line arguments
@@ -651,7 +656,6 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar4;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -669,11 +673,12 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniKeSach;
     private javax.swing.JMenuItem mniKhachHang;
     private javax.swing.JMenuItem mniNhapHang;
-    private javax.swing.JMenuItem mniQLyTuSach;
     private javax.swing.JMenuItem mniQlyNhanVien;
+    private javax.swing.JMenuItem mniQlytusach;
     private javax.swing.JMenuItem mniSach;
     private javax.swing.JMenuItem mniThongkeSach;
     private javax.swing.JMenu mnuHeThong;
+    private javax.swing.JMenuItem mnuLichSuKh;
     private javax.swing.JMenu mnuQuanLy;
     private javax.swing.JMenu mnuThongKe;
     private javax.swing.JMenu mnuXuatNhap;
@@ -694,7 +699,40 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void openKeSach() {
         if (Auth.isLogin()) {
-            new KeSachJDialog(this, true).setVisible(true);
+            KeSachhJF kesach = new KeSachhJF();
+            kesach.setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui lòng đăng nhập");
+        }
+    }
+    private void opendausach() {
+        if (Auth.isLogin()) {
+            DausachJFrame dausach = new DausachJFrame();
+            dausach.setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui lòng đăng nhập");
+        }
+    }
+    private void openKhachHang() {
+        if (Auth.isLogin()) {
+            QuanLyKhachHangJFrame khachhang = new QuanLyKhachHangJFrame();
+            khachhang.setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui lòng đăng nhập");
+        }
+    }
+    private void openQLsach() {
+        if (Auth.isLogin()) {
+            quanLySachJFrame sach = new quanLySachJFrame();
+            sach.setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui lòng đăng nhập");
+        }
+    }
+     private void openLSkh() {
+        if (Auth.isLogin()) {
+//             sach = new quanLySachJFrame();
+//            sach.setVisible(true);
         } else {
             MsgBox.alert(this, "Vui lòng đăng nhập");
         }
@@ -722,7 +760,6 @@ public class TrangChu extends javax.swing.JFrame {
     void openBanHang() {
         if (Auth.isLogin()) {
             new hoaDonJFrame().setVisible(true);
-
         } else {
             MsgBox.alert(this, "vui lòng đăng nhập");
         }
@@ -730,7 +767,8 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void openPhieuNhap() {
         if (Auth.isLogin()) {
-            // new PhieuNhapJFrame().setVisible(true);
+          PhieuNhapJFrame phieun = new PhieuNhapJFrame();
+          phieun.setVisible(true);
         } else {
             MsgBox.alert(this, "Vui lòng đăng nhập");
         }

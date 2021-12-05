@@ -74,4 +74,8 @@ public List<KhachHang> selectByKeyword(String keyword){
         String sql="SELECT * FROM KHACHHANG WHERE MaKH LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
+public List<KhachHang> selectBySDT(String keyword){
+        String sql=" select *from KHACHHANG where SDT = ?";
+        return this.selectBySql(sql, keyword);
+    }
 }

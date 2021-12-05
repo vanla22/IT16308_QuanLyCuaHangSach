@@ -94,4 +94,19 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
     
     
     }
+         public List<Integer> selectMa(){
+        String sql="select MAX(MaHD)   from HOADON ";
+        List<Integer> listHD= new ArrayList<>();
+        
+        try {
+            ResultSet rs = JDBCHelper.query(sql);
+            while (rs.next()) {                
+                listHD.add(rs.getInt(1));
+            }
+            
+        } catch (Exception e) {
+        }
+        
+        return listHD;
+    }
 }

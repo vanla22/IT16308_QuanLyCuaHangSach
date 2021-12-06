@@ -299,7 +299,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaFormActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtMatKhau">
+            <Component class="javax.swing.JPasswordField" name="txtMatKhau">
             </Component>
           </SubComponents>
         </Container>

@@ -71,7 +71,7 @@ public class nhanvienDAO extends QLNSDAO<NhanVien, String> {
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMatKhau(rs.getString("MatKhau"));
                 entity.setHoTen(rs.getString("HoVaTen"));
-                entity.setNgaySinh(rs.getString("NgaySinh"));
+                entity.setNgaySinh(rs.getDate("NgaySinh"));
                 entity.setSDT(rs.getString("SDT"));
                 entity.setVaiTro(rs.getBoolean("VaiTro"));
                 entity.setTinhTrang(rs.getBoolean("TinhTrang"));

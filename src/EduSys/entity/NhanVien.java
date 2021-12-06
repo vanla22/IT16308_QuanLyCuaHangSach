@@ -16,7 +16,7 @@ public class NhanVien {
     private String maNV;
     private String hoTen;
     private String matKhau;
-    private String ngaySinh;
+    private Date ngaySinh;
     private String SDT;
     private boolean vaiTro;
     private boolean TinhTrang=true;
@@ -24,7 +24,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String hoTen, String matKhau, String ngaySinh, String SDT, boolean vaiTro) {
+    public NhanVien(String maNV, String hoTen, String matKhau, Date ngaySinh, String SDT, boolean vaiTro) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.matKhau = matKhau;
@@ -57,11 +57,11 @@ public class NhanVien {
         this.matKhau = matKhau;
     }
 
-    public String getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -88,11 +88,6 @@ public class NhanVien {
     public void setTinhTrang(boolean TinhTrang) {
         this.TinhTrang = TinhTrang;
     }
-    @Override
- public String toString(){
-        return maNV +"" ;
-    }
-    
-   
 
+    
 }

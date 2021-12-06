@@ -27,7 +27,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
      */
     public QuanLyNhanVien() {
         initComponents();
-
+setLocationRelativeTo(null);
         fillTable("1");
 
         btnKhoiPhuc.setVisible(false);
@@ -57,7 +57,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         txtMaNv.setText(nv.getMaNV());
         txtHoTen.setText(nv.getHoTen());
         txtMatKhau.setText(nv.getMatKhau());
-        txtNgaySinh.setText(nv.getNgaySinh());
+        txtNgaySinh.setText(XDate.toString(nv.getNgaySinh()));
         txtSDT.setText(nv.getSDT());
         if (nv.isVaiTro() == true) {
             rdoChuCuaHang.setSelected(true);
@@ -72,7 +72,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         nv.setMaNV(txtMaNv.getText());
         nv.setHoTen(txtHoTen.getText());
         nv.setMatKhau(txtMatKhau.getText());
-        nv.setNgaySinh(txtNgaySinh.getText());
+        nv.setNgaySinh(XDate.toDate(txtNgaySinh.getText()));
         nv.setSDT(txtSDT.getText());
         nv.setVaiTro(rdoChuCuaHang.isSelected());
         return nv;
@@ -85,13 +85,26 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         txtNgaySinh.setText("");
         txtSDT.setText("");
         rdoChuCuaHang.setSelected(true);
+        btnThem.setEnabled(true);
     }
 
     public void edit() {
         String manv = (String) tblNhaVien.getValueAt(row, 0);
         NhanVien nv = dao.selectById(manv);
         this.setForm(nv);
+        txtMaNv.setEditable(false);
         tblNhaVien.setRowSelectionInterval(row, row);
+        if (row == 0) {
+            btnFirst.setEnabled(false);
+            btnPrev.setEnabled(false);
+            btnLast.setEnabled(true);
+            btnNext.setEnabled(true);
+        } else if (row == tblNhaVien.getRowCount() - 1) {
+            btnLast.setEnabled(false);
+            btnNext.setEnabled(false);
+            btnFirst.setEnabled(true);
+            btnPrev.setEnabled(true);
+        }
     }
 
     public void insert() {
@@ -138,6 +151,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         String manv = txtMaNv.getText();
         if (manv.equals(Auth.user.getMaNV())) {
             MsgBox.alert(this, "Bạn không được xóa chính mình");
+            return;
         } else if (MsgBox.confirm(this, "Bạn có thực sự muốn xóa"));
         try {
             dao.xoaTamThoi("0", manv);
@@ -202,7 +216,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnXoaForm = new javax.swing.JButton();
-        txtMatKhau = new javax.swing.JTextField();
+        txtMatKhau = new javax.swing.JPasswordField();
         pnlDanhSachNV = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -535,30 +549,30 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (txtMaNv.getText().length() == 0) {
+        if (txtMaNv.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
             return;
         }
-        if (txtHoTen.getText().length() == 0) {
+        if (txtHoTen.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống họ tên nhân viên");
             return;
         }
-        if (txtMatKhau.getText().length() == 0) {
+        if (txtMatKhau.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mật khẩu");
             return;
         }
-        if (txtNgaySinh.getText().length() == 0) {
+        if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
             return;
         } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
-                MsgBox.alert(this, "Định dạng là dd/MM/yyyy");
+                MsgBox.alert(this, "Định dạng là dd-MM-yyyy");
                 return;
             }
         }
-        if (txtSDT.getText().length() == 0) {
+        if (txtSDT.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
             return;
         } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
@@ -573,26 +587,26 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             MsgBox.alert(this, "Không để trống mã nhân viên");
             return;
         }
-        if (txtHoTen.getText().length() == 0) {
+        if (txtHoTen.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống họ tên nhân viên");
             return;
         }
-        if (txtMatKhau.getText().length() == 0) {
+        if (txtMatKhau.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mật khẩu");
             return;
         }
-        if (txtNgaySinh.getText().length() == 0) {
+        if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
             return;
         } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
-                MsgBox.alert(this, "Định dạng là dd/MM/yyyy");
+                MsgBox.alert(this, "Định dạng là dd-MM-yyyy");
                 return;
             }
         }
-        if (txtSDT.getText().length() == 0) {
+        if (txtSDT.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
             return;
         } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
@@ -612,6 +626,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
 
     private void btnXoaFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormActionPerformed
         clearForm();
+        txtMaNv.setEditable(true);
     }//GEN-LAST:event_btnXoaFormActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
@@ -661,6 +676,8 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         NhanVien nv = listNhanVien.get(row);
         if (evt.getClickCount() == 2) {
             setForm(nv);
+            txtMaNv.setEditable(false);
+            btnThem.setEnabled(false);
         }
     }//GEN-LAST:event_tblNhaVienMouseClicked
 
@@ -730,7 +747,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JTable tblNhaVien;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaNv;
-    private javax.swing.JTextField txtMatKhau;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     // End of variables declaration//GEN-END:variables

@@ -15,14 +15,17 @@ import java.util.List;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import qlchs.dao.ThongKeDAO;
 
 /**
  *
  * @author tachi
  */
+
 public class QuanLyKhachHangJFrame extends javax.swing.JFrame {
 int index = 0;
     khachhangDAO dao = new khachhangDAO();
+     ThongKeDAO tkdao = new ThongKeDAO();
     /**
      * Creates new form QuanLyKhachHang
      */
@@ -188,6 +191,7 @@ public void setTrang(){
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
+        btnLSMH = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -279,7 +283,7 @@ public void setTrang(){
             .addGroup(pnlThongTinKHLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongTinKHLayout.createSequentialGroup()
                         .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,6 +422,16 @@ public void setTrang(){
             }
         });
 
+        btnLSMH.setBackground(new java.awt.Color(39, 56, 120));
+        btnLSMH.setForeground(new java.awt.Color(255, 255, 255));
+        btnLSMH.setText("Lịch Sử Mua Hàng");
+        btnLSMH.setBorder(null);
+        btnLSMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLSMHActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlDanhSachKHLayout = new javax.swing.GroupLayout(pnlDanhSachKH);
         pnlDanhSachKH.setLayout(pnlDanhSachKHLayout);
         pnlDanhSachKHLayout.setHorizontalGroup(
@@ -425,7 +439,7 @@ public void setTrang(){
             .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
                 .addGroup(pnlDanhSachKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
-                        .addGap(0, 8, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
                         .addGap(114, 114, 114)
@@ -435,13 +449,16 @@ public void setTrang(){
                 .addContainerGap())
             .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlDanhSachKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLSMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
+                        .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlDanhSachKHLayout.setVerticalGroup(
@@ -459,6 +476,8 @@ public void setTrang(){
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLSMH, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -589,6 +608,16 @@ public void setTrang(){
             }
         }
     }//GEN-LAST:event_tblKhachHangMouseClicked
+
+    private void btnLSMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLSMHActionPerformed
+            if (index >=0) {
+         String maKh = tblKhachHang.getValueAt(index,0).toString();
+LichSuMuaHang lsmh = new  LichSuMuaHang(maKh);
+lsmh.setVisible(true);
+        }else {
+            MsgBox.alert(this,"Chưa chọn khách hàng muốn");
+        }
+    }//GEN-LAST:event_btnLSMHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -882,6 +911,7 @@ public void setTrang(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLSMH;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnNext;

@@ -47,7 +47,7 @@ void load(){
                 kh.getMaKH(),
                 kh.getTenKH(),
                 kh.getSDT(),
-                kh.getEmail()
+               
             };
             model.addRow(row);
         }
@@ -59,14 +59,14 @@ void setModel(KhachHang khachhang){
     txtMaKH.setText(khachhang.getMaKH()+"");
     txtHoTen.setText(khachhang.getTenKH());
     txtSDT.setText(khachhang.getSDT());
-    txtEmail.setText(khachhang.getEmail());
+   
 }
 KhachHang getModel(){
     KhachHang mol = new KhachHang();
     mol.setMaKH(Integer.valueOf(txtMaKH.getText()));
     mol.setTenKH(txtHoTen.getText());
     mol.setSDT(txtSDT.getText());
-    mol.setEmail(txtEmail.getText());
+   
     return mol;
 }
  void setStatus() {
@@ -140,19 +140,6 @@ public void setTrang(){
  }
    
 
-    public static boolean checkEmail(JTextField txt) {
-        txt.setBackground(white);
-        String id = txt.getText();
-        String rgx = "^[a-zA-Z][a-zA-Z0-9_\\.]{2,32}@[a-zA-Z0-9]{2,10}(\\.[a-zA-Z0-9]{2,4}){1,2}$";
-        if (id.matches(rgx)) {
-            return true;
-        } else {
-            txt.setBackground(pink);
-            MsgBox.alert(txt.getRootPane(), txt.getName() + " không đúng định dạng");
-            return false;
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -515,12 +502,7 @@ public void setTrang(){
             MsgBox.alert(this, "Số điện thoại 10 số");
             return;
         } 
-         
-        if (checkEmail(txtEmail) ) {
-            txtHoTen.getText().replaceAll(" ", "");
-            insert();
-        }
-    
+        insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -539,9 +521,7 @@ public void setTrang(){
             MsgBox.alert(this, "Số điện thoại 10 số");
             return;
         }
-        if (checkEmail(txtEmail)) {
-            update();
-        }
+       update();
       
     }//GEN-LAST:event_btnSuaActionPerformed
 

@@ -759,7 +759,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     void openBanHang() {
         if (Auth.isLogin()) {
-            new hoaDonJFrame().setVisible(true);
+            new BanSach().setVisible(true);
         } else {
             MsgBox.alert(this, "vui lòng đăng nhập");
         }

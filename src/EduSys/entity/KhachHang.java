@@ -13,16 +13,16 @@ public class KhachHang {
     private int MaKH;
     private String TenKH;
     private String SDT;
-    private String Email;
+
 
     public KhachHang() {
     }
 
-    public KhachHang(int MaKH, String TenKH, String SDT, String Email) {
+    public KhachHang(int MaKH, String TenKH, String SDT) {
         this.MaKH = MaKH;
         this.TenKH = TenKH;
         this.SDT = SDT;
-        this.Email = Email;
+       
     }
 
     public int getMaKH() {
@@ -49,13 +49,7 @@ public class KhachHang {
         this.SDT = SDT;
     }
 
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
+   
     @Override
     public String toString(){
         return MaKH +"" ;

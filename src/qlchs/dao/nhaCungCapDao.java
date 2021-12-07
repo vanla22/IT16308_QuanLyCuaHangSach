@@ -16,19 +16,19 @@ import java.util.ArrayList;
  */
 public class nhaCungCapDao extends QLNSDAO<NhaCungCap, String>{
 
-     final String INSERT_SQL = "INSERT INTO NHACUNGCAP(MaNCC,TenNCC,DiaChi,Email,SDT) values (?,?,?,?,?)";
-    final String UPDATE_SQL = " UPDATE NHACUNGCAP set TenNCC=?, DiaChi=?,Email=?,SDT=? WHERE MaNCC=?";
+     final String INSERT_SQL = "INSERT INTO NHACUNGCAP(MaNCC,TenNCC,DiaChi,SDT) values (?,?,?,?)";
+    final String UPDATE_SQL = " UPDATE NHACUNGCAP set TenNCC=?, DiaChi=?,SDT=? WHERE MaNCC=?";
     final String DELETE_SQL = "DELETE FROM NHACUNGCAP WHERE MaNCC=?";
     final String SELECT_ALL_SQL = "SELECT * FROM NHACUNGCAP";
     final String SELECT_BY_ID_SQL = "SELECT * FROM NHACUNGCAP WHERE MaNCC= ?";
     @Override
     public void insert(NhaCungCap entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaNCC(),entity.getTenNCC(),entity.getDiaChi(),entity.getEmail(),entity.getSDT());
+        JDBCHelper.update(INSERT_SQL, entity.getMaNCC(),entity.getTenNCC(),entity.getDiaChi(),entity.getSDT());
     }
 
     @Override
     public void update(NhaCungCap entity) {
-        JDBCHelper.update(UPDATE_SQL,entity.getTenNCC(),entity.getDiaChi(),entity.getEmail(),entity.getSDT(), entity.getMaNCC());
+        JDBCHelper.update(UPDATE_SQL,entity.getTenNCC(),entity.getDiaChi(),entity.getSDT(), entity.getMaNCC());
     }
 
     @Override
@@ -60,7 +60,7 @@ public class nhaCungCapDao extends QLNSDAO<NhaCungCap, String>{
                 entity.setMaNCC(rs.getString("MaNCC"));
                 entity.setTenNCC(rs.getString("TenNCC"));
                 entity.setDiaChi(rs.getString("DiaChi"));
-                entity.setEmail(rs.getString("Email"));
+               
                 entity.setSDT(rs.getString("SDT"));
                 list.add(entity);
             }
@@ -69,5 +69,8 @@ public class nhaCungCapDao extends QLNSDAO<NhaCungCap, String>{
         }
         return list;
     }
-    
+     public List<NhaCungCap> selectByKeyword(String keyword){
+        String sql="SELECT * FROM NHACUNGCAP WHERE MaNCC LIKE ?";
+        return this.selectBySql(sql, "%"+keyword+"%");
+    }
 }

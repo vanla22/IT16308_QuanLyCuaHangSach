@@ -45,4 +45,10 @@ public class ThongKeDAO {
         return this.getListofArray(sql, cols,year);
 
     }
+       public List<Object[]> getlichSuMuaHang(String makh) {
+        String sql = "{call  sp_lichSuKhachHang(?)}";
+        String[] cols = {"maHoaDonChiTiet", "maHoaDon", "maSach","soLuong","giaBan","tongTien","ngayXuat"};
+        return this.getListofArray(sql, cols,makh);
+
+    }
 }

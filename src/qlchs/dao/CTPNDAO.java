@@ -18,11 +18,11 @@ import qlchs.utils.JDBCHelper;
  */
 public class CTPNDAO extends QLNSDAO<CTPhieuNhap, String> {
 
-    final String INSERT_SQL = "INSERT INTO CTPHIEUNHAP(MaPN,MaSach,SoLuong,GiaNhap,ThanhTien) values (?,?,?,?,?)";
-    final String UPDATE_SQL = " UPDATE CTPHIEUNHAP set MaPN=?,MaSach=?, SoLuong=?,GiaNhap=?,ThanhTien=? WHERE MaCTPN=?";
-    final String DELETE_SQL = "DELETE FROM CTPHIEUNHAP WHERE MaCTPN=?";
-    final String SELECT_ALL_SQL = "SELECT * FROM CTPHIEUNHAP";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM CTPHIEUNHAP WHERE MaCTPN= ?";
+    final String INSERT_SQL = "INSERT INTO ctphieunhap(MaPN,MaSach,SoLuong,GiaNhap,ThanhTien) values (?,?,?,?,?)";
+    final String UPDATE_SQL = " UPDATE ctphieunhap set MaPN=?,MaSach=?, SoLuong=?,GiaNhap=?,ThanhTien=? WHERE MaCTPN=?";
+    final String DELETE_SQL = "DELETE FROM ctphieunhap WHERE MaCTPN=?";
+    final String SELECT_ALL_SQL = "SELECT * FROM ctphieunhap";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM ctphieunhap WHERE MaCTPN= ?";
 
     @Override
     public void insert(CTPhieuNhap entity) {
@@ -76,11 +76,11 @@ public class CTPNDAO extends QLNSDAO<CTPhieuNhap, String> {
         return list;
     }
     public List<CTPhieuNhap> selectByKeyword(String keyword){
-        String sql="SELECT * FROM CTPHIEUNHAP WHERE MaPN LIKE ?";
+        String sql="SELECT * FROM ctphieunhap WHERE MaPN LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
     public CTPhieuNhap selectGNById(String id) {
-        String sql = "SELECT * FROM CTPHIEUNHAP WHERE MaSach=?";
+        String sql = "SELECT * FROM ctphieunhap WHERE MaSach=?";
         List<CTPhieuNhap> list = selectBySql(sql, id);
         if (list.isEmpty()) {
             return null;
@@ -88,7 +88,7 @@ public class CTPNDAO extends QLNSDAO<CTPhieuNhap, String> {
         return list.get(0);
     }
     public List<Float> selectGNMAX( String ma){
-        String sql="select MAX(GiaNhap)   from CTPHIEUNHAP where MaSach=?";
+        String sql="select MAX(GiaNhap)   from ctphieunhap where MaSach=?";
         List<Float> listGN= new ArrayList<>();
         
         try {

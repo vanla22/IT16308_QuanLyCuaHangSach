@@ -5,6 +5,8 @@
 package duan1_ui;
 
 import EduSys.entity.NhanVien;
+import static java.awt.Color.pink;
+import static java.awt.Color.white;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import qlchs.dao.nhanvienDAO;
@@ -17,7 +19,7 @@ import qlchs.utils.XDate;
  * @author tachi
  */
 public class QuanLyNhanVien extends javax.swing.JFrame {
-
+    
     private nhanvienDAO dao = new nhanvienDAO();
     private int row = -1;
     private List<NhanVien> listNhanVien;
@@ -27,14 +29,15 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
      */
     public QuanLyNhanVien() {
         initComponents();
-setLocationRelativeTo(null);
+        setTitle("QUẢN LÝ NHÂN VIÊN");
+        setLocationRelativeTo(null);
         fillTable("1");
-
+        
         btnKhoiPhuc.setVisible(false);
         btnNhanVienHT.setVisible(false);
         clearForm();
     }
-
+    
     public void fillTable(String idlist) {
         DefaultTableModel model = (DefaultTableModel) tblNhaVien.getModel();
         model.setRowCount(0);
@@ -52,7 +55,7 @@ setLocationRelativeTo(null);
             e.printStackTrace();
         }
     }
-
+    
     public void setForm(NhanVien nv) {
         txtMaNv.setText(nv.getMaNV());
         txtHoTen.setText(nv.getHoTen());
@@ -64,9 +67,9 @@ setLocationRelativeTo(null);
         } else {
             rdoNhanVien.setSelected(true);
         }
-
+        
     }
-
+    
     public NhanVien getForm() {
         NhanVien nv = new NhanVien();
         nv.setMaNV(txtMaNv.getText());
@@ -77,7 +80,7 @@ setLocationRelativeTo(null);
         nv.setVaiTro(rdoChuCuaHang.isSelected());
         return nv;
     }
-
+    
     public void clearForm() {
         txtMaNv.setText("");
         txtHoTen.setText("");
@@ -86,8 +89,13 @@ setLocationRelativeTo(null);
         txtSDT.setText("");
         rdoChuCuaHang.setSelected(true);
         btnThem.setEnabled(true);
+        txtMaNv.setBackground(white);
+        txtHoTen.setBackground(white);
+        txtMatKhau.setBackground(white);
+        txtNgaySinh.setBackground(white);
+        txtSDT.setBackground(white);
     }
-
+    
     public void edit() {
         String manv = (String) tblNhaVien.getValueAt(row, 0);
         NhanVien nv = dao.selectById(manv);
@@ -106,7 +114,7 @@ setLocationRelativeTo(null);
             btnPrev.setEnabled(true);
         }
     }
-
+    
     public void insert() {
         NhanVien nv = getForm();
         NhanVien nv2 = dao.selectById(nv.getMaNV().toString());
@@ -116,12 +124,12 @@ setLocationRelativeTo(null);
                 return;
             }
         }
-
+        
         if (nv2 != null) {
             MsgBox.alert(this, "Trùng mã nhân viên");
             return;
         }
-
+        
         try {
             dao.insert(nv);
             this.fillTable("1");
@@ -132,7 +140,7 @@ setLocationRelativeTo(null);
             e.printStackTrace();
         }
     }
-
+    
     public void update() {
         NhanVien nv = getForm();
         NhanVien nv2 = dao.selectById(nv.getMaNV().toString());
@@ -146,7 +154,7 @@ setLocationRelativeTo(null);
             e.printStackTrace();
         }
     }
-
+    
     public void deleteIDlist() {
         String manv = txtMaNv.getText();
         if (manv.equals(Auth.user.getMaNV())) {
@@ -161,27 +169,27 @@ setLocationRelativeTo(null);
             e.printStackTrace();
         }
     }
-
+    
     public void first() {
         this.row = 0;
         this.edit();
     }
-
+    
     public void prev() {
         if (this.row > 0) {
             this.row--;
             this.edit();
         }
-
+        
     }
-
+    
     public void next() {
         if (this.row < tblNhaVien.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
     }
-
+    
     public void last() {
         this.row = tblNhaVien.getRowCount() - 1;
         this.edit();
@@ -551,66 +559,86 @@ setLocationRelativeTo(null);
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         if (txtMaNv.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
+            txtMaNv.requestFocus();
             return;
         }
         if (txtHoTen.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống họ tên nhân viên");
+            txtHoTen.requestFocus();
             return;
+        } else if (!txtHoTen.getText().matches("^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{3,25}$")) {
+            MsgBox.alert(this, "Họ tên phải là tên tiếng việt hoặc không dấu(từ 3-25 kí tự)");
+            txtHoTen.requestFocus();
+            return;            
         }
+        
         if (txtMatKhau.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mật khẩu");
+            txtMatKhau.requestFocus();
             return;
         }
         if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
+            txtNgaySinh.requestFocus();
             return;
         } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
                 MsgBox.alert(this, "Định dạng là dd-MM-yyyy");
+                txtNgaySinh.requestFocus();
                 return;
             }
         }
         if (txtSDT.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
+            txtSDT.requestFocus();
             return;
         } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
             MsgBox.alert(this, "Số điện thoại 10 số");
+            txtSDT.requestFocus();
             return;
         }
         insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        if (txtMaNv.getText().length() == 0) {
-            MsgBox.alert(this, "Không để trống mã nhân viên");
-            return;
-        }
+        
         if (txtHoTen.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống họ tên nhân viên");
+            txtHoTen.requestFocus();
             return;
+        } else if (!txtHoTen.getText().matches("^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{3,25}$")) {
+            MsgBox.alert(this, "Họ tên phải là tên tiếng việt hoặc không dấu(từ 3-25 kí tự)");
+            txtHoTen.requestFocus();
+            return;            
         }
+        
         if (txtMatKhau.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mật khẩu");
+            txtMatKhau.requestFocus();
             return;
         }
         if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
+            txtNgaySinh.requestFocus();
             return;
         } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
                 MsgBox.alert(this, "Định dạng là dd-MM-yyyy");
+                txtNgaySinh.requestFocus();
                 return;
             }
         }
         if (txtSDT.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
+            txtSDT.requestFocus();
             return;
         } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
             MsgBox.alert(this, "Số điện thoại 10 số");
+            txtSDT.requestFocus();
             return;
         }
         update();
@@ -619,6 +647,7 @@ setLocationRelativeTo(null);
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         if (txtMaNv.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
+            txtMaNv.requestFocus();
             return;
         }
         deleteIDlist();

@@ -13,17 +13,17 @@ public class NhaCungCap {
     private String MaNCC;
     private String TenNCC;
     private String DiaChi;
-    private String Email;
+   
     private String SDT;
 
     public NhaCungCap() {
     }
 
-    public NhaCungCap(String MaNCC, String TenNCC, String DiaChi, String Email, String SDT) {
+    public NhaCungCap(String MaNCC, String TenNCC, String DiaChi, String SDT) {
         this.MaNCC = MaNCC;
         this.TenNCC = TenNCC;
         this.DiaChi = DiaChi;
-        this.Email = Email;
+      
         this.SDT = SDT;
     }
     public String getMaNCC() {
@@ -48,14 +48,6 @@ public class NhaCungCap {
 
     public void setDiaChi(String DiaChi) {
         this.DiaChi = DiaChi;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
     }
 
     public String getSDT() {

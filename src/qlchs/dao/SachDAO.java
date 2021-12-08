@@ -29,7 +29,7 @@ import static qlchs.utils.JDBCHelper.username;
 public class SachDAO extends QLNSDAO<Sach, String> {
 
     final String INSERT_SQL = "INSERT INTO Sach(MaSach,TenSach,GiaBan,SoLuong,TrangThai,MaDauSach,GhiChu,MaKeSach) values(?,?,?,?,?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE Sach set TenSach=?,GiaBan=?,SoLuong=?,TrangThai=?,MaDauSach=?,GhiChu=?,MaKeSach where MaSach=?";
+    final String UPDATE_SQL = "UPDATE Sach set TenSach=?,GiaBan=?,SoLuong=?,TrangThai=?,MaDauSach=?,GhiChu=?,MaKeSach=? where MaSach=?";
     final String DELETE_SQL = "DELETE FROM Sach WHERE MaSach=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Sach";
     final String SELECT_BY_ID_SQL = "SELECT * FROM Sach WHERE MaSach= ?";

@@ -442,7 +442,7 @@ public class TrangChu extends javax.swing.JFrame {
         });
         mnuQuanLy.add(mniQlyNhanVien);
 
-        mnuLichSuKh.setText("Lịch Sử Khách Hàng");
+        mnuLichSuKh.setText("Nhà Cung Cấp");
         mnuLichSuKh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuLichSuKhActionPerformed(evt);
@@ -587,7 +587,7 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void mnuLichSuKhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLichSuKhActionPerformed
-       openLSkh();
+       opennhacungcap();
     }//GEN-LAST:event_mnuLichSuKhActionPerformed
 
     /**
@@ -729,10 +729,10 @@ public class TrangChu extends javax.swing.JFrame {
             MsgBox.alert(this, "Vui lòng đăng nhập");
         }
     }
-     private void openLSkh() {
+     private void opennhacungcap() {
         if (Auth.isLogin()) {
-//             sach = new quanLySachJFrame();
-//            sach.setVisible(true);
+            PhieuNhapJFrame pnjf= new PhieuNhapJFrame();
+            pnjf.setVisible(true);
         } else {
             MsgBox.alert(this, "Vui lòng đăng nhập");
         }
@@ -744,7 +744,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     void openThongKe(int index) {
         if (Auth.isLogin()) {
-            if (index == -3 && !Auth.isManager()) {
+            if (!Auth.isManager()) {
                 MsgBox.alert(this, "Bạn không có quyền xem doanh thu !!!");
                 return;
             }
@@ -776,7 +776,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     void openNhanVien(int index) {
-        if (Auth.isLogin()) {
+        if (!Auth.isLogin()) {
             if (index == -3 && !Auth.isManager()) {
                 MsgBox.alert(this, "Bạn không có quyền xem quản lý nhân viên !!!");
                 return;

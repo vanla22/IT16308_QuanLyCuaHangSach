@@ -91,7 +91,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuLichSuKh">
               <Properties>
-                <Property name="text" type="java.lang.String" value="L&#x1ecb;ch S&#x1eed; Kh&#xe1;ch H&#xe0;ng"/>
+                <Property name="text" type="java.lang.String" value="Nh&#xe0; Cung C&#x1ea5;p"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuLichSuKhActionPerformed"/>

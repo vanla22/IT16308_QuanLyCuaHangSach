@@ -79,7 +79,7 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
         JDBCHelper.update(sql,  tt, hd);
     }
          public List<Integer> selectYear(){
-    String sql ="Select distinct year(ngayxuat) nam from HOADON1 order by nam desc ";
+    String sql ="Select distinct year(ngayxuat) nam from HOADON order by nam desc ";
     List<Integer> list = new ArrayList<>();
         try {
             ResultSet rs = JDBCHelper.query(sql);
@@ -95,7 +95,7 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
     
     }
          public List<Integer> selectMa(){
-        String sql="select MAX(MaHD)   from HOADON1 ";
+        String sql="select MAX(MaHD)   from HOADON ";
         List<Integer> listHD= new ArrayList<>();
         
         try {

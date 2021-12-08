@@ -20,8 +20,8 @@ public class KeSachDAO extends QLNSDAO<KeSach, String> {
     String insertSql = "insert into KeSach(makesach,vitrikesach) values (?,?)";
     String updateSql = "update kesach set  vitrikesach=? where makesach=?";
     String deleteSql = "delete from KeSach where makesach=?";
-    String select_All_Sql = " select * from kesach1";
-    String select_sql_byID = "Select * from kesach1 where makesach=?";
+    String select_All_Sql = " select * from kesach";
+    String select_sql_byID = "Select * from kesach where makesach=?";
 
     @Override
     public void insert(KeSach e) {

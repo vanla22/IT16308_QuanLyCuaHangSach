@@ -1025,6 +1025,7 @@ Sach c = new Sach();
         c.setTenSach(txtTen.getText().trim());
         c.setSoLuong(Integer.parseInt(txtSoLuong.getText().trim()));
         c.setGiaBan(0);
+        c.setTrangThai(true);
         c.setGhiChu("null");
         
         daoS.insert(c);

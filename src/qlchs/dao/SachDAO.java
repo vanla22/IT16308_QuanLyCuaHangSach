@@ -28,7 +28,7 @@ import static qlchs.utils.JDBCHelper.username;
  */
 public class SachDAO extends QLNSDAO<Sach, String> {
 
-    final String INSERT_SQL = "INSERT INTO Sach(MaSach,TenSach,GiaBan,SoLuong,TrangThai,MaDauSach,GhiChu,MaKeSach) values(?,?,?,?,?,?,?,?,?)";
+    final String INSERT_SQL = "INSERT INTO Sach(MaSach,TenSach,GiaBan,SoLuong,TrangThai,MaDauSach,GhiChu,MaKeSach) values(?,?,?,?,?,?,?,?)";
     final String UPDATE_SQL = "UPDATE Sach set TenSach=?,GiaBan=?,SoLuong=?,TrangThai=?,MaDauSach=?,GhiChu=?,MaKeSach where MaSach=?";
     final String DELETE_SQL = "DELETE FROM Sach WHERE MaSach=?";
     final String SELECT_ALL_SQL = "SELECT * FROM Sach";
@@ -49,7 +49,7 @@ public class SachDAO extends QLNSDAO<Sach, String> {
     @Override
     public void update(Sach entity) {
         JDBCHelper.update(UPDATE_SQL, entity.getTenSach(),
-                entity.getGiaBan(), entity.getSoLuong(), entity.isTrangThai(), entity.getMaDauSach(), entity.getGhiChu(), entity.getMaSach(),entity.getMaKeSach()
+                entity.getGiaBan(), entity.getSoLuong(), entity.isTrangThai(), entity.getMaDauSach(), entity.getGhiChu(),entity.getMaKeSach(), entity.getMaSach()
         );
     }
 

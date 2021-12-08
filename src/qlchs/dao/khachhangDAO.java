@@ -16,11 +16,11 @@ import qlchs.utils.JDBCHelper;
  */
 public class khachhangDAO extends QLNSDAO<KhachHang, Integer> {
 
-    final String INSERT_SQL = "INSERT INTO KHACHHANG1(TenKH,SDT) values(?,?)";
-    final String UPDATE_SQL = "UPDATE KHACHHANG1 set TenKH=?, SDT = ?, Email=? WHERE MaKH=?";
-    final String DELETE_SQL = "DELETE FROM KHACHHANG1 WHERE MaKH=?";
-    final String SELECT_ALL_SQL = "SELECT * FROM KHACHHANG1";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM KHACHHANG1 WHERE MaKH= ?";
+    final String INSERT_SQL = "INSERT INTO KHACHHANG (TenKH,SDT) values(?,?)";
+    final String UPDATE_SQL = "UPDATE KHACHHANG set TenKH=?, SDT = ?, Email=? WHERE MaKH=?";
+    final String DELETE_SQL = "DELETE FROM KHACHHANG WHERE MaKH=?";
+    final String SELECT_ALL_SQL = "SELECT * FROM KHACHHANG";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM KHACHHANG WHERE MaKH= ?";
 
     @Override
     public void insert(KhachHang entity) {
@@ -71,11 +71,11 @@ public class khachhangDAO extends QLNSDAO<KhachHang, Integer> {
         return list;
     }
 public List<KhachHang> selectByKeyword(String keyword){
-        String sql="SELECT * FROM KHACHHANG1 WHERE MaKH LIKE ?";
+        String sql="SELECT * FROM KHACHHANG WHERE MaKH LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
 public List<KhachHang> selectBySDT(String keyword){
-        String sql=" select *from KHACHHANG1 where SDT = ?";
+        String sql=" select *from KHACHHANG where SDT = ?";
         return this.selectBySql(sql, keyword);
     }
 }

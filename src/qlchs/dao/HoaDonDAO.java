@@ -16,11 +16,11 @@ import java.util.List;
  * @author Admin
  */
 public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
-    final String INSERT_SQL = "INSERT INTO HOADON1(MaNV,MaKH,NgayXuat,TongTien) values(?,?,?,?)";
-    final String UPDATE_SQL = "UPDATE HOADON1 SET MaNV=?,MaKH=?,NgayXuat=?,TongTien=? WHERE MaHD=?";
-    final String DELETE_SQL = "DELETE FROM HOADON1 WHERE MaHD=?";
-    final String SELECT_ALL_SQL = "SELECT * FROM HOADON1";
-    final String SELECT_BY_ID_SQL = "SELECT * FROM HOADON1 WHERE MaHD= ?";
+    final String INSERT_SQL = "INSERT INTO HOADON(MaNV,MaKH,NgayXuat,TongTien) values(?,?,?,?)";
+    final String UPDATE_SQL = "UPDATE HOADON SET MaNV=?,MaKH=?,NgayXuat=?,TongTien=? WHERE MaHD=?";
+    final String DELETE_SQL = "DELETE FROM HOADON WHERE MaHD=?";
+    final String SELECT_ALL_SQL = "SELECT * FROM HOADON";
+    final String SELECT_BY_ID_SQL = "SELECT * FROM HOADON WHERE MaHD= ?";
     
     @Override
     public void insert(HoaDon entity) {
@@ -71,11 +71,11 @@ public class HoaDonDAO extends QLNSDAO<HoaDon, Integer>{
         return list;
     }
      public List<HoaDon> selectByKeyword(String keyword){
-        String sql="SELECT * FROM HOADON1 WHERE MaHD LIKE ?";
+        String sql="SELECT * FROM HOADON WHERE MaHD LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
      public void updateTTien(float tt,String hd) {
-        String sql ="UPDATE HOADON1 SET  TongTien=? WHERE MaHD=?";
+        String sql ="UPDATE HOADON SET  TongTien=? WHERE MaHD=?";
         JDBCHelper.update(sql,  tt, hd);
     }
          public List<Integer> selectYear(){

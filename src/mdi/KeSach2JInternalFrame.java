@@ -77,6 +77,10 @@ public class KeSach2JInternalFrame extends javax.swing.JInternalFrame {
         txtTimKiem = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         pnlDanhSachNV1.setBackground(new java.awt.Color(255, 255, 255));
         pnlDanhSachNV1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pnlDanhSachNV1.setPreferredSize(new java.awt.Dimension(550, 44));
@@ -176,7 +180,7 @@ public class KeSach2JInternalFrame extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlDanhSachNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(pnlDanhSachNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

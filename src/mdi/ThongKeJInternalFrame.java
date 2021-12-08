@@ -279,6 +279,10 @@ void init() {
         cboNam1 = new javax.swing.JComboBox<>();
         pnlBieuDoDoanhSo = new javax.swing.JPanel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         TABS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tổng Hợp Thống  Kê", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         tblBangThu.setModel(new javax.swing.table.DefaultTableModel(

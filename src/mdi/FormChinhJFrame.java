@@ -39,9 +39,9 @@ public class FormChinhJFrame extends javax.swing.JFrame {
      private void start() {
         this.setLocationRelativeTo(null);
         this.setIconImage(XImage.getAppIcon());
-        new chaoJDialog(this, true).setVisible(true);
-        new DangNhapJDialog(this, true).setVisible(true);
-        lblten.setText(Auth.user.getHoTen());
+//        new chaoJDialog(this, true).setVisible(true);
+//        new DangNhapJDialog(this, true).setVisible(true);
+//        lblten.setText(Auth.user.getHoTen());
 
     }
 

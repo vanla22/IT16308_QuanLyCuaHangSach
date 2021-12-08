@@ -215,6 +215,10 @@ DauSachDAO daoDS = new DauSachDAO();
         btnLast = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         lblText.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblText.setForeground(new java.awt.Color(0, 51, 204));
         lblText.setText("QUẢN LÝ SÁCH");
@@ -518,7 +522,7 @@ DauSachDAO daoDS = new DauSachDAO();
                 .addComponent(lblText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlDanhSach, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(pnlDanhSach, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                     .addComponent(pnlCapNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );

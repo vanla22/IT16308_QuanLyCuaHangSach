@@ -39,10 +39,10 @@ public class ThongKeDAO {
         String[] cols = {"Thang","Soluongkhachhang","Soluongsanphambanra","Doanhthu"};
         return this.getListofArray(sql, cols,nam);
     }
-      public List<Object[]> getThongKeSPBanChay(int year) {
+      public List<Object[]> getThongKeSPBanChay(int nam) {
         String sql = "{call  sp_thongkespbanchay(?)}";
-        String[] cols = {"maSach", "tenSach", "soLuongBan","thanhTien"};
-        return this.getListofArray(sql, cols,year);
+        String[] cols = {"maSach", "tenSach", "soluong","thanhTien"};
+        return this.getListofArray(sql, cols,nam);
 
     }
        public List<Object[]> getlichSuMuaHang(String makh) {

@@ -12,20 +12,11 @@ import java.sql.*;
  */
 public class JDBCHelper {
 
-  public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String dburl ="jdbc:sqlserver://LAPTOP-2SQU9GT2:1433;databaseName=QuanLyCuaHangSach";
-    public static String username = "sa";
-    public static String password = "123456789";
-    static {
-        try {
-            Class.forName(driver);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+ static String url = "jdbc:sqlserver://localhost;databaseName=QuanLyCuaHangSach;user=sa;password=songlong";
+
 
     public static PreparedStatement getStmt(String sql, Object... args) throws SQLException {
-        Connection con = DriverManager.getConnection(dburl, username, password);
+        Connection con = DriverManager.getConnection(url);
         PreparedStatement pstmt = null;
         try {
             if (sql.trim().startsWith("{")) {

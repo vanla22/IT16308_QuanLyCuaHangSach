@@ -269,6 +269,10 @@ public class KeSach1JInternalFrame extends javax.swing.JInternalFrame {
         btnXoaCHITIET = new javax.swing.JButton();
         btnThemSachVaoKe = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         pnlBieuDoDoanhSo.setLayout(new java.awt.BorderLayout());
 
         pnlDanhSachNV2.setBackground(new java.awt.Color(255, 255, 255));

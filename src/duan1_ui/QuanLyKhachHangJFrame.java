@@ -105,7 +105,7 @@ public void setTrang(){
         txtSDT.setBackground(white);
         txtTimKiem.setBackground(white);
         txtHoTen.setBackground(white);
-        txtEmail.setBackground(white);
+      
     }
  void clear() {
         setTrang();
@@ -158,11 +158,9 @@ public void setTrang(){
         lblMaKH = new javax.swing.JLabel();
         lblHoTen = new javax.swing.JLabel();
         lblSdt = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
         txtMaKH = new javax.swing.JTextField();
         txtHoTen = new javax.swing.JTextField();
         txtSDT = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
@@ -196,8 +194,6 @@ public void setTrang(){
         lblHoTen.setText("Họ tên");
 
         lblSdt.setText("Sdt");
-
-        lblEmail.setText("Email");
 
         txtMaKH.setEditable(false);
         txtMaKH.setText("0");
@@ -255,13 +251,11 @@ public void setTrang(){
                         .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMaKH)
                             .addComponent(lblHoTen)
-                            .addComponent(lblSdt)
-                            .addComponent(lblEmail))
+                            .addComponent(lblSdt))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(28, 28, 28))
         );
@@ -273,22 +267,17 @@ public void setTrang(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongTinKHLayout.createSequentialGroup()
-                        .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongTinKHLayout.createSequentialGroup()
-                                .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMaKH))
-                                .addGap(54, 54, 54)
-                                .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblHoTen))
-                                .addGap(45, 45, 45)
-                                .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblSdt, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(53, 53, 53)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(77, 77, 77)
+                        .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMaKH))
+                        .addGap(54, 54, 54)
+                        .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHoTen))
+                        .addGap(45, 45, 45)
+                        .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSdt, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(150, 150, 150)
                 .addGroup(pnlThongTinKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,11 +340,11 @@ public void setTrang(){
 
             },
             new String [] {
-                "Mã KH", "Họ Tên", "SDT", "Email"
+                "Mã KH", "Họ Tên", "SDT"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -426,7 +415,7 @@ public void setTrang(){
             .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
                 .addGroup(pnlDanhSachKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlDanhSachKHLayout.createSequentialGroup()
                         .addGap(114, 114, 114)
@@ -497,53 +486,6 @@ public void setTrang(){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        // TODO add your handling code here:
-        clear();
-    }//GEN-LAST:event_btnLamMoiActionPerformed
-
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-        
-       
-       if (txtHoTen.getText().length() == 0) {
-           txtHoTen.setBackground(pink);
-            MsgBox.alert(this, "Không để trống họ tên khách hàng");
-            return;
-        }
-        if (txtSDT.getText().length() == 0) {
-            txtSDT.setBackground(pink);
-            MsgBox.alert(this, "Không để trống SDT ");
-            return;
-        }
-         if (!txtSDT.getText().matches("0[0-9]{9}")) {
-             txtSDT.setBackground(pink);
-            MsgBox.alert(this, "Số điện thoại 10 số");
-            return;
-        } 
-        insert();
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
-       if (txtHoTen.getText().length() == 0) {
-            MsgBox.alert(this, "Không để trống họ tên khách hàng");
-            txtHoTen.setBackground(pink);
-            return;
-        }
-        if (txtSDT.getText().length() == 0) {
-            MsgBox.alert(this, "Không để trống SDT ");
-            txtSDT.setBackground(pink);
-            return;
-        } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
-              txtSDT.setBackground(pink);
-            MsgBox.alert(this, "Số điện thoại 10 số");
-            return;
-        }
-       update();
-      
-    }//GEN-LAST:event_btnSuaActionPerformed
-
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
         if (txtTimKiem.getText().length() ==0) {
@@ -598,6 +540,52 @@ lsmh.setVisible(true);
             MsgBox.alert(this,"Chưa chọn khách hàng muốn");
         }
     }//GEN-LAST:event_btnLSMHActionPerformed
+
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
+        // TODO add your handling code here:
+        clear();
+    }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        if (txtHoTen.getText().length() == 0) {
+            MsgBox.alert(this, "Không để trống họ tên khách hàng");
+            txtHoTen.setBackground(pink);
+            return;
+        }
+        if (txtSDT.getText().length() == 0) {
+            MsgBox.alert(this, "Không để trống SDT ");
+            txtSDT.setBackground(pink);
+            return;
+        } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
+            txtSDT.setBackground(pink);
+            MsgBox.alert(this, "Số điện thoại 10 số");
+            return;
+        }
+        update();
+
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+
+        if (txtHoTen.getText().length() == 0) {
+            txtHoTen.setBackground(pink);
+            MsgBox.alert(this, "Không để trống họ tên khách hàng");
+            return;
+        }
+        if (txtSDT.getText().length() == 0) {
+            txtSDT.setBackground(pink);
+            MsgBox.alert(this, "Không để trống SDT ");
+            return;
+        }
+        if (!txtSDT.getText().matches("0[0-9]{9}")) {
+            txtSDT.setBackground(pink);
+            MsgBox.alert(this, "Số điện thoại 10 số");
+            return;
+        }
+        insert();
+    }//GEN-LAST:event_btnThemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -904,7 +892,6 @@ lsmh.setVisible(true);
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblHoTen;
     private javax.swing.JLabel lblMaKH;
     private javax.swing.JLabel lblSdt;
@@ -912,7 +899,6 @@ lsmh.setVisible(true);
     private javax.swing.JPanel pnlDanhSachKH;
     private javax.swing.JPanel pnlThongTinKH;
     private javax.swing.JTable tblKhachHang;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtSDT;

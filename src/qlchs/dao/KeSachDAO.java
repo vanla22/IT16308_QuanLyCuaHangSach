@@ -17,9 +17,9 @@ import java.sql.*;
  */
 public class KeSachDAO extends QLNSDAO<KeSach, String> {
 
-    String insertSql = "insert into KeSach1(makesach,vitrikesach) values (?,?)";
-    String updateSql = "update kesach1 set  vitrikesach=? where makesach=?";
-    String deleteSql = "delete from KeSach1 where makesach=?";
+    String insertSql = "insert into KeSach(makesach,vitrikesach) values (?,?)";
+    String updateSql = "update kesach set  vitrikesach=? where makesach=?";
+    String deleteSql = "delete from KeSach where makesach=?";
     String select_All_Sql = " select * from kesach1";
     String select_sql_byID = "Select * from kesach1 where makesach=?";
 

@@ -13,9 +13,9 @@ import java.sql.*;
 public class JDBCHelper {
 
   public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String dburl ="jdbc:sqlserver://34.87.102.197:1433;databaseName=QLNS1";
-    public static String username = "duan1";
-    public static String password = "duan1";
+    public static String dburl ="jdbc:sqlserver://LAPTOP-2SQU9GT2:1433;databaseName=QuanLyCuaHangSach";
+    public static String username = "sa";
+    public static String password = "123456789";
     static {
         try {
             Class.forName(driver);

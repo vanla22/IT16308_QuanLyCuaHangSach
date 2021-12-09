@@ -83,7 +83,7 @@ public class SachDAO extends QLNSDAO<Sach, String> {
                 entity.setMaSach(rs.getString("MaSach"));
                 entity.setTenSach(rs.getString("TenSach"));
 
-                entity.setGiaBan(rs.getDouble("GiaBan"));
+                entity.setGiaBan(rs.getFloat("GiaBan"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
                 entity.setTrangThai(rs.getBoolean("TrangThai"));
                 entity.setMaDauSach(rs.getString("MaDauSach"));

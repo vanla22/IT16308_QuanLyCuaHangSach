@@ -62,7 +62,7 @@ public class CTPNDAO extends QLNSDAO<CTPhieuNhap, String> {
 
                 CTPhieuNhap entity = new CTPhieuNhap();
                 entity.setMaCTPN(rs.getInt("MaCTPN"));
-                entity.setMaPN(rs.getString("MaPN"));
+                entity.setMaPN(rs.getInt("MaPN"));
                 entity.setMaSach(rs.getString("MaSach"));
                 entity.setSoLuong(rs.getInt("SoLuong"));
                 entity.setGiaNhap(rs.getFloat("GiaNhap"));

@@ -15,7 +15,7 @@ public class Sach {
     private String MaSach;
     private String TenSach;
     private Date NamXuatBan;
-    private double GiaBan;
+    private float GiaBan;
     private int SoLuong;
     private boolean TrangThai;
     private String MaDauSach;
@@ -25,7 +25,7 @@ public class Sach {
     public Sach() {
     }
 
-    public Sach(String MaSach, String TenSach, Date NamXuatBan, double GiaBan, int SoLuong, boolean TrangThai, String MaDauSach, String GhiChu, String MaKeSach) {
+    public Sach(String MaSach, String TenSach, Date NamXuatBan, float GiaBan, int SoLuong, boolean TrangThai, String MaDauSach, String GhiChu, String MaKeSach) {
         this.MaSach = MaSach;
         this.TenSach = TenSach;
         this.NamXuatBan = NamXuatBan;
@@ -61,11 +61,11 @@ public class Sach {
         this.NamXuatBan = NamXuatBan;
     }
 
-    public double getGiaBan() {
+    public float getGiaBan() {
         return GiaBan;
     }
 
-    public void setGiaBan(double GiaBan) {
+    public void setGiaBan(float GiaBan) {
         this.GiaBan = GiaBan;
     }
 

@@ -29,7 +29,7 @@ public class NhaCungCapJFrame extends javax.swing.JFrame {
     public NhaCungCapJFrame() {
         initComponents();
         init();
-//        load();
+       load();
     }
 void init(){
     setLocationRelativeTo(null);
@@ -157,7 +157,18 @@ public void setTrang(){
              }
         }
     }
-    
+    public static boolean checkName(JTextField txt) {
+        txt.setBackground(white);
+        String id = txt.getText();
+        String rgx = "^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{3,25}$";
+        if (id.matches(rgx)) {
+            return true;
+        } else {
+            txt.setBackground(pink);
+            MsgBox.alert(txt.getRootPane(), txt.getName() + " phải là tên tiếng việt hoặc không đấu\ntừ 3-25 kí tự");
+            return false;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -463,6 +474,8 @@ public void setTrang(){
             MsgBox.alert(this, "không được để trống");
             return;
         }
+       
+        
           if (txtDiaChi.getText().length() ==0) {
             txtDiaChi.setBackground(Color.pink);
             MsgBox.alert(this, "không được để trống");
@@ -476,9 +489,10 @@ public void setTrang(){
             MsgBox.alert(this, "Số điện thoại 10 số");
             return;
         }
-           if (checkTrungMa(txtNCC)) {
+            if (checkTrungMa(txtNCC)&& checkName(txtTenNCC)&&checkName(txtDiaChi)) {
               insert();
         }
+         
          
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -490,6 +504,7 @@ public void setTrang(){
             MsgBox.alert(this, "không được để trống");
             return;
         }
+         
           if (txtDiaChi.getText().length() ==0) {
             txtDiaChi.setBackground(Color.pink);
             MsgBox.alert(this, "không được để trống");
@@ -504,7 +519,10 @@ public void setTrang(){
             return;
             
         }
-           update();
+            if ( checkName(txtTenNCC)&&checkName(txtDiaChi)) {
+              update();
+        }
+         
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed

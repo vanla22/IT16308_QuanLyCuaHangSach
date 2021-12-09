@@ -29,7 +29,7 @@ public class NhaCungCapJFrame extends javax.swing.JFrame {
     public NhaCungCapJFrame() {
         initComponents();
         init();
-//        load();
+       load();
     }
 void init(){
     setLocationRelativeTo(null);

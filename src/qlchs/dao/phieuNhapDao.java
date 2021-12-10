@@ -24,7 +24,7 @@ public class phieuNhapDao extends QLNSDAO<PhieuNhap, String> {
 
     @Override
     public void insert(PhieuNhap entity) {
-        JDBCHelper.update(INSERT_SQL, entity.getMaPN(), entity.getMaNV(), entity.getMaNCC(), entity.getNgayNhap(), entity.getTongTien());
+        JDBCHelper.update(INSERT_SQL,  entity.getMaNV(), entity.getMaNCC(), entity.getNgayNhap(), entity.getTongTien());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class phieuNhapDao extends QLNSDAO<PhieuNhap, String> {
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaNCC(rs.getString("MaNCC"));
                 entity.setNgayNhap(rs.getDate("NgayNhap"));
-                entity.setTongTien(rs.getDouble("TongTien"));
+                entity.setTongTien(rs.getFloat("TongTien"));
                 list.add(entity);
             }
             
@@ -79,4 +79,5 @@ public List<PhieuNhap> selectByKeyword(String keyword){
         String sql ="UPDATE PHIEUNHAP set  TongTien=? WHERE MaPN=?";
         JDBCHelper.update(sql,  tt, pn);
     }
+ 
 }

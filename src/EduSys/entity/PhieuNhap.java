@@ -16,13 +16,13 @@ public class PhieuNhap {
     private String MaNV;
     private String MaNCC;
     private Date NgayNhap;
-    private double TongTien;
+    private float TongTien;
 
     public PhieuNhap() {
     }
 
     
-    public PhieuNhap(int MaPN, String MaNV, String MaNCC, Date NgayNhap, double TongTien) {
+    public PhieuNhap(int MaPN, String MaNV, String MaNCC, Date NgayNhap, float TongTien) {
         this.MaPN = MaPN;
         this.MaNV = MaNV;
         this.MaNCC = MaNCC;
@@ -62,11 +62,11 @@ public class PhieuNhap {
         this.NgayNhap = NgayNhap;
     }
 
-    public double getTongTien() {
+    public float getTongTien() {
         return TongTien;
     }
 
-    public void setTongTien(double TongTien) {
+    public void setTongTien(float TongTien) {
         this.TongTien = TongTien;
     }
 

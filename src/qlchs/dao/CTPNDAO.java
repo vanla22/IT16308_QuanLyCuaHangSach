@@ -104,5 +104,4 @@ public class CTPNDAO extends QLNSDAO<CTPhieuNhap, String> {
 
   
     }
-
 }

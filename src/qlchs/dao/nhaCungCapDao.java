@@ -73,4 +73,8 @@ public class nhaCungCapDao extends QLNSDAO<NhaCungCap, String>{
         String sql="SELECT * FROM NHACUNGCAP WHERE MaNCC LIKE ?";
         return this.selectBySql(sql, "%"+keyword+"%");
     }
+     public List<NhaCungCap> selectByTENNCC(String keyword){
+        String sql="SELECT * FROM NHACUNGCAP WHERE TenNCC = ?";
+        return this.selectBySql(sql, keyword);
+    }
 }

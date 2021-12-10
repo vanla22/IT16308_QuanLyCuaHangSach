@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  */
 public class phieuNhapDao extends QLNSDAO<PhieuNhap, String> {
 
-    final String INSERT_SQL = "INSERT INTO PHIEUNHAP(MaPN,MaNV,MaNCC,NgayNhap,TongTien) values (?,?,?,?,?)";
+    final String INSERT_SQL = "INSERT INTO PHIEUNHAP(MaNV,MaNCC,NgayNhap,TongTien) values (?,?,?,?)";
     final String UPDATE_SQL = " UPDATE PHIEUNHAP set MaNV=?, MaNCC=?,NgayNhap=?,TongTien=? WHERE MaPN=?";
     final String DELETE_SQL = "DELETE FROM PHIEUNHAP WHERE MaPN=?";
     final String SELECT_ALL_SQL = "SELECT * FROM PHIEUNHAP";
@@ -58,7 +58,7 @@ public class phieuNhapDao extends QLNSDAO<PhieuNhap, String> {
             ResultSet rs = JDBCHelper.query(sql, args);
             while (rs.next()) {                
                 PhieuNhap entity = new PhieuNhap();
-                entity.setMaPN(rs.getString("MaPN"));
+                entity.setMaPN(rs.getInt("MaPN"));
                 entity.setMaNV(rs.getString("MaNV"));
                 entity.setMaNCC(rs.getString("MaNCC"));
                 entity.setNgayNhap(rs.getDate("NgayNhap"));

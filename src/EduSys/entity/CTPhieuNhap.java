@@ -14,13 +14,13 @@ import java.util.Date;
 public class CTPhieuNhap {
 
     private int MaCTPN;
-    private String MaPN;
+    private int MaPN;
     private String MaSach;
     private int SoLuong;
     private float GiaNhap;
     private float ThanhTien;
 
-    public CTPhieuNhap(int MaCTPN, String MaPN, String MaSach, int SoLuong, float GiaNhap, float ThanhTien) {
+    public CTPhieuNhap(int MaCTPN, int MaPN, String MaSach, int SoLuong, float GiaNhap, float ThanhTien) {
         this.MaCTPN = MaCTPN;
         this.MaPN = MaPN;
         this.MaSach = MaSach;
@@ -45,11 +45,11 @@ public class CTPhieuNhap {
         this.MaCTPN = MaCTPN;
     }
 
-    public String getMaPN() {
+    public int getMaPN() {
         return MaPN;
     }
 
-    public void setMaPN(String MaPN) {
+    public void setMaPN(int MaPN) {
         this.MaPN = MaPN;
     }
 

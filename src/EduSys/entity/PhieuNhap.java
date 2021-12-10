@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Đức Toàn
  */
 public class PhieuNhap {
-    private String MaPN;
+    private int MaPN;
     private String MaNV;
     private String MaNCC;
     private Date NgayNhap;
@@ -22,7 +22,7 @@ public class PhieuNhap {
     }
 
     
-    public PhieuNhap(String MaPN, String MaNV, String MaNCC, Date NgayNhap, double TongTien) {
+    public PhieuNhap(int MaPN, String MaNV, String MaNCC, Date NgayNhap, double TongTien) {
         this.MaPN = MaPN;
         this.MaNV = MaNV;
         this.MaNCC = MaNCC;
@@ -30,11 +30,11 @@ public class PhieuNhap {
         this.TongTien = TongTien;
     }
    
-    public String getMaPN() {
+    public int getMaPN() {
         return MaPN;
     }
 
-    public void setMaPN(String MaPN) {
+    public void setMaPN(int MaPN) {
         this.MaPN = MaPN;
     }
 

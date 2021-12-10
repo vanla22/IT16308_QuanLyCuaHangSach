@@ -1206,49 +1206,56 @@ public class BanSach extends javax.swing.JFrame {
     private void btnXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatActionPerformed
         // TODO add your handling code here:
 
-//       String path = "";
-//        JFileChooser j = new JFileChooser();
-//        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//        int x = j.showSaveDialog(this);
-//        if(x== JFileChooser.APPROVE_OPTION){
-//            path = j.getSelectedFile().getPath();
-//        }
-//        Document doc = new Document();
-//        try {
-//             PdfWriter.getInstance(doc, new FileOutputStream(path+" "+"HD"+txtMaHoaDon.getText()+".pdf"));
-//             doc.open();
-//           doc.add(new Paragraph("Hóa đơn :"+txtMaHoaDon.getText()+"\n Ngày : " +java.time.LocalDate.now()+"\n" +"\n"));
-//           PdfPTable tbl = new PdfPTable(6);
-//           
-//           tbl.addCell("MaHD");
-//           tbl.addCell("MaSach");
-//           tbl.addCell("TenSach");
-//           tbl.addCell("SoLuong");
-//           tbl.addCell("DonGia");
-//           tbl.addCell("Thanh tien");
-//           for(int  i =0 ; i< tblCTHD.getRowCount();i++){
-//               
-//               String MaS = tblCTHD.getValueAt(i,1).toString();
-//               String TenS = tblCTHD.getValueAt(i,2).toString();
-//               String SL = tblCTHD.getValueAt(i,3).toString();
-//               String DG = tblCTHD.getValueAt(i,4).toString();
-//               String TT = tblCTHD.getValueAt(i,5).toString();
-//               String TT1 = tblCTHD.getValueAt(i,5).toString();
-//               
-//               tbl.addCell(MaS);
-//               tbl.addCell(TenS);
-//               tbl.addCell(SL);
-//               tbl.addCell(DG);
-//               tbl.addCell(TT);
-//               tbl.addCell(TT1);
-//           }
-//           doc.add(tbl);
-//            System.out.println("Thành công");
-//           
-//        } catch (Exception e) {
-//        }
-//       
-//         doc.close();
+String path = "";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+        if(x== JFileChooser.APPROVE_OPTION){
+            path = j.getSelectedFile().getPath();
+        }
+        Document doc = new Document();
+        
+        try {
+            PdfWriter.getInstance( doc, new FileOutputStream(path+" "+"HD"+txtMaHoaDon.getText()+".pdf"));
+            doc.open();
+             doc.add(new com.itextpdf.text.Paragraph("Hóa"+"đơn:"+txtMaHoaDon.getText()+"\n Ngày : " + java.time.LocalDate.now()+"\n" +"\n"));
+
+           PdfPTable tbl = new PdfPTable(6);
+           
+           tbl.addCell("MaHD");
+           tbl.addCell("MaSach");
+           tbl.addCell("TenSach");
+           tbl.addCell("SoLuong");
+           tbl.addCell("DonGia");
+           tbl.addCell("Thanh tien");
+           for(int  i =0 ; i< tblCTHD.getRowCount();i++){
+               
+               String MaS = tblCTHD.getValueAt(i,1).toString();
+               String TenS = tblCTHD.getValueAt(i,2).toString();
+               String SL = tblCTHD.getValueAt(i,3).toString();
+               String DG = tblCTHD.getValueAt(i,4).toString();
+               String TT = tblCTHD.getValueAt(i,5).toString();
+               String TT1 = tblCTHD.getValueAt(i,6).toString();
+               
+               tbl.addCell(MaS);
+               tbl.addCell(TenS);
+               tbl.addCell(SL);
+               tbl.addCell(DG);
+               tbl.addCell(TT);
+               tbl.addCell(TT1);
+           }
+           doc.add(tbl);
+            System.out.println("Thành công");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BanSach.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(BanSach.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+           
+        
+       
+         doc.close();
 
     }//GEN-LAST:event_btnXuatActionPerformed
 

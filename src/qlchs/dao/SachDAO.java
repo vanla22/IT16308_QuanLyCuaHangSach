@@ -132,4 +132,9 @@ public class SachDAO extends QLNSDAO<Sach, String> {
         String sql ="UPDATE Sach set TrangThai=? where MaSach=?";
 JDBCHelper.update(sql, tt,ma);
         }
+    public List<Sach> selectCheck(String ten, String ma){
+        String sql="SELECT * FROM SACH WHERE TenSach = ? and MaSach=?";
+        return this.selectBySql(sql, ten,ma);
+    }
+    
 }

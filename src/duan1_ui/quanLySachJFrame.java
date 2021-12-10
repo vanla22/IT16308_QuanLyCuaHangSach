@@ -48,11 +48,18 @@ public class quanLySachJFrame extends javax.swing.JFrame {
     public void updateTT(){
         listSach  = daoS.selectAll();
         for(Sach x : listSach){
-            if(x.getSoLuong()==0){
+            if(x.getSoLuong()<=0){
                 
                 String ma = x.getMaSach();
                 boolean a = false;
                 daoS.updateTT(ma,a);
+                fillTable();
+            }
+            else{
+                String ma = x.getMaSach();
+                boolean a = true;
+                daoS.updateTT(ma,a);
+                fillTable();
             }
         }
         
@@ -90,7 +97,7 @@ public class quanLySachJFrame extends javax.swing.JFrame {
             listSach = daoS.selectByKeyword(keyword);
             for (Sach s : listSach) {
                 Object row[] = {
-                    s.getMaSach(), s.getTenSach(), s.getMaDauSach(), s.getSoLuong(), s.getGiaBan(), s.getGhiChu(), s.isTrangThai() == true ? "Con Hang" : "Het Hang"
+                    s.getMaSach(), s.getTenSach(), s.getMaDauSach(), s.getSoLuong(), s.getGiaBan(), s.getGhiChu(), s.isTrangThai() == true ? "Còn Hàng" : "Hết Hàng"
                 };
                 model.addRow(row);
             }
@@ -166,6 +173,7 @@ public class quanLySachJFrame extends javax.swing.JFrame {
             Sach s = getForm();
         daoS.update(s);
         fillTable();
+        MsgBox.alert(this, "Update thành công");
 
     }
     public void filist(int a){
@@ -190,6 +198,7 @@ public class quanLySachJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         lblText = new javax.swing.JLabel();
         pnlCapNhap = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -208,6 +217,8 @@ public class quanLySachJFrame extends javax.swing.JFrame {
         txtGhiChu = new javax.swing.JTextArea();
         cbb = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
+        rdioCOn = new javax.swing.JRadioButton();
+        rdiHet = new javax.swing.JRadioButton();
         pnlDanhSach = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -240,6 +251,8 @@ public class quanLySachJFrame extends javax.swing.JFrame {
         jLabel4.setText("MÃ ĐẦU SÁCH:");
 
         jLabel5.setText("SỐ LƯỢNG:");
+
+        txtSoLuong.setEditable(false);
 
         jLabel6.setText("GIÁ BÁN:");
 
@@ -280,6 +293,12 @@ public class quanLySachJFrame extends javax.swing.JFrame {
         });
 
         jLabel15.setText("TRẠNG THÁI :");
+
+        buttonGroup2.add(rdioCOn);
+        rdioCOn.setText("Còn Hàng");
+
+        buttonGroup2.add(rdiHet);
+        rdiHet.setText("Hết Hàng");
 
         javax.swing.GroupLayout pnlCapNhapLayout = new javax.swing.GroupLayout(pnlCapNhap);
         pnlCapNhap.setLayout(pnlCapNhapLayout);
@@ -324,6 +343,10 @@ public class quanLySachJFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(pnlCapNhapLayout.createSequentialGroup()
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rdioCOn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(rdiHet, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCapNhapLayout.setVerticalGroup(
@@ -349,8 +372,11 @@ public class quanLySachJFrame extends javax.swing.JFrame {
                 .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel15)
+                .addGap(22, 22, 22)
+                .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(rdioCOn)
+                    .addComponent(rdiHet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -594,7 +620,14 @@ public class quanLySachJFrame extends javax.swing.JFrame {
         txtSoLuong.setText(tblSach.getValueAt(i, 3).toString());
         txtGia.setText(tblSach.getValueAt(i, 4).toString());
         txtGhiChu.setText(tblSach.getValueAt(i, 5).toString());
-        txtSoLuong.setEditable(true);
+        if(tblSach.getValueAt(i, 6).toString().equals("Còn Hàng")){
+            rdioCOn.setSelected(true);
+        }else{
+            rdiHet.setSelected(true);
+        }
+            
+        txtSoLuong.setEditable(false);
+        txtMaSach.setEditable(false);
         txtGia.setEditable(true);
     }//GEN-LAST:event_tblSachMouseClicked
 
@@ -645,6 +678,10 @@ public class quanLySachJFrame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -663,6 +700,7 @@ public class quanLySachJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btnfisrt;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbb;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
@@ -678,6 +716,8 @@ public class quanLySachJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblText;
     private javax.swing.JPanel pnlCapNhap;
     private javax.swing.JPanel pnlDanhSach;
+    private javax.swing.JRadioButton rdiHet;
+    private javax.swing.JRadioButton rdioCOn;
     private javax.swing.JTable tblSach;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtGia;

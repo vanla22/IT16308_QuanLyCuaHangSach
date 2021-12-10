@@ -17,7 +17,7 @@ import qlchs.utils.JDBCHelper;
 public class khachhangDAO extends QLNSDAO<KhachHang, Integer> {
 
     final String INSERT_SQL = "INSERT INTO KHACHHANG (TenKH,SDT) values(?,?)";
-    final String UPDATE_SQL = "UPDATE KHACHHANG set TenKH=?, SDT = ? WHERE MaKH=?";
+    final String UPDATE_SQL = "UPDATE KHACHHANG set TenKH=?, SDT = ?, Email=? WHERE MaKH=?";
     final String DELETE_SQL = "DELETE FROM KHACHHANG WHERE MaKH=?";
     final String SELECT_ALL_SQL = "SELECT * FROM KHACHHANG";
     final String SELECT_BY_ID_SQL = "SELECT * FROM KHACHHANG WHERE MaKH= ?";

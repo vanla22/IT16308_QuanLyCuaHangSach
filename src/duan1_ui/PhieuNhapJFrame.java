@@ -1028,7 +1028,7 @@ public class PhieuNhapJFrame extends javax.swing.JFrame {
             c.setSoLuong(Integer.parseInt(txtSoLuong.getText().trim()));
             c.setGiaBan(0);
             c.setGhiChu("null");
-            c.setMaKeSach("Null");
+            c.setMaKeSach("KS01");
             daoS.insert(c);
         }
         if (listSach != null) {

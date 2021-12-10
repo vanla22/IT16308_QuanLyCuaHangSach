@@ -15,11 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
-import org.apache.poi.hwpf.usermodel.Paragraph;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -198,7 +195,9 @@ public class BanSach extends javax.swing.JFrame {
 //        clearHDCT();
 //    }
 
-    
+    public void xuatHDCT() {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -945,9 +944,12 @@ public class BanSach extends javax.swing.JFrame {
         txtMaHoaDon.setEditable(false);
 
         txtMaNV.setText(tblHD.getValueAt(i, 1).toString());
-
+        KhachHang x = DAOKH.selectById(Integer.parseInt(tblHD.getValueAt(i, 2).toString()));
+        txtTenKH.setText(x.getTenKH());
+        txtSDT.setText(x.getSDT());
         txtNgayNhap.setText(tblHD.getValueAt(i, 3).toString());
         txtTongTien.setText(tblHD.getValueAt(i, 4).toString());
+        
         fillHDCT(tblHD.getValueAt(i, 0).toString());
     }//GEN-LAST:event_tblHDMouseClicked
 
@@ -1042,8 +1044,8 @@ public class BanSach extends javax.swing.JFrame {
 
         HoaDonCT a = getFormCTHD();
         DAOHDCT.insert(a);
-        
         fillHDCT(txtMaHoaDon.getText());
+        
         int updateSL = sach.getSoLuong() - sl;
         DAOSACH.updateSL(updateSL, mas);
         if (updateSL == 0) {
@@ -1144,7 +1146,7 @@ public class BanSach extends javax.swing.JFrame {
 
     private void txtMaHoaDonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaHoaDonKeyReleased
         // TODO add your handling code here:
-
+fillHDCT(txtMaHoaDon.getText().trim());
     }//GEN-LAST:event_txtMaHoaDonKeyReleased
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -1176,6 +1178,7 @@ public class BanSach extends javax.swing.JFrame {
         }
         DAOHD.updateTTien(c, txtMaHoaDon.getText());
         fillHD();
+        fillSach();
         clearHDCT();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -1206,56 +1209,7 @@ public class BanSach extends javax.swing.JFrame {
     private void btnXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatActionPerformed
         // TODO add your handling code here:
 
-String path = "";
-        JFileChooser j = new JFileChooser();
-        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int x = j.showSaveDialog(this);
-        if(x== JFileChooser.APPROVE_OPTION){
-            path = j.getSelectedFile().getPath();
-        }
-        Document doc = new Document();
-        
-        try {
-            PdfWriter.getInstance( doc, new FileOutputStream(path+" "+"HD"+txtMaHoaDon.getText()+".pdf"));
-            doc.open();
-             doc.add(new com.itextpdf.text.Paragraph("Hóa"+"đơn:"+txtMaHoaDon.getText()+"\n Ngày : " + java.time.LocalDate.now()+"\n" +"\n"));
-
-           PdfPTable tbl = new PdfPTable(6);
-           
-           tbl.addCell("MaHD");
-           tbl.addCell("MaSach");
-           tbl.addCell("TenSach");
-           tbl.addCell("SoLuong");
-           tbl.addCell("DonGia");
-           tbl.addCell("Thanh tien");
-           for(int  i =0 ; i< tblCTHD.getRowCount();i++){
-               
-               String MaS = tblCTHD.getValueAt(i,1).toString();
-               String TenS = tblCTHD.getValueAt(i,2).toString();
-               String SL = tblCTHD.getValueAt(i,3).toString();
-               String DG = tblCTHD.getValueAt(i,4).toString();
-               String TT = tblCTHD.getValueAt(i,5).toString();
-               String TT1 = tblCTHD.getValueAt(i,6).toString();
-               
-               tbl.addCell(MaS);
-               tbl.addCell(TenS);
-               tbl.addCell(SL);
-               tbl.addCell(DG);
-               tbl.addCell(TT);
-               tbl.addCell(TT1);
-           }
-           doc.add(tbl);
-            System.out.println("Thành công");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(BanSach.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(BanSach.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             
-           
-        
-       
-         doc.close();
+        xuatHDCT();
 
     }//GEN-LAST:event_btnXuatActionPerformed
 

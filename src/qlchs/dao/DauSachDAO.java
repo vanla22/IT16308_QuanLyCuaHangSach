@@ -76,5 +76,9 @@ public class DauSachDAO extends QLNSDAO<DauSach, String> {
         }
         return null;
     }
+    public List<DauSach> selectByTEN(String keyword){
+        String sql="SELECT * FROM DAUSACH WHERE TenDauSach = ?";
+        return this.selectBySql(sql, keyword);
+    }
 
 }

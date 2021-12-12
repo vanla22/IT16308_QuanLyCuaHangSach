@@ -75,8 +75,8 @@ public class HoaDonCTDAO extends QLNSDAO<HoaDonCT, Integer>{
         return list;
     }
      public List<HoaDonCT> selectByKeyword(String keyword){
-        String sql="SELECT * FROM HOADONCHITIET WHERE MaHD LIKE ?";
-        return this.selectBySql(sql, "%"+keyword+"%");
+        String sql="SELECT * FROM HOADONCHITIET WHERE MaHD = ?";
+        return this.selectBySql(sql, keyword);
     }
        
 }

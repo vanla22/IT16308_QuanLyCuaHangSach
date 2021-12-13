@@ -7,6 +7,7 @@ package qlchs.dao;
 
 
 
+import EduSys.entity.Sach;
 import EduSys.entity.TacGia;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class TacGiaDAO extends QLNSDAO<TacGia, String>{
 
     @Override
     public void update(TacGia entity) {
-        JDBCHelper.update(updateSql, entity.getMaTG(),entity.getTenTG());
+        JDBCHelper.update(updateSql, entity.getTenTG(),entity.getMaTG());
     }
 
     @Override
@@ -75,6 +76,9 @@ public class TacGiaDAO extends QLNSDAO<TacGia, String>{
         
     }
 
-    
+     public List<TacGia> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM TacGia WHERE MaTG LIKE ?";
+        return this.selectBySql(sql, "%" + keyword + "%");
+    }
     
 }

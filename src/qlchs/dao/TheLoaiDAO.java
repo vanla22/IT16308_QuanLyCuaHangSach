@@ -88,5 +88,8 @@ public class TheLoaiDAO extends QLNSDAO<TheLoai, String>{
         }
         return null;
     }
-    
+     public List<TheLoai> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM TheLoai WHERE MaTL LIKE ?";
+        return this.selectBySql(sql, "%" + keyword + "%");
+    }
 }

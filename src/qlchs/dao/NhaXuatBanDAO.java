@@ -17,8 +17,8 @@ import qlchs.utils.JDBCHelper;
  */
 public class NhaXuatBanDAO extends QLNSDAO<NhaXuatBan, String>{
   
-    String insertSql="INSERT NHAXUATBAN(MaNXB,TenNXB,DiaChi,Email,NamXuatBan,TrangThai) VALUES(?,?,?,?,?,?)";
-    String updateSql="UPDATE NHAXUATBAN SET TenNXB=?,DiaChi=?,Email=?,NamXuatBan=?,TrangThai=? where MaNXB=?";
+    String insertSql="INSERT NHAXUATBAN(MaNXB,TenNXB,DiaChi,Email,NamXuatBan) VALUES(?,?,?,?,?)";
+    String updateSql="UPDATE NHAXUATBAN SET TenNXB=?,DiaChi=?,Email=?,NamXuatBan=?where MaNXB=?";
     String deleteSql="DELETE FROM NHAXUATBAN WHERE MaNXB=?";
     String selectAll="SELECT*FROM NHAXUATBAN";
     String selectById="SELECT*FROM NHAXUATBAN WHERE MaNXB=?";
@@ -68,7 +68,7 @@ public class NhaXuatBanDAO extends QLNSDAO<NhaXuatBan, String>{
                 entity.setDiaChi(rs.getString("DiaChi"));
                 entity.setEmail(rs.getString("Email"));
                 entity.setNamXuatBan(rs.getDate("NamXuatBan"));
-                entity.setTrangThai(rs.getBoolean("TrangThai"));
+//                entity.setTrangThai(rs.getBoolean("TrangThai"));
                 list.add(entity);
 
             }
@@ -79,5 +79,8 @@ public class NhaXuatBanDAO extends QLNSDAO<NhaXuatBan, String>{
         }
         return null;
     }
-    
+     public List<NhaXuatBan> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM NHAXUATBAN WHERE MaNXB LIKE ?";
+        return this.selectBySql(sql, "%" + keyword + "%");
+    }
 }

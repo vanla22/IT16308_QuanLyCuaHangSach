@@ -114,7 +114,7 @@ public class PhieuNhapJInternalFrame extends javax.swing.JInternalFrame {
 
     public CTPhieuNhap getFormCT() {
         CTPhieuNhap ct = new CTPhieuNhap();
-        ct.setMaPN(txtMapn.getText());
+        ct.setMaPN(Integer.parseInt(txtMapn.getText()));
         ct.setMaSach(txtMaSach.getText());
         ct.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
         ct.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
@@ -149,7 +149,7 @@ public class PhieuNhapJInternalFrame extends javax.swing.JInternalFrame {
 
     public PhieuNhap getFormPN() {
         PhieuNhap pn = new PhieuNhap();
-        pn.setMaPN(txtMAPN.getText());
+        pn.setMaPN(Integer.parseInt(txtMAPN.getText()));
         pn.setMaNV(txtMaNV.getText());
         pn.setMaNCC(txtMaNCC.getText());
         try {
@@ -193,7 +193,7 @@ public class PhieuNhapJInternalFrame extends javax.swing.JInternalFrame {
 //        txtPNCTTK.setText("");
 //    }
     public void setForm(PhieuNhap nv) {
-        txtMAPN.setText(nv.getMaPN());
+        txtMAPN.setText(nv.getMaPN()+"");
         txtMaNV.setText(nv.getMaNV());
         txtMaNCC.setText(nv.getMaNCC());
         txtNgayNhap.setText(nv.getNgayNhap()+"");

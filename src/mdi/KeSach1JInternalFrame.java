@@ -701,9 +701,11 @@ public class KeSach1JInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnThemSachVaoKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSachVaoKeActionPerformed
         String mks = txtMaks.getText();
-        KeSach2JInternalFrame ks2 = new KeSach2JInternalFrame();
+      
         maksStatic = txtMaks.getText();
-        ks2.setVisible(true);
+          KeSach2JInternalFrame ks2 = new KeSach2JInternalFrame();
+          this.getDesktopPane().add(ks2);
+        ks2.show();
     }//GEN-LAST:event_btnThemSachVaoKeActionPerformed
 
 

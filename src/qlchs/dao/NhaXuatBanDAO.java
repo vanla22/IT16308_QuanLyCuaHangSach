@@ -17,8 +17,8 @@ import qlchs.utils.JDBCHelper;
  */
 public class NhaXuatBanDAO extends QLNSDAO<NhaXuatBan, String>{
   
-    String insertSql="INSERT NHAXUATBAN(MaNXB,TenNXB,DiaChi,Email,NamXuatBan) VALUES(?,?,?,?,?)";
-    String updateSql="UPDATE NHAXUATBAN SET TenNXB=?,DiaChi=?,Email=?,NamXuatBan=?where MaNXB=?";
+    String insertSql="INSERT NHAXUATBAN(MaNXB,TenNXB,DiaChi,Email,NamXuatBan,TrangThai) VALUES(?,?,?,?,?,?)";
+    String updateSql="UPDATE NHAXUATBAN SET TenNXB=?,DiaChi=?,Email=?,NamXuatBan=?, TrangThai=? where MaNXB=?";
     String deleteSql="DELETE FROM NHAXUATBAN WHERE MaNXB=?";
     String selectAll="SELECT*FROM NHAXUATBAN";
     String selectById="SELECT*FROM NHAXUATBAN WHERE MaNXB=?";

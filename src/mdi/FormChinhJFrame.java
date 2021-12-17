@@ -96,6 +96,8 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         mniSach = new javax.swing.JMenuItem();
         mniQlyNhanVien = new javax.swing.JMenuItem();
         mnuLichSuKh = new javax.swing.JMenuItem();
+        mniQlyHoaDon = new javax.swing.JMenuItem();
+        mniNCC = new javax.swing.JMenuItem();
         mnuThongKe = new javax.swing.JMenu();
         mniDoanhTthu = new javax.swing.JMenuItem();
         mniThongkeSach = new javax.swing.JMenuItem();
@@ -221,7 +223,7 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         });
         mnuQuanLy.add(mniQlytusach);
 
-        mniHoaDon.setText("Quản Lý Hóa Đơn");
+        mniHoaDon.setText("Quản Lý Bán Sách");
         mniHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mniHoaDonActionPerformed(evt);
@@ -268,6 +270,22 @@ public class FormChinhJFrame extends javax.swing.JFrame {
             }
         });
         mnuQuanLy.add(mnuLichSuKh);
+
+        mniQlyHoaDon.setText("Quản Lý Hóa Đơn");
+        mniQlyHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniQlyHoaDonActionPerformed(evt);
+            }
+        });
+        mnuQuanLy.add(mniQlyHoaDon);
+
+        mniNCC.setText("Quản Lý Nhà Cung Cấp");
+        mniNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNCCActionPerformed(evt);
+            }
+        });
+        mnuQuanLy.add(mniNCC);
 
         jMenuBar4.add(mnuQuanLy);
 
@@ -420,6 +438,16 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         openThongKe(WIDTH);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
+    private void mniQlyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQlyHoaDonActionPerformed
+        // TODO add your handling code here:
+        openHoaDon();
+    }//GEN-LAST:event_mniQlyHoaDonActionPerformed
+
+    private void mniNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNCCActionPerformed
+        // TODO add your handling code here:
+        openNCC();
+    }//GEN-LAST:event_mniNCCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -480,7 +508,9 @@ public class FormChinhJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniHoaDon;
     private javax.swing.JMenuItem mniKeSach;
     private javax.swing.JMenuItem mniKhachHang;
+    private javax.swing.JMenuItem mniNCC;
     private javax.swing.JMenuItem mniNhapHang;
+    private javax.swing.JMenuItem mniQlyHoaDon;
     private javax.swing.JMenuItem mniQlyNhanVien;
     private javax.swing.JMenuItem mniQlytusach;
     private javax.swing.JMenuItem mniSach;
@@ -552,5 +582,17 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         PhieuNhapJInternalFrame qlpn = new PhieuNhapJInternalFrame();
         DesktopPane.add(qlpn);
         qlpn.show();
+    }
+
+    private void openHoaDon() {
+        hoadonJInternalFrame qlhd = new hoadonJInternalFrame();
+        DesktopPane.add(qlhd);
+        qlhd.show();
+    }
+
+    private void openNCC() {
+        nhacungcapJInternalFrame qlncc = new nhacungcapJInternalFrame();
+        DesktopPane.add(qlncc);
+        qlncc.show();
     }
 }

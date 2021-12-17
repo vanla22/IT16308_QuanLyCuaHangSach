@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package duan1_ui;
+package mdi;
 
 import EduSys.entity.HoaDon;
 import EduSys.entity.HoaDonCT;
@@ -24,28 +24,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class hoaDonJFrame extends javax.swing.JFrame {
-    int index = 0;
+public class hoadonJInternalFrame extends javax.swing.JInternalFrame {
+ int index = 0;
     
     HoaDonDAO dao1 = new HoaDonDAO();
     HoaDonCTDAO dao = new HoaDonCTDAO();
-    
-     
-    
-            
     /**
-     * Creates new form hoaDonJFrame
+     * Creates new form hoadonJInternalFrame
      */
-    public hoaDonJFrame() {
+    public hoadonJInternalFrame() {
         initComponents();
-        init();
+         init();
         loadToHoaDon();
         loadToHoaDonct();
-
     }
-    
-    void init(){
-        setLocationRelativeTo(null);
+ void init(){
+       
         setTitle("Quản lý hóa đơn");
     }
    
@@ -97,7 +91,6 @@ public class hoaDonJFrame extends javax.swing.JFrame {
         }
     }
    
- 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,7 +118,9 @@ public class hoaDonJFrame extends javax.swing.JFrame {
         btnSeach = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh Sách"));
@@ -153,7 +148,7 @@ public class hoaDonJFrame extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
                 .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +225,7 @@ public class hoaDonJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tabs.addTab("Hóa Đơn", jPanel1);
@@ -289,7 +284,7 @@ public class hoaDonJFrame extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(40, 40, 40)
                 .addComponent(txtSeach, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -342,7 +337,7 @@ public class hoaDonJFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         tabs.addTab("Hóa Đơn Chi Tiết", jPanel2);
@@ -363,75 +358,39 @@ public class hoaDonJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblCTHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTHDMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tblCTHDMouseClicked
-
-    private void txtSeachKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeachKeyReleased
-        // TODO add your handling code here:
-       loadToHoaDonct();
-    }//GEN-LAST:event_txtSeachKeyReleased
-
-    private void btnSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnSeachActionPerformed
-
-    private void txtSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeachActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSeachActionPerformed
-
-    private void tblViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tblViewMouseClicked
-
-    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnTimActionPerformed
-
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
         // TODO add your handling code here:
         loadToHoaDon();
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(hoaDonJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(hoaDonJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(hoaDonJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(hoaDonJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new hoaDonJFrame().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_btnTimActionPerformed
+
+    private void tblViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViewMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tblViewMouseClicked
+
+    private void tblCTHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTHDMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tblCTHDMouseClicked
+
+    private void txtSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSeachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSeachActionPerformed
+
+    private void txtSeachKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSeachKeyReleased
+        // TODO add your handling code here:
+        loadToHoaDonct();
+    }//GEN-LAST:event_txtSeachKeyReleased
+
+    private void btnSeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeachActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSeach;

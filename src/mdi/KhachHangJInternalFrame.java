@@ -88,7 +88,7 @@ void edit(){
             if (model != null) {
                 this.setModel(model);   
                 this.setStatus();  
-               
+                tblKhachHang.setRowSelectionInterval(index, index);
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
@@ -584,7 +584,8 @@ public void setTrang(){
             if (index >=0) {
          String maKh = tblKhachHang.getValueAt(index,0).toString();
       LichSuMuaHangJInternalFrame lskh = new LichSuMuaHangJInternalFrame();
-      lskh.setVisible(true);
+      this.getDesktopPane().add(lskh);
+      lskh.show();
         }else {
             MsgBox.alert(this,"Chưa chọn khách hàng muốn");
         }

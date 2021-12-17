@@ -1057,12 +1057,7 @@ txtTenTG.setText("");
             if (nxb == null) {
                 return;
             }
-            NhaXuatBanDAO dao = new NhaXuatBanDAO();
-            NhaXuatBan nxb2 = dao.selectById(txtmaNXB.getText());
-            if (nxb2 != null) {
-                MsgBox.alert(this, "Mã nhà xuất bản trùng");
-                return;
-            }
+            
             
             daoNXB.update(nxb);
             fillNXB();

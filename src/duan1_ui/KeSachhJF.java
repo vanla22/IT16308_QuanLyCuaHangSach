@@ -89,17 +89,13 @@ public class KeSachhJF extends javax.swing.JFrame {
         if (dao.selectById(txtMaks.getText()) != null) {
             MsgBox.alert(this, "Không được trùng mã kệ sách");
             return;
-        } else if (txtMaks.getText().trim() == null) {
+        } else if (txtMaks.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Không được để trống mã kệ sách");
             return;
-
-        } else if (txtViTri.getText().trim() == null) {
+        } else if (txtViTri.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Không được để trống vị trí kệ sách");
             return;
 
-        } else if (txtMaks.getText().length() < 4 || txtViTri.getText().length() < 4) {
-            MsgBox.alert(this, "Tối thiểu 3 kí tự");
-            return;
         } else {
             try {
                 dao.insert(model);

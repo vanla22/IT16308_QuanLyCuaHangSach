@@ -35,7 +35,7 @@ import qlchs.utils.XDate;
  * @author Đức Toàn
  */
 public class DausachJFrame extends javax.swing.JFrame {
-    
+
     TacGiaDAO daoTG = new TacGiaDAO();
     List<TacGia> listTG = new ArrayList<>();
     TheLoaiDAO daoTL = new TheLoaiDAO();
@@ -55,7 +55,7 @@ public class DausachJFrame extends javax.swing.JFrame {
         fillNXB();
         fillDAUSACH();
     }
-    
+
     public void fillTACGIA() {
         DefaultTableModel table = (DefaultTableModel) tblTACGIA.getModel();
         table.setRowCount(0);
@@ -67,7 +67,7 @@ public class DausachJFrame extends javax.swing.JFrame {
             table.addRow(row);
         }
     }
-    
+
     public void fillTheLoai() {
         DefaultTableModel table = (DefaultTableModel) tblTHELOAI.getModel();
         table.setRowCount(0);
@@ -79,7 +79,7 @@ public class DausachJFrame extends javax.swing.JFrame {
             table.addRow(row);
         }
     }
-    
+
     public void fillNXB() {
         DefaultTableModel table = (DefaultTableModel) tblNXB.getModel();
         table.setRowCount(0);
@@ -91,14 +91,14 @@ public class DausachJFrame extends javax.swing.JFrame {
             table.addRow(row);
         }
     }
-    
+
     public NhaXuatBan getForm() {
         NhaXuatBan NXB = new NhaXuatBan();
         NXB.setMaNXB(txtmaNXB.getText());
         NXB.setTenNXB(txtTenNXB.getText());
         NXB.setDiaChi(txtDiachi.getText());
         NXB.setEmail(txtEmail.getText());
-        
+
         try {
             SimpleDateFormat formater = new SimpleDateFormat();
             formater.applyPattern("yyyy-MM-dd");
@@ -114,7 +114,7 @@ public class DausachJFrame extends javax.swing.JFrame {
         }
         return NXB;
     }
-    
+
     public void fillDAUSACH() {
         DefaultTableModel table = (DefaultTableModel) tblDauSach.getModel();
         table.setRowCount(0);
@@ -406,8 +406,8 @@ public class DausachJFrame extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addComponent(jLabel2)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtmaNXB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTenNXB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -677,14 +677,9 @@ public class DausachJFrame extends javax.swing.JFrame {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(198, 198, 198)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnThemDS, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(48, 48, 48)
-                                    .addComponent(btnSuaDS, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel17)
-                                    .addGap(99, 99, 99)))
+                            .addComponent(btnThemDS, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(48, 48, 48)
+                            .addComponent(btnSuaDS, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(198, 198, 198)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -697,7 +692,10 @@ public class DausachJFrame extends javax.swing.JFrame {
                         .addComponent(txtTenDauSach, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel17)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -760,14 +758,14 @@ public class DausachJFrame extends javax.swing.JFrame {
             MsgBox.alert(this, "Thêm tác giả thành công");
             txtMATG.setBackground(Color.white);
             txtTenTG.setBackground(Color.white);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             MsgBox.alert(this, "Thêm tác giả thất bại");
         }
     }//GEN-LAST:event_btnTHEMTGActionPerformed
     TacGia docFormTG() {
-        
+
         if (txtMATG.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Mã tác giả trống");
             txtMATG.requestFocus();
@@ -792,11 +790,11 @@ public class DausachJFrame extends javax.swing.JFrame {
             MsgBox.alert(this, "Đọc form tác giả bị lỗi!");
             return null;
         }
-        
+
     }
-    
+
     TheLoai docFormTL() {
-        
+
         if (txtMATL.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Mã thể loại trống");
             txtMATL.requestFocus();
@@ -827,11 +825,11 @@ public class DausachJFrame extends javax.swing.JFrame {
             MsgBox.alert(this, "Đọc form thể loại bị lỗi!");
             return null;
         }
-        
+
     }
-    
+
     NhaXuatBan docFormNXB() {
-        
+
         if (txtmaNXB.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Mã nhà xuất bản  trống");
             txtmaNXB.requestFocus();
@@ -877,10 +875,10 @@ public class DausachJFrame extends javax.swing.JFrame {
         try {
             SimpleDateFormat formater = new SimpleDateFormat();
             formater.applyPattern("yyyy-MM-dd");
-            
+
             Date date = formater.parse(txtNamNXB.getText());
             Date ngayht = formater.parse(java.time.LocalDate.now() + "");
-            
+
             if (!(ngayht.compareTo(date) > 0)) {
                 MsgBox.alert(this, "Ngày sinh không được lớn hơn ngày hiện tại ");
                 return null;
@@ -895,7 +893,7 @@ public class DausachJFrame extends javax.swing.JFrame {
             String namNXB = txtNamNXB.getText();
             String email = txtEmail.getText();
             String diaChi = txtDiachi.getText();
-            
+
             boolean trangThai;
             if (radioHD.isSelected() == true) {
                 trangThai = true;
@@ -908,20 +906,20 @@ public class DausachJFrame extends javax.swing.JFrame {
             MsgBox.alert(this, "Đọc form nhà xuất bản bị lỗi!");
             return null;
         }
-        
+
     }
     private void tblTACGIAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTACGIAMouseClicked
         // TODO add your handling code here:
         int i = tblTACGIA.getSelectedRow();
-      
+
         DefaultTableModel table = (DefaultTableModel) tblTACGIA.getModel();
         txtMATG.setText(table.getValueAt(i, 0).toString());
         txtTenTG.setText(table.getValueAt(i, 1).toString());
     }//GEN-LAST:event_tblTACGIAMouseClicked
-void lamMoiTL(){
-txtMATL.setText("");
-txtTENTL.setText("");
-}
+    void lamMoiTL() {
+        txtMATL.setText("");
+        txtTENTL.setText("");
+    }
     private void btnThemTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTLActionPerformed
         // TODO add your handling code here:
         try {
@@ -937,36 +935,36 @@ txtTENTL.setText("");
             }
             daoTL.insert(tl);
             fillTheLoai();
-            
+
             this.lamMoiTL();
             MsgBox.alert(this, "Thêm thể loại thành công");
             txtMATL.setBackground(Color.white);
             txtTENTL.setBackground(Color.white);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             MsgBox.alert(this, "Thêm thể loại thất bại");
         }
     }//GEN-LAST:event_btnThemTLActionPerformed
-void lamMoiTG(){
-txtMATG.setText("");
-txtTenTG.setText("");
+    void lamMoiTG() {
+        txtMATG.setText("");
+        txtTenTG.setText("");
 
-}
+    }
     private void btnSuaTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaTLActionPerformed
         try {
             TheLoai tl = this.docFormTL();
             if (tl == null) {
                 return;
             }
-            
+
             daoTL.update(tl);
             fillTheLoai();
             this.lamMoiTL();
             MsgBox.alert(this, "Sửa thể loại thành công");
             txtMATL.setBackground(Color.white);
             txtTENTL.setBackground(Color.white);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             MsgBox.alert(this, "Sửa thể loại thất bại");
@@ -985,7 +983,7 @@ txtTenTG.setText("");
                 MsgBox.alert(this, "Mã nhà xuất bản trùng");
                 return;
             }
-            
+
             daoNXB.insert(nxb);
             fillNXB();
             MsgBox.alert(this, "Thêm NXB thành công");
@@ -1018,7 +1016,7 @@ txtTenTG.setText("");
             MsgBox.alert(this, "Tên tác giả phải là tên tiếng việt hoặc không dấu(từ 3-25 kí tự)");
             txtTenDauSach.requestFocus();
             txtTenDauSach.setBackground(Color.yellow);
-            
+
             return;
         }
         if (tblNXB.getSelectedRow() == -1) {
@@ -1031,7 +1029,7 @@ txtTenTG.setText("");
             MsgBox.alert(this, "Chưa chọn TT");
             return;
         } else {
-            
+
             String maDS = txtMaDS.getText();
             String tenDS = txtTenDauSach.getText();
             DefaultTableModel tableTG = (DefaultTableModel) tblTACGIA.getModel();
@@ -1043,7 +1041,7 @@ txtTenTG.setText("");
             String maTG = tableTG.getValueAt(a, 0).toString();
             String maTL = tableTL.getValueAt(c, 0).toString();
             String maNXB = tableNXB.getValueAt(i, 0).toString();
-            
+
             DauSach ds = new DauSach(maDS, tenDS, maTG, maTL, maNXB);
             daoDS.insert(ds);
             fillDAUSACH();
@@ -1057,8 +1055,7 @@ txtTenTG.setText("");
             if (nxb == null) {
                 return;
             }
-            
-            
+
             daoNXB.update(nxb);
             fillNXB();
             MsgBox.alert(this, "Sửa NXB thành công");
@@ -1076,14 +1073,14 @@ txtTenTG.setText("");
     private void tblTHELOAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTHELOAIMouseClicked
         // TODO add your handling code here
         int i = tblTHELOAI.getSelectedRow();
-        
+
         txtMATL.setText(tblTHELOAI.getValueAt(i, 0).toString());
         txtTENTL.setText(tblTHELOAI.getValueAt(i, 1).toString());
         if (tblTHELOAI.getValueAt(i, 1).toString().equals("false")) {
             radioKCON.setSelected(true);
         } else {
             radioCON.setSelected(true);
-            
+
         }
     }//GEN-LAST:event_tblTHELOAIMouseClicked
 
@@ -1107,28 +1104,27 @@ txtTenTG.setText("");
         int i = tblDauSach.getSelectedRow();
         txtMaDS.setText(tblDauSach.getValueAt(i, 0).toString());
         txtTenDauSach.setText(tblDauSach.getValueAt(i, 1).toString());
-        
-       
+
         selectTheLoai(i);
-       
+
         selectNXB(i);
         selectTG(i);
-           
+
 
     }//GEN-LAST:event_tblDauSachMouseClicked
 
     private void selectNXB(int i) throws HeadlessException {
-        NhaXuatBanDAO daoNXB=new NhaXuatBanDAO();
+        NhaXuatBanDAO daoNXB = new NhaXuatBanDAO();
         DefaultTableModel model = (DefaultTableModel) tblNXB.getModel();
         model.setRowCount(0);
-        List<NhaXuatBan> listNXB=new ArrayList<>();
+        List<NhaXuatBan> listNXB = new ArrayList<>();
         try {
-            String maNXB=tblDauSach.getValueAt(i, 4).toString();
-            listNXB= daoNXB.selectByKeyword(maNXB);
+            String maNXB = tblDauSach.getValueAt(i, 4).toString();
+            listNXB = daoNXB.selectByKeyword(maNXB);
             for (NhaXuatBan s : listNXB) {
                 Object row[] = {
-                    s.getMaNXB(),s.getTenNXB(),s.getDiaChi(),s.getEmail(),s.getNamXuatBan(),s.isTrangThai()
-                        
+                    s.getMaNXB(), s.getTenNXB(), s.getDiaChi(), s.getEmail(), s.getNamXuatBan(), s.isTrangThai()
+
                 };
                 model.addRow(row);
             }
@@ -1142,16 +1138,16 @@ txtTenTG.setText("");
     }
 
     private void selectTheLoai(int i) throws HeadlessException {
-        TheLoaiDAO daoTL=new TheLoaiDAO();
+        TheLoaiDAO daoTL = new TheLoaiDAO();
         DefaultTableModel model = (DefaultTableModel) tblTHELOAI.getModel();
         model.setRowCount(0);
-        List<TheLoai> listTheLoai=new ArrayList<>();
+        List<TheLoai> listTheLoai = new ArrayList<>();
         try {
-            String maTL=tblDauSach.getValueAt(i, 3).toString();
-            listTheLoai= daoTL.selectByKeyword(maTL);
+            String maTL = tblDauSach.getValueAt(i, 3).toString();
+            listTheLoai = daoTL.selectByKeyword(maTL);
             for (TheLoai s : listTheLoai) {
                 Object row[] = {
-                    s.getMaTL(),s.getTenTL()
+                    s.getMaTL(), s.getTenTL()
                 };
                 model.addRow(row);
             }
@@ -1165,16 +1161,16 @@ txtTenTG.setText("");
     }
 
     private void selectTG(int i) throws HeadlessException {
-        TacGiaDAO daoTG=new TacGiaDAO();
+        TacGiaDAO daoTG = new TacGiaDAO();
         DefaultTableModel model = (DefaultTableModel) tblTACGIA.getModel();
         model.setRowCount(0);
-        List<TacGia> listTacGia=new ArrayList<>();
+        List<TacGia> listTacGia = new ArrayList<>();
         try {
-            String maTG=tblDauSach.getValueAt(i, 2).toString();
+            String maTG = tblDauSach.getValueAt(i, 2).toString();
             listTacGia = daoTG.selectByKeyword(maTG);
             for (TacGia s : listTacGia) {
                 Object row[] = {
-                    s.getMaTG(),s.getTenTG()
+                    s.getMaTG(), s.getTenTG()
                 };
                 model.addRow(row);
             }
@@ -1188,7 +1184,7 @@ txtTenTG.setText("");
     }
 
     private void btnSuaDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaDSActionPerformed
-         String maDS = txtMaDS.getText();
+        String maDS = txtMaDS.getText();
         String tenDS = txtTenDauSach.getText();
         DefaultTableModel tableTG = (DefaultTableModel) tblTACGIA.getModel();
         DefaultTableModel tableTL = (DefaultTableModel) tblTHELOAI.getModel();
@@ -1199,11 +1195,11 @@ txtTenTG.setText("");
         String maTG = tableTG.getValueAt(a, 0).toString();
         String maTL = tableTL.getValueAt(c, 0).toString();
         String maNXB = tableNXB.getValueAt(i, 0).toString();
-        System.out.println( i + a +c );
+        System.out.println(i + a + c);
         DauSach ds = new DauSach(maDS, tenDS, maTG, maTL, maNXB);
         daoDS.update(ds);
         fillDAUSACH();
-        
+
     }//GEN-LAST:event_btnSuaDSActionPerformed
 
     private void btnSuaTGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaTGActionPerformed
@@ -1212,15 +1208,14 @@ txtTenTG.setText("");
             if (tg == null) {
                 return;
             }
-           
-            
+
             daoTG.update(tg);
             fillTACGIA();
             this.lamMoiTG();
             MsgBox.alert(this, "Sửa tác giả thành công");
             txtMATG.setBackground(Color.white);
             txtTenTG.setBackground(Color.white);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             MsgBox.alert(this, "Sửa tác giả thất bại");
@@ -1228,18 +1223,18 @@ txtTenTG.setText("");
     }//GEN-LAST:event_btnSuaTGActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-       this.lamMoiTG();
-       this.fillTACGIA();
+        this.lamMoiTG();
+        this.fillTACGIA();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnLamMoiTLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiTLActionPerformed
         this.lamMoiTL();
-       this.fillTheLoai();
+        this.fillTheLoai();
     }//GEN-LAST:event_btnLamMoiTLActionPerformed
 
     private void btnLamMoiTL1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiTL1ActionPerformed
-       this.lamMoiNXB();
-       this.fillNXB();
+        this.lamMoiNXB();
+        this.fillNXB();
     }//GEN-LAST:event_btnLamMoiTL1ActionPerformed
 
     /**
@@ -1352,12 +1347,12 @@ txtTenTG.setText("");
     // End of variables declaration//GEN-END:variables
 
     private void lamMoiNXB() {
-    txtDiachi.setText("");
-    txtmaNXB.setText("");
-    txtNamNXB.setText("");
-    txtEmail.setText("");
-    txtTenNXB.setText("");
-    this.fillNXB();
-            
+        txtDiachi.setText("");
+        txtmaNXB.setText("");
+        txtNamNXB.setText("");
+        txtEmail.setText("");
+        txtTenNXB.setText("");
+        this.fillNXB();
+
     }
 }

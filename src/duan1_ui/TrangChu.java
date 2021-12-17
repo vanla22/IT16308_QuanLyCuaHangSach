@@ -442,7 +442,7 @@ public class TrangChu extends javax.swing.JFrame {
         });
         mnuQuanLy.add(mniQlyNhanVien);
 
-        mnuLichSuKh.setText("Nhà Cung Cấp");
+        mnuLichSuKh.setText("Quản Lý  Nhà Cung Cấp");
         mnuLichSuKh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuLichSuKhActionPerformed(evt);

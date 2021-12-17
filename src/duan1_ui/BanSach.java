@@ -981,6 +981,8 @@ public class BanSach extends javax.swing.JFrame {
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
+        clearHD();
+        txtTongTien.setText("0");
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnPevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPevActionPerformed

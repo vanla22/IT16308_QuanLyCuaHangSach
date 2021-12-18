@@ -37,7 +37,7 @@ DauSachDAO daoDS = new DauSachDAO();
      */
     public SachJInternalFrame() {
         initComponents();
-          updateTT();
+         updateTT();
         loadCbb();
         fillTable();
     }
@@ -45,11 +45,18 @@ DauSachDAO daoDS = new DauSachDAO();
      public void updateTT(){
         listSach  = daoS.selectAll();
         for(Sach x : listSach){
-            if(x.getSoLuong()==0){
+            if(x.getSoLuong()<=0){
                 
                 String ma = x.getMaSach();
                 boolean a = false;
                 daoS.updateTT(ma,a);
+                fillTable();
+            }
+            else{
+                String ma = x.getMaSach();
+                boolean a = true;
+                daoS.updateTT(ma,a);
+                fillTable();
             }
         }
         
@@ -87,7 +94,7 @@ DauSachDAO daoDS = new DauSachDAO();
             listSach = daoS.selectByKeyword(keyword);
             for (Sach s : listSach) {
                 Object row[] = {
-                    s.getMaSach(), s.getTenSach(), s.getMaDauSach(), s.getSoLuong(), s.getGiaBan(), s.getGhiChu(), s.isTrangThai() == true ? "Con Hang" : "Het Hang"
+                    s.getMaSach(), s.getTenSach(), s.getMaDauSach(), s.getSoLuong(), s.getGiaBan(), s.getGhiChu(), s.isTrangThai() == true ? "Còn Hàng" : "Hết Hàng"
                 };
                 model.addRow(row);
             }
@@ -163,6 +170,7 @@ DauSachDAO daoDS = new DauSachDAO();
             Sach s = getForm();
         daoS.update(s);
         fillTable();
+        MsgBox.alert(this, "Update thành công");
 
     }
     public void filist(int a){
@@ -176,6 +184,7 @@ DauSachDAO daoDS = new DauSachDAO();
         
         
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,6 +212,8 @@ DauSachDAO daoDS = new DauSachDAO();
         txtGhiChu = new javax.swing.JTextArea();
         cbb = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
+        rdioCOn = new javax.swing.JRadioButton();
+        rdiHet = new javax.swing.JRadioButton();
         pnlDanhSach = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -235,6 +246,8 @@ DauSachDAO daoDS = new DauSachDAO();
         jLabel4.setText("MÃ ĐẦU SÁCH:");
 
         jLabel5.setText("SỐ LƯỢNG:");
+
+        txtSoLuong.setEditable(false);
 
         jLabel6.setText("GIÁ BÁN:");
 
@@ -276,17 +289,25 @@ DauSachDAO daoDS = new DauSachDAO();
 
         jLabel15.setText("TRẠNG THÁI :");
 
+        rdioCOn.setText("Còn Hàng");
+
+        rdiHet.setText("Hết Hàng");
+
         javax.swing.GroupLayout pnlCapNhapLayout = new javax.swing.GroupLayout(pnlCapNhap);
         pnlCapNhap.setLayout(pnlCapNhapLayout);
         pnlCapNhapLayout.setHorizontalGroup(
             pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCapNhapLayout.createSequentialGroup()
-                .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCapNhapLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlCapNhapLayout.createSequentialGroup()
+                .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCapNhapLayout.createSequentialGroup()
+                        .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(39, 39, 39)
+                        .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTen)
+                            .addComponent(txtMaSach)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCapNhapLayout.createSequentialGroup()
                         .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlCapNhapLayout.createSequentialGroup()
                                 .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,26 +317,30 @@ DauSachDAO daoDS = new DauSachDAO();
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCapNhapLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)))
-                        .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                            .addComponent(cbb, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGia)))
-                    .addGroup(pnlCapNhapLayout.createSequentialGroup()
                         .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(39, 39, 39)
-                        .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                            .addComponent(txtTen)))
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtGia, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                                .addComponent(txtSoLuong))
+                            .addComponent(cbb, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlCapNhapLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(46, 46, 46)
+                        .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                            .addGroup(pnlCapNhapLayout.createSequentialGroup()
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)))))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(pnlCapNhapLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rdioCOn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(rdiHet, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlCapNhapLayout.setVerticalGroup(
             pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,16 +365,19 @@ DauSachDAO daoDS = new DauSachDAO();
                 .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel15)
+                .addGap(22, 22, 22)
+                .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(rdioCOn)
+                    .addComponent(rdiHet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnlCapNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9))
         );
 
@@ -468,32 +496,32 @@ DauSachDAO daoDS = new DauSachDAO();
         pnlDanhSachLayout.setHorizontalGroup(
             pnlDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDanhSachLayout.createSequentialGroup()
-                .addGroup(pnlDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDanhSachLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(btnfisrt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDanhSachLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDanhSachLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlDanhSachLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(btnfisrt, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlDanhSachLayout.setVerticalGroup(
             pnlDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDanhSachLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(pnlDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnfisrt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -512,8 +540,8 @@ DauSachDAO daoDS = new DauSachDAO();
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlCapNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlDanhSach, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pnlDanhSach, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,7 +550,7 @@ DauSachDAO daoDS = new DauSachDAO();
                 .addComponent(lblText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlDanhSach, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                    .addComponent(pnlDanhSach, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                     .addComponent(pnlCapNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
@@ -568,7 +596,14 @@ DauSachDAO daoDS = new DauSachDAO();
         txtSoLuong.setText(tblSach.getValueAt(i, 3).toString());
         txtGia.setText(tblSach.getValueAt(i, 4).toString());
         txtGhiChu.setText(tblSach.getValueAt(i, 5).toString());
-        txtSoLuong.setEditable(true);
+        if(tblSach.getValueAt(i, 6).toString().equals("Còn Hàng")){
+            rdioCOn.setSelected(true);
+        }else{
+            rdiHet.setSelected(true);
+        }
+
+        txtSoLuong.setEditable(false);
+        txtMaSach.setEditable(false);
         txtGia.setEditable(true);
     }//GEN-LAST:event_tblSachMouseClicked
 
@@ -631,6 +666,8 @@ DauSachDAO daoDS = new DauSachDAO();
     private javax.swing.JLabel lblText;
     private javax.swing.JPanel pnlCapNhap;
     private javax.swing.JPanel pnlDanhSach;
+    private javax.swing.JRadioButton rdiHet;
+    private javax.swing.JRadioButton rdioCOn;
     private javax.swing.JTable tblSach;
     private javax.swing.JTextArea txtGhiChu;
     private javax.swing.JTextField txtGia;

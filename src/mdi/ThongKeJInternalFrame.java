@@ -208,51 +208,6 @@ public class ThongKeJInternalFrame extends javax.swing.JInternalFrame {
 
         return style;
     }
-void init() {
-        fillCbbDoanhSo();
-        fillTableDoanhSo();
-
-    }
-
-    public void selectTab(int index) {
-        TABS.setSelectedIndex(index);
-    }
-
-    void fillCbbDoanhSo() {
-
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboNam1.getModel();
-        model.removeAllElements();
-        for (Integer kh : hddao.selectYear()) {
-            model.addElement(kh);
-        }
-    }
-
-    void fillTableDoanhSo() {
-        DefaultTableModel dtm = (DefaultTableModel) tblDoanhSo.getModel();
-        dtm.setRowCount(0);
-        Integer year = (Integer) cboNam1.getSelectedItem();
-
-        List<Object[]> list = tkdao.getThongKeSPBanChay(year);
-        for (Object[] objects : list) {
-            dtm.addRow(objects);
-        }
-
-        DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
-        for (Object[] row : list) {
-            String maSach = (String) row[0];
-            String doanhThu = String.format("%.0f", row[3]);
-            barChartData.setValue(Double.parseDouble(doanhThu), "Doanh Thu", maSach);
-        }
-        JFreeChart barChart = ChartFactory.createAreaChart("Doanh Thu", "Hàng năm", "VND",
-                barChartData, PlotOrientation.VERTICAL, false, true, true);
-        CategoryPlot barchrt = barChart.getCategoryPlot();
-        barchrt.setRangeGridlinePaint(Color.GREEN);
-        ChartPanel barPanel = new ChartPanel(barChart);
-        pnlBieuDoDoanhSo.removeAll();
-        pnlBieuDoDoanhSo.add(barPanel, BorderLayout.CENTER);
-        pnlBieuDoDoanhSo.validate();
-    }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -339,8 +294,8 @@ void init() {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBD, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelBD, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(btnExcel))
         );
 
@@ -472,4 +427,48 @@ void init() {
     private javax.swing.JTable tblBangThu;
     private javax.swing.JTable tblDoanhSo;
     // End of variables declaration//GEN-END:variables
+ void init() {
+        fillCbbDoanhSo();
+        fillTableDoanhSo();
+
+    }
+
+    public void selectTab(int index) {
+        TABS.setSelectedIndex(index);
+    }
+
+    void fillCbbDoanhSo() {
+
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboNam1.getModel();
+        model.removeAllElements();
+        for (Integer kh : hddao.selectYear()) {
+            model.addElement(kh);
+        }
+    }
+
+    void fillTableDoanhSo() {
+        DefaultTableModel dtm = (DefaultTableModel) tblDoanhSo.getModel();
+        dtm.setRowCount(0);
+        Integer year = (Integer) cboNam1.getSelectedItem();
+
+        List<Object[]> list = tkdao.getThongKeSPBanChay(year);
+        for (Object[] objects : list) {
+            dtm.addRow(objects);
+        }
+
+        DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
+        for (Object[] row : list) {
+            String maSach = (String) row[0];
+            String doanhThu = String.format("%.0f", row[3]);
+            barChartData.setValue(Double.parseDouble(doanhThu), "Doanh Thu", maSach);
+        }
+        JFreeChart barChart = ChartFactory.createAreaChart("Doanh Thu", "Hàng năm", "VND",
+                barChartData, PlotOrientation.VERTICAL, false, true, true);
+        CategoryPlot barchrt = barChart.getCategoryPlot();
+        barchrt.setRangeGridlinePaint(Color.GREEN);
+        ChartPanel barPanel = new ChartPanel(barChart);
+        pnlBieuDoDoanhSo.removeAll();
+        pnlBieuDoDoanhSo.add(barPanel, BorderLayout.CENTER);
+        pnlBieuDoDoanhSo.validate();
+    }
 }

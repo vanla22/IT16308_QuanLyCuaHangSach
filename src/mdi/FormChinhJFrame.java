@@ -39,9 +39,9 @@ public class FormChinhJFrame extends javax.swing.JFrame {
      private void start() {
         this.setLocationRelativeTo(null);
         this.setIconImage(XImage.getAppIcon());
-//        new chaoJDialog(this, true).setVisible(true);
-//        new DangNhapJDialog(this, true).setVisible(true);
-//        lblten.setText(Auth.user.getHoTen());
+        new chaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+        lblten.setText(Auth.user.getHoTen());
 
     }
 
@@ -70,7 +70,7 @@ public class FormChinhJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        btnDangxuat = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btnNhap = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -95,7 +95,6 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         mniKhachHang = new javax.swing.JMenuItem();
         mniSach = new javax.swing.JMenuItem();
         mniQlyNhanVien = new javax.swing.JMenuItem();
-        mnuLichSuKh = new javax.swing.JMenuItem();
         mniQlyHoaDon = new javax.swing.JMenuItem();
         mniNCC = new javax.swing.JMenuItem();
         mnuThongKe = new javax.swing.JMenu();
@@ -109,12 +108,17 @@ public class FormChinhJFrame extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/iconlogout.png"))); // NOI18N
-        jButton1.setText("ĐĂNG XUẤT");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        btnDangxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/iconlogout.png"))); // NOI18N
+        btnDangxuat.setText("ĐĂNG XUẤT");
+        btnDangxuat.setFocusable(false);
+        btnDangxuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDangxuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDangxuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangxuatActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnDangxuat);
         jToolBar1.add(jSeparator1);
 
         btnNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/duan1_icon/warehouse_30px.png"))); // NOI18N
@@ -122,6 +126,11 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         btnNhap.setFocusable(false);
         btnNhap.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNhap.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnNhap);
         jToolBar1.add(jSeparator2);
 
@@ -263,14 +272,6 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         });
         mnuQuanLy.add(mniQlyNhanVien);
 
-        mnuLichSuKh.setText("Lịch Sử Khách Hàng");
-        mnuLichSuKh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuLichSuKhActionPerformed(evt);
-            }
-        });
-        mnuQuanLy.add(mnuLichSuKh);
-
         mniQlyHoaDon.setText("Quản Lý Hóa Đơn");
         mniQlyHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,10 +399,6 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         openNhanVien(0);
     }//GEN-LAST:event_mniQlyNhanVienActionPerformed
 
-    private void mnuLichSuKhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLichSuKhActionPerformed
-        openLSkh();
-    }//GEN-LAST:event_mnuLichSuKhActionPerformed
-
     private void mniDoanhTthuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhTthuActionPerformed
         this.openThongKe(0);
     }//GEN-LAST:event_mniDoanhTthuActionPerformed
@@ -435,7 +432,7 @@ public class FormChinhJFrame extends javax.swing.JFrame {
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
-        openThongKe(WIDTH);
+        openThongKe(0);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void mniQlyHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniQlyHoaDonActionPerformed
@@ -447,6 +444,16 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         openNCC();
     }//GEN-LAST:event_mniNCCActionPerformed
+
+    private void btnNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapActionPerformed
+        // TODO add your handling code here:
+        openPhieuNhap();
+    }//GEN-LAST:event_btnNhapActionPerformed
+
+    private void btnDangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangxuatActionPerformed
+        // TODO add your handling code here:
+        opendangnhap();
+    }//GEN-LAST:event_btnDangxuatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,11 +494,11 @@ public class FormChinhJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
     private javax.swing.JButton btnBanSach;
+    private javax.swing.JButton btnDangxuat;
     private javax.swing.JButton btnKhachHang;
     private javax.swing.JButton btnNhap;
     private javax.swing.JButton btnSach;
     private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
@@ -516,7 +523,6 @@ public class FormChinhJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem mniSach;
     private javax.swing.JMenuItem mniThongkeSach;
     private javax.swing.JMenu mnuHeThong;
-    private javax.swing.JMenuItem mnuLichSuKh;
     private javax.swing.JMenu mnuQuanLy;
     private javax.swing.JMenu mnuThongKe;
     private javax.swing.JMenu mnuXuatNhap;
@@ -566,10 +572,6 @@ public class FormChinhJFrame extends javax.swing.JFrame {
         NhanVienJInternalFrame qlnv = new NhanVienJInternalFrame();
         DesktopPane.add(qlnv);
         qlnv.show();
-    }
-
-    private void openLSkh() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void openThongKe(int i) {

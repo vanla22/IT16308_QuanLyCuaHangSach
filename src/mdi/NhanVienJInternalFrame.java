@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package mdi;
+
 import EduSys.entity.NhanVien;
+import static java.awt.Color.pink;
+import static java.awt.Color.white;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import qlchs.dao.nhanvienDAO;
-import qlchs.utils.*;
+import qlchs.utils.Auth;
+import qlchs.utils.MsgBox;
+import qlchs.utils.XDate;
 
 /**
  *
@@ -395,7 +400,6 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     public void fillTable(String idlist) {
         DefaultTableModel model = (DefaultTableModel) tblNhaVien.getModel();
         model.setRowCount(0);
@@ -413,21 +417,21 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-
+    
     public void setForm(NhanVien nv) {
         txtMaNv.setText(nv.getMaNV());
         txtHoTen.setText(nv.getHoTen());
         txtMatKhau.setText(nv.getMatKhau());
-        txtNgaySinh.setText(nv.getNgaySinh().toString());
+        txtNgaySinh.setText(XDate.toString(nv.getNgaySinh()));
         txtSDT.setText(nv.getSDT());
         if (nv.isVaiTro() == true) {
             rdoChuCuaHang.setSelected(true);
         } else {
             rdoNhanVien.setSelected(true);
         }
-
+        
     }
-
+    
     public NhanVien getForm() {
         NhanVien nv = new NhanVien();
         nv.setMaNV(txtMaNv.getText());
@@ -438,7 +442,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         nv.setVaiTro(rdoChuCuaHang.isSelected());
         return nv;
     }
-
+    
     public void clearForm() {
         txtMaNv.setText("");
         txtHoTen.setText("");
@@ -446,15 +450,33 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
         txtNgaySinh.setText("");
         txtSDT.setText("");
         rdoChuCuaHang.setSelected(true);
+        btnThem.setEnabled(true);
+        txtMaNv.setBackground(white);
+        txtHoTen.setBackground(white);
+        txtMatKhau.setBackground(white);
+        txtNgaySinh.setBackground(white);
+        txtSDT.setBackground(white);
     }
-
+    
     public void edit() {
         String manv = (String) tblNhaVien.getValueAt(row, 0);
         NhanVien nv = dao.selectById(manv);
         this.setForm(nv);
+        txtMaNv.setEditable(false);
         tblNhaVien.setRowSelectionInterval(row, row);
+        if (row == 0) {
+            btnFirst.setEnabled(false);
+            btnPrev.setEnabled(false);
+            btnLast.setEnabled(true);
+            btnNext.setEnabled(true);
+        } else if (row == tblNhaVien.getRowCount() - 1) {
+            btnLast.setEnabled(false);
+            btnNext.setEnabled(false);
+            btnFirst.setEnabled(true);
+            btnPrev.setEnabled(true);
+        }
     }
-
+    
     public void insert() {
         NhanVien nv = getForm();
         NhanVien nv2 = dao.selectById(nv.getMaNV().toString());
@@ -464,12 +486,12 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
                 return;
             }
         }
-
+        
         if (nv2 != null) {
             MsgBox.alert(this, "Trùng mã nhân viên");
             return;
         }
-
+        
         try {
             dao.insert(nv);
             this.fillTable("1");
@@ -480,7 +502,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-
+    
     public void update() {
         NhanVien nv = getForm();
         NhanVien nv2 = dao.selectById(nv.getMaNV().toString());
@@ -494,11 +516,12 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-
+    
     public void deleteIDlist() {
         String manv = txtMaNv.getText();
         if (manv.equals(Auth.user.getMaNV())) {
             MsgBox.alert(this, "Bạn không được xóa chính mình");
+            return;
         } else if (MsgBox.confirm(this, "Bạn có thực sự muốn xóa"));
         try {
             dao.xoaTamThoi("0", manv);
@@ -508,27 +531,27 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
-
+    
     public void first() {
         this.row = 0;
         this.edit();
     }
-
+    
     public void prev() {
         if (this.row > 0) {
             this.row--;
             this.edit();
         }
-
+        
     }
-
+    
     public void next() {
         if (this.row < tblNhaVien.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
     }
-
+    
     public void last() {
         this.row = tblNhaVien.getRowCount() - 1;
         this.edit();
@@ -536,68 +559,88 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
     
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (txtMaNv.getText().length() == 0) {
+               if (txtMaNv.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
+            txtMaNv.requestFocus();
             return;
         }
-        if (txtHoTen.getText().length() == 0) {
+        if (txtHoTen.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống họ tên nhân viên");
+            txtHoTen.requestFocus();
             return;
+        } else if (!txtHoTen.getText().matches("^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{3,25}$")) {
+            MsgBox.alert(this, "Họ tên phải là tên tiếng việt hoặc không dấu(từ 3-25 kí tự)");
+            txtHoTen.requestFocus();
+            return;            
         }
-        if (txtMatKhau.getText().length() == 0) {
+        
+        if (txtMatKhau.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mật khẩu");
+            txtMatKhau.requestFocus();
             return;
         }
-        if (txtNgaySinh.getText().length() == 0) {
+        if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
+            txtNgaySinh.requestFocus();
             return;
         } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
-                MsgBox.alert(this, "Định dạng là dd/MM/yyyy");
+                MsgBox.alert(this, "Định dạng là dd-MM-yyyy");
+                txtNgaySinh.requestFocus();
                 return;
             }
         }
-        if (txtSDT.getText().length() == 0) {
+        if (txtSDT.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
+            txtSDT.requestFocus();
             return;
         } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
             MsgBox.alert(this, "Số điện thoại 10 số");
+            txtSDT.requestFocus();
             return;
         }
         insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        if (txtMaNv.getText().length() == 0) {
-            MsgBox.alert(this, "Không để trống mã nhân viên");
-            return;
-        }
-        if (txtHoTen.getText().length() == 0) {
+       
+        if (txtHoTen.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống họ tên nhân viên");
+            txtHoTen.requestFocus();
             return;
+        } else if (!txtHoTen.getText().matches("^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ ]{3,25}$")) {
+            MsgBox.alert(this, "Họ tên phải là tên tiếng việt hoặc không dấu(từ 3-25 kí tự)");
+            txtHoTen.requestFocus();
+            return;            
         }
-        if (txtMatKhau.getText().length() == 0) {
+        
+        if (txtMatKhau.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống mật khẩu");
+            txtMatKhau.requestFocus();
             return;
         }
-        if (txtNgaySinh.getText().length() == 0) {
+        if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống ngày sinh");
+            txtNgaySinh.requestFocus();
             return;
         } else {
             try {
                 XDate.toDate(txtNgaySinh.getText());
             } catch (Exception e) {
-                MsgBox.alert(this, "Định dạng là dd/MM/yyyy");
+                MsgBox.alert(this, "Định dạng là dd-MM-yyyy");
+                txtNgaySinh.requestFocus();
                 return;
             }
         }
-        if (txtSDT.getText().length() == 0) {
+        if (txtSDT.getText().trim().length() == 0) {
             MsgBox.alert(this, "Không để trống SDT ");
+            txtSDT.requestFocus();
             return;
         } else if (!txtSDT.getText().matches("0[0-9]{9}")) {
             MsgBox.alert(this, "Số điện thoại 10 số");
+            txtSDT.requestFocus();
             return;
         }
         update();
@@ -606,6 +649,7 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         if (txtMaNv.getText().length() == 0) {
             MsgBox.alert(this, "Không để trống mã nhân viên");
+             txtMaNv.requestFocus();
             return;
         }
         deleteIDlist();
@@ -613,13 +657,16 @@ public class NhanVienJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnXoaFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormActionPerformed
         clearForm();
+         txtMaNv.setEditable(true);
     }//GEN-LAST:event_btnXoaFormActionPerformed
 
     private void tblNhaVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhaVienMouseClicked
-        row = tblNhaVien.getSelectedRow();
+       row = tblNhaVien.getSelectedRow();
         NhanVien nv = listNhanVien.get(row);
         if (evt.getClickCount() == 2) {
             setForm(nv);
+            txtMaNv.setEditable(false);
+            btnThem.setEnabled(false);
         }
     }//GEN-LAST:event_tblNhaVienMouseClicked
 

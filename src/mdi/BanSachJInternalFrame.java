@@ -10,14 +10,19 @@ import EduSys.entity.HoaDonCT;
 import EduSys.entity.KhachHang;
 import EduSys.entity.PhieuNhap;
 import EduSys.entity.Sach;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -58,7 +63,7 @@ public class BanSachJInternalFrame extends javax.swing.JInternalFrame {
         fillHD();
 
         fillSach();
-//        txtMaNV.setText(Auth.user.getMaNV());
+        txtMaNV.setText(Auth.user.getMaNV());
     }
     
     
@@ -196,73 +201,124 @@ public class BanSachJInternalFrame extends javax.swing.JInternalFrame {
 //    }
 
     public void xuatHDCT() {
-        XSSFWorkbook xs = new XSSFWorkbook();
-        XSSFSheet sheet = xs.createSheet("HÓA ĐƠN CHI TIẾT");
-        XSSFRow row = null;
-        Cell cell = null;
-        row = sheet.createRow(2);
-        cell = row.createCell(0, CellType.STRING);
-        cell.setCellValue("STT");
-        cell = row.createCell(1, CellType.STRING);
-        cell.setCellValue("Mã Chi Tiết Hóa Đơn");
-        cell = row.createCell(2, CellType.STRING);
-        cell.setCellValue("Mã Hóa Đơn");
-        cell = row.createCell(3, CellType.STRING);
-        cell.setCellValue("Mã Sách");
-        cell = row.createCell(4, CellType.STRING);
-        cell.setCellValue("Tên Sách");
-        cell = row.createCell(5, CellType.STRING);
-        cell.setCellValue("Số Lượng");
-        cell = row.createCell(6, CellType.STRING);
-        cell.setCellValue("Giá Bán");
-        cell = row.createCell(7, CellType.STRING);
-        cell.setCellValue("Thành Tiền");
-        cell = row.createCell(8, CellType.STRING);
-
-        for (int i = 0; i < tblCTHD.getRowCount(); i++) {
-            row = sheet.createRow(3 + i);
-            cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue(i + 1);
-            cell = row.createCell(1, CellType.STRING);
-            String maCt = tblCTHD.getValueAt(i, 0).toString();
-            cell.setCellValue(maCt);
-            cell = row.createCell(2, CellType.STRING);
-            String maHd = tblCTHD.getValueAt(i, 1).toString();
-            cell.setCellValue(maHd);
-            cell = row.createCell(3, CellType.STRING);
-            String maSach = tblCTHD.getValueAt(i, 2).toString();
-            cell.setCellValue(maSach);
-            cell = row.createCell(4, CellType.STRING);
-
-            String soLuong = tblCTHD.getValueAt(i, 3).toString();
-            cell.setCellValue(soLuong);
-            cell = row.createCell(5, CellType.STRING);
-            String giaBan = tblCTHD.getValueAt(i, 4).toString();
-            cell.setCellValue(giaBan);
-            cell = row.createCell(6, CellType.STRING);
-            String thanhTien = tblCTHD.getValueAt(i, 5).toString();
-            cell.setCellValue(thanhTien);
-            cell = row.createCell(7, CellType.STRING);
-            String tenSach = tblCTHD.getValueAt(i, 6).toString();
-            cell.setCellValue(tenSach);
-            cell = row.createCell(8, CellType.STRING);
+//        XSSFWorkbook xs = new XSSFWorkbook();
+//        XSSFSheet sheet = xs.createSheet("HÓA ĐƠN CHI TIẾT");
+//        XSSFRow row = null;
+//        Cell cell = null;
+//        row = sheet.createRow(2);
+//        cell = row.createCell(0, CellType.STRING);
+//        cell.setCellValue("STT");
+//        cell = row.createCell(1, CellType.STRING);
+//        cell.setCellValue("Mã Chi Tiết Hóa Đơn");
+//        cell = row.createCell(2, CellType.STRING);
+//        cell.setCellValue("Mã Hóa Đơn");
+//        cell = row.createCell(3, CellType.STRING);
+//        cell.setCellValue("Mã Sách");
+//        cell = row.createCell(4, CellType.STRING);
+//        cell.setCellValue("Tên Sách");
+//        cell = row.createCell(5, CellType.STRING);
+//        cell.setCellValue("Số Lượng");
+//        cell = row.createCell(6, CellType.STRING);
+//        cell.setCellValue("Giá Bán");
+//        cell = row.createCell(7, CellType.STRING);
+//        cell.setCellValue("Thành Tiền");
+//        cell = row.createCell(8, CellType.STRING);
+//
+//        for (int i = 0; i < tblCTHD.getRowCount(); i++) {
+//            row = sheet.createRow(3 + i);
+//            cell = row.createCell(0, CellType.STRING);
+//            cell.setCellValue(i + 1);
+//            cell = row.createCell(1, CellType.STRING);
+//            String maCt = tblCTHD.getValueAt(i, 0).toString();
+//            cell.setCellValue(maCt);
+//            cell = row.createCell(2, CellType.STRING);
+//            String maHd = tblCTHD.getValueAt(i, 1).toString();
+//            cell.setCellValue(maHd);
+//            cell = row.createCell(3, CellType.STRING);
+//            String maSach = tblCTHD.getValueAt(i, 2).toString();
+//            cell.setCellValue(maSach);
+//            cell = row.createCell(4, CellType.STRING);
+//
+//            String soLuong = tblCTHD.getValueAt(i, 3).toString();
+//            cell.setCellValue(soLuong);
+//            cell = row.createCell(5, CellType.STRING);
+//            String giaBan = tblCTHD.getValueAt(i, 4).toString();
+//            cell.setCellValue(giaBan);
+//            cell = row.createCell(6, CellType.STRING);
+//            String thanhTien = tblCTHD.getValueAt(i, 5).toString();
+//            cell.setCellValue(thanhTien);
+//            cell = row.createCell(7, CellType.STRING);
+//            String tenSach = tblCTHD.getValueAt(i, 6).toString();
+//            cell.setCellValue(tenSach);
+//            cell = row.createCell(8, CellType.STRING);
+//        }
+//        try {
+////            FormChinhJDialog formchinh = new FormChinhJDialog();
+////            String time = formchinh.getTime();
+////            NewJFrame fam = new NewJFrame();
+////            String time = fam.getTime();
+//
+//            String maHd = tblCTHD.getValueAt(0, 1).toString();
+//
+//            File file = new File(maHd + ".xlsx");
+//            FileOutputStream fos = new FileOutputStream(file);
+//            xs.write(fos);
+//            fos.close();
+//            MsgBox.alert(this, "Xuất file thành công!");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+  String path = "";
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+        if(x== JFileChooser.APPROVE_OPTION){
+            path = j.getSelectedFile().getPath();
         }
+        Document doc = new Document();
+        
         try {
-//            FormChinhJDialog formchinh = new FormChinhJDialog();
-//            String time = formchinh.getTime();
-//            NewJFrame fam = new NewJFrame();
-//            String time = fam.getTime();
+            PdfWriter.getInstance( doc, new FileOutputStream(path+" "+"HD"+txtMaHoaDon.getText()+".pdf"));
+            doc.open();
+             doc.add(new com.itextpdf.text.Paragraph("Hóa"+"đơn:"+txtMaHoaDon.getText()+"\n Ngày : " + java.time.LocalDate.now()+"\n" +"\n"));
 
-            String maHd = tblCTHD.getValueAt(0, 1).toString();
-
-            File file = new File(maHd + ".xlsx");
-            FileOutputStream fos = new FileOutputStream(file);
-            xs.write(fos);
-            fos.close();
-            MsgBox.alert(this, "Xuất file thành công!");
-        } catch (Exception e) {
-            e.printStackTrace();
+           PdfPTable tbl = new PdfPTable(6);
+           
+           tbl.addCell("MaHD");
+           tbl.addCell("MaSach");
+           tbl.addCell("TenSach");
+           tbl.addCell("SoLuong");
+           tbl.addCell("DonGia");
+           tbl.addCell("Thanh tien");
+           for(int  i =0 ; i< tblCTHD.getRowCount();i++){
+               
+               String MaS = tblCTHD.getValueAt(i,1).toString();
+               String TenS = tblCTHD.getValueAt(i,2).toString();
+               String SL = tblCTHD.getValueAt(i,3).toString();
+               String DG = tblCTHD.getValueAt(i,4).toString();
+               String TT = tblCTHD.getValueAt(i,5).toString();
+               String TT1 = tblCTHD.getValueAt(i,6).toString();
+               
+               tbl.addCell(MaS);
+               tbl.addCell(TenS);
+               tbl.addCell(SL);
+               tbl.addCell(DG);
+               tbl.addCell(TT);
+               tbl.addCell(TT1);
+           }
+           doc.add(tbl);
+            System.out.println("Thành công");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BanSach.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(BanSach.class.getName()).log(Level.SEVERE, null, ex);
         }
+             
+           
+        
+       
+         doc.close();
+        
     }
 
 
@@ -1037,6 +1093,7 @@ public class BanSachJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnPevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPevActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -1049,6 +1106,8 @@ public class BanSachJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -1077,6 +1136,8 @@ public class BanSachJInternalFrame extends javax.swing.JInternalFrame {
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // TODO add your handling code here:
+        clearHD();
+        txtTongTien.setText("0");
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void txtSDTKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSDTKeyReleased
@@ -1129,6 +1190,7 @@ public class BanSachJInternalFrame extends javax.swing.JInternalFrame {
 
     private void txtMaHoaDonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaHoaDonKeyReleased
         // TODO add your handling code here:
+        fillHDCT(txtMaHoaDon.getText().trim());
     }//GEN-LAST:event_txtMaHoaDonKeyReleased
 
     private void tblCTHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTHDMouseClicked

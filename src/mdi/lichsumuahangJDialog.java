@@ -4,31 +4,38 @@
  * and open the template in the editor.
  */
 package mdi;
-
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import qlchs.dao.ThongKeDAO;
 /**
  *
  * @author Admin
  */
-public class LichSuMuaHangJInternalFrame extends javax.swing.JInternalFrame {
-
-    ThongKeDAO tkdao = new ThongKeDAO();
+public class lichsumuahangJDialog extends javax.swing.JDialog {
+ThongKeDAO tkdao = new ThongKeDAO();
     int index = -1;
     /**
-     * Creates new form LichSuMuaHangJInternalFrame
+     * Creates new form lichsumuahangJDialog
      */
      private String dataContructor;
-    public LichSuMuaHangJInternalFrame() {
+
+    public lichsumuahangJDialog(String dataContructor) {
         initComponents();
-         this.dataContructor = dataContructor;
+        setLocationRelativeTo(null);
+        this.dataContructor = dataContructor;
         lblLSMH.setText("Lịch Sử Mua Hàng - Mã Khách Hàng:" + dataContructor);
         fillLSMH();
     }
 
-    
-    void fillLSMH() {
+    private lichsumuahangJDialog() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private lichsumuahangJDialog(JFrame jFrame, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     void fillLSMH() {
 
         DefaultTableModel dtm = (DefaultTableModel) tblLSMH.getModel();
         dtm.setRowCount(0);
@@ -73,9 +80,7 @@ public class LichSuMuaHangJInternalFrame extends javax.swing.JInternalFrame {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -215,6 +220,47 @@ public class LichSuMuaHangJInternalFrame extends javax.swing.JInternalFrame {
         this.LoadToJTb();
     }//GEN-LAST:event_btnLastActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(lichsumuahangJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(lichsumuahangJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(lichsumuahangJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(lichsumuahangJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                lichsumuahangJDialog dialog = new lichsumuahangJDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;

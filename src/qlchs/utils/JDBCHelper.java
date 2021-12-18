@@ -12,7 +12,7 @@ import java.sql.*;
  */
 public class JDBCHelper {
 
- static String url = "jdbc:sqlserver://localhost;databaseName=QUANLYCUAHANGSACH;user=sa;password=songlong";
+ static String url = "jdbc:sqlserver://localhost;databaseName=QLNS;user=sa;password=van";
 
 
     public static PreparedStatement getStmt(String sql, Object... args) throws SQLException {

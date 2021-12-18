@@ -88,11 +88,10 @@ public class KeSach1JInternalFrame extends javax.swing.JInternalFrame {
         if (dao.selectById(txtMaks.getText()) != null) {
             MsgBox.alert(this, "Không được trùng mã kệ sách");
             return;
-        } else if (txtMaks.getText().equals("")) {
+        } else if (txtMaks.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Không được để trống mã kệ sách");
             return;
-
-        } else if (txtViTri.getText().equals("")) {
+        } else if (txtViTri.getText().trim().isEmpty()) {
             MsgBox.alert(this, "Không được để trống vị trí kệ sách");
             return;
 

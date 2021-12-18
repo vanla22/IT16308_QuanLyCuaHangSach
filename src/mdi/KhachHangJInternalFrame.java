@@ -13,6 +13,7 @@ import static java.awt.Color.white;
 import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import qlchs.dao.ThongKeDAO;
 
 /**
  *
@@ -21,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class KhachHangJInternalFrame extends javax.swing.JInternalFrame {
 int index = 0;
     khachhangDAO dao = new khachhangDAO();
+      ThongKeDAO tkdao = new ThongKeDAO();
     /**
      * Creates new form kh
      */
@@ -429,7 +431,7 @@ public void setTrang(){
                 .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDanhSachKHLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnLSKH)
+                .addComponent(btnLSKH, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
         pnlDanhSachKHLayout.setVerticalGroup(
@@ -583,9 +585,8 @@ public void setTrang(){
         // TODO add your handling code here:
             if (index >=0) {
          String maKh = tblKhachHang.getValueAt(index,0).toString();
-      LichSuMuaHangJInternalFrame lskh = new LichSuMuaHangJInternalFrame();
-      this.getDesktopPane().add(lskh);
-      lskh.show();
+      lichsumuahangJDialog lsmh = new  lichsumuahangJDialog(maKh);
+lsmh.setVisible(true);
         }else {
             MsgBox.alert(this,"Chưa chọn khách hàng muốn");
         }
